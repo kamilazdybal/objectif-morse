@@ -10,13 +10,13 @@ We type a message on a stationary computer into the program main.cpp
 running in the terminal. 
 
 This message is translated into Morse alphabet and the signal of dots 
-and dashes is sent on the parallel port.
+and dashes is sent to the parallel port.
 
-The parallel port pins are connected to the small circuit with 
+The parallel port's pins are connected to the small circuit with 
 a diode, which blinks accordingly to the message translation.
 
 This message is received by the phototransistor, situated in the 
-close proximity of a diode. 
+close proximity of a diode.
 
 The phototransistor pass the signal to the interpreting device, 
 e.g. Arduino. 
