@@ -16,10 +16,13 @@ The parallel port pins are connected to the small circuit with
 a diode, which blinks accordingly to the message translation.
 
 This message is received by the phototransistor, situated in the 
-close proximity of a diode. The phototransistor pass the signal to
-the interpreting device, like Arduino. Arduino connected to a
-portable computer, like a laptop, prints in the Arduino console
-a translated message.
+close proximity of a diode. 
+
+The phototransistor pass the signal to the interpreting device, 
+e.g. Arduino. 
+
+Arduino connected to a portable computer, like a laptop, prints 
+a translated message in the Arduino console.
 
 ---------------------------------------------------------------------
 A plan for the future improvement:
