@@ -13,10 +13,10 @@ This message is translated into Morse alphabet and the signal of dots
 and dashes is sent to the parallel port.
 
 The parallel port's pins are connected to the small circuit with 
-a diode, which blinks accordingly to the message translation.
+an LED, which blinks accordingly to the message translation.
 
 This message is received by the phototransistor, situated in the 
-close proximity of a diode.
+close proximity of the LED.
 
 The phototransistor pass the signal to the interpreting device, 
 e.g. Arduino. 
