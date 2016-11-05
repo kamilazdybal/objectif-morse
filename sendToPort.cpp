@@ -55,7 +55,6 @@ stringChar = stringToSend[i];
 		{
 		++i;
 		usleep(4*dotTime);
-		break;
 		}
 		break;
 		}
