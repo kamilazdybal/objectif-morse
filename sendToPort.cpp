@@ -57,6 +57,7 @@ stringChar = stringToSend[i];
 		usleep(4*dotTime);
 		break;
 		}
+		break;
 		}
 	case '/':
 		{
