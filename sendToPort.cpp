@@ -24,14 +24,14 @@ char stringChar;
 
 for (int i = 0 ; i < stringSize ; ++i)
 {
-
+outb(0,base);
 stringChar = stringToSend[i];
 
 	switch (stringChar)
 	{
 	case '.':
 		{
-        	outb(bitsOn, base);	
+        outb(bitsOn, base);	
 		usleep(dotTime);
 		outb(0, base);
 		usleep(dotTime);
@@ -39,7 +39,7 @@ stringChar = stringToSend[i];
 		}
 	case '-':
 		{
-        	outb(bitsOn, base);	
+        outb(bitsOn, base);	
 		usleep(3*dotTime);
 		outb(0, base);
 		usleep(dotTime);
@@ -49,14 +49,16 @@ stringChar = stringToSend[i];
 		{
 		outb(0, base);
 		usleep(2*dotTime);
-
-		if (stringToSend[i+1] == ' ') {++i;}
 		if (stringToSend[i+1] == ' ') 
-		{
-		++i;
-		usleep(4*dotTime);
-		}
-		break;
+        {
+            ++i;
+            if (stringToSend[i+1] == ' ') 
+                {
+                ++i;
+                usleep(4*dotTime);
+                }
+        }
+        break;
 		}
 	case '/':
 		{
