@@ -34,7 +34,7 @@ for(int n = 0 ; n < len ; ++n)
 				}
 			case 32: //space
 				{
-				morseMessage+="   ";
+				morseMessage+=" "; // adding two spaces instead of three, because one is added after each letter
 				break;
 				}
 			case 44: //comma
@@ -44,7 +44,7 @@ for(int n = 0 ; n < len ; ++n)
 				}
 			default: //everything else is ignored
 				{
-				morseMessage+=" ";
+                morseMessage+=" ";
 				break;
 				}
 			}

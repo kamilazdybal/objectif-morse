@@ -31,7 +31,7 @@ cout << "You've typed: " << endl << secretMessage.outputText() << endl;
 cout << "Morse code: " << endl << secretMessage.outputMorse() << endl;
 
 // Sending the message to the parallel port
-sendToPort(secretMessage.outputMorse(), 1, 500000);
+sendToPort(secretMessage.outputMorse(), 1, 250000);
 
 }
 

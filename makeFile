@@ -1,2 +1,0 @@
-all:
-	g++ -o komp main.cpp morse.cpp sendToPort.cpp

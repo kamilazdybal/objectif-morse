@@ -5,13 +5,13 @@
 
 class morse
 {
-public:
+	public:
 	void inputMorse(std::string);	
 	void inputText(std::string);
 	std::string outputMorse();
 	std::string outputText();
 
-private:
+	private:
 	std::string morseMessage;
 	std::string textMessage;
 	static std::string code[];
