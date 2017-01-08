@@ -1,8 +1,8 @@
-// MEASURING SIGNAL TIMES
+// ARDUINO: MEASURING SIGNAL TIMES
 
-const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
+const int analogInPin = A0;
 
-int sensorValue = 0;        // value read from the port
+int sensorValue = 0;
 int sensorMean = 0;
 boolean prevSignal = false;
 int timeDuration = 0;
@@ -10,20 +10,21 @@ int timePrev = 0;
 int sensorThres;
 
 void setup() {
-
+  
   Serial.begin(9600); 
-
-  for(int i=0;i<10;++i)
+  
+  // Calibration
+  for(int i=0; i<10; ++i)
   {
    sensorValue += analogRead(analogInPin);  
    delay(100); 
   }
-  sensorMean = sensorValue/10;
+  sensorMean = sensorValue / 10;
   sensorThres = sensorMean + 20;
 }
 
 void loop() {
-
+  
   sensorValue = analogRead(analogInPin);      
  
   // Signal changing from low to high
@@ -31,7 +32,7 @@ void loop() {
   {
   timeDuration = millis() - timePrev;  
   timePrev = millis();
-  Serial.print("\nL " );                       
+  Serial.print("\nL ");                       
   Serial.print(timeDuration);      
   prevSignal = true;
   }
@@ -41,9 +42,8 @@ void loop() {
   {
   timeDuration = millis() - timePrev;  
   timePrev = millis();
-  Serial.print("\nH " );                       
+  Serial.print("\nH ");                       
   Serial.print(timeDuration);     
   prevSignal = false;
   }
-                     
 }
