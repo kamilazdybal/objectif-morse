@@ -24,15 +24,17 @@ myArduino.start();
 time(&begTime);
 time(&curTime);
 
+
 while (difftime(curTime, begTime) < timeOut)
 {
+
 	myArduino.read();
 	usleep(10000);
 	time(&curTime);
 }
 
 received.inputMorse(myArduino.output());
-
+cout << "Received message:" << endl;
 cout << received.outputMorse() << endl;
 cout << received.outputText() << endl;
 
