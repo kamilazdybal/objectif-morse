@@ -1,7 +1,8 @@
-// Measuring signal times
+// MEASURING SIGNAL TIMES
+
 const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
 
-int sensorValue = 0;        // value read from the pot
+int sensorValue = 0;        // value read from the port
 int sensorMean = 0;
 boolean prevSignal = false;
 int timeDuration = 0;
@@ -13,7 +14,7 @@ void setup() {
   Serial.begin(9600); 
 
   for(int i=0;i<10;++i)
-  {<
+  {
    sensorValue += analogRead(analogInPin);  
    delay(100); 
   }
