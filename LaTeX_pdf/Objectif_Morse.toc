@@ -12,15 +12,13 @@
 \contentsline {subsection}{\numberline {2.1.5}Makefile}{9}{subsection.2.1.5}
 \contentsline {section}{\numberline {2.2}How does it work}{9}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Parallel port}{10}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}ASCII to Morse}{12}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.2}Alphanumeric to Morse}{12}{subsection.2.2.2}
 \contentsline {chapter}{\numberline {3}Receiving}{15}{chapter.3}
 \contentsline {section}{\numberline {3.1}Code description}{15}{section.3.1}
 \contentsline {section}{\numberline {3.2}How does it work}{15}{section.3.2}
-\contentsline {chapter}{\numberline {4}Remarks}{16}{chapter.4}
-\contentsline {chapter}{\numberline {A}Broadcasting}{17}{appendix.A}
-\contentsline {section}{\numberline {A.1}morse.h}{17}{section.A.1}
-\contentsline {section}{\numberline {A.2}morse.cpp}{18}{section.A.2}
-\contentsline {section}{\numberline {A.3}main.cpp}{19}{section.A.3}
-\contentsline {section}{\numberline {A.4}sendToPort.h}{20}{section.A.4}
-\contentsline {section}{\numberline {A.5}sendToPort.cpp}{21}{section.A.5}
-\contentsline {chapter}{\numberline {B}Receiving}{22}{appendix.B}
+\contentsline {subsection}{\numberline {3.2.1}Arduino part}{15}{subsection.3.2.1}
+\contentsline {subsubsection}{Initials}{15}{section*.2}
+\contentsline {subsubsection}{Variables}{16}{section*.3}
+\contentsline {subsubsection}{Calibration}{16}{section*.4}
+\contentsline {subsubsection}{Identifying the voltage changes}{16}{section*.5}
+\contentsline {chapter}{\numberline {4}Remarks}{17}{chapter.4}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.3)  8 JAN 2017 16:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.3)  9 JAN 2017 14:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -859,10 +859,9 @@ LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <17.28> not available
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<DWGs/ex_libris.png, id=114, 1050.92625pt x 542.025pt>
+<DWGs/ex_libris.png, id=90, 1050.92625pt x 542.025pt>
 File: DWGs/ex_libris.png Graphic file (type png)
-
-<use DWGs/ex_libris.png>
+ <use DWGs/ex_libris.png>
 Package pdftex.def Info: DWGs/ex_libris.png used on input line 124.
 (pdftex.def)             Requested size: 199.16928pt x 102.72115pt.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
@@ -876,7 +875,7 @@ File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.141 \newpage
+l.139 \newpage
                [1 <./DWGs/ex_libris.png>] (./Objectif_Morse.toc)
 \tf@toc=\write4
 \openout4 = `Objectif_Morse.toc'.
@@ -890,7 +889,7 @@ Chapter 1.
 
 ] [4] [5]
 Chapter 2.
-<DWGs/bCodeStructure.png, id=182, 3859.41875pt x 1651.16875pt>
+<DWGs/bCodeStructure.png, id=152, 3859.41875pt x 1651.16875pt>
 File: DWGs/bCodeStructure.png Graphic file (type png)
 
 <use DWGs/bCodeStructure.png>
@@ -903,21 +902,25 @@ Overfull \hbox (47.98456pt too wide) in paragraph at lines 244--245
 
 [6
 
-] [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
-1}) has been already used, duplicate ignored
+]
+
+LaTeX Warning: Reference `App:morse_h' on page 7 undefined on input line 256.
+
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.280 
        <./DWGs/bCodeStructure.png>] [8] [9]
-<DWGs/par_port.jpg, id=214, 1683.28876pt x 1776.6375pt>
+<DWGs/par_port.jpg, id=184, 1683.28876pt x 1776.6375pt>
 File: DWGs/par_port.jpg Graphic file (type jpg)
 
 <use DWGs/par_port.jpg>
 Package pdftex.def Info: DWGs/par_port.jpg used on input line 358.
 (pdftex.def)             Requested size: 227.62204pt x 240.24236pt.
 
-<DWGs/parport_plug.jpg, id=215, 1927.2pt x 1900.09875pt>
+<DWGs/parport_plug.jpg, id=185, 1927.2pt x 1900.09875pt>
 File: DWGs/parport_plug.jpg Graphic file (type jpg)
 
 <use DWGs/parport_plug.jpg>
@@ -930,7 +933,7 @@ Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 377.
                                                   \fi \fi 
 l.381 
        <./DWGs/par_port.jpg>]
-<DWGs/broadcast_circuit.png, id=222, 846.16125pt x 701.62125pt>
+<DWGs/broadcast_circuit.png, id=192, 846.16125pt x 701.62125pt>
 File: DWGs/broadcast_circuit.png Graphic file (type png)
 
 <use DWGs/broadcast_circuit.png>
@@ -949,14 +952,14 @@ l.398
                                                   \fi \fi 
 l.398 
        <./DWGs/parport_plug.jpg> <./DWGs/broadcast_circuit.png>]
-<DWGs/morse--code.png, id=230, 3934.7pt x 421.575pt>
+<DWGs/morse--code.png, id=200, 3934.7pt x 421.575pt>
 File: DWGs/morse--code.png Graphic file (type png)
 
 <use DWGs/morse--code.png>
 Package pdftex.def Info: DWGs/morse--code.png used on input line 402.
 (pdftex.def)             Requested size: 393.49306pt x 42.15996pt.
 
-<DWGs/morse_code_map.png, id=231, 3929.68124pt x 1360.08125pt>
+<DWGs/morse_code_map.png, id=201, 3929.68124pt x 1360.08125pt>
 File: DWGs/morse_code_map.png Graphic file (type png)
 
 <use DWGs/morse_code_map.png>
@@ -978,43 +981,35 @@ l.491 \end{snugshade}
 Chapter 3.
 [15
 
-]
+] [16]
 Chapter 4.
-[16
-
-]
-Appendix A.
 [17
 
-] [18] [19] [20] [21]
-Appendix B.
-[22
-
 ]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 570.
+LaTeX Warning: Empty `thebibliography' environment on input line 589.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 572.
-[23
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 591.
+[18
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 572.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 591.
  (./Objectif_Morse.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 572.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 572.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 591.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 591.
 Package rerunfilecheck Info: File `Objectif_Morse.out' has not changed.
-(rerunfilecheck)             Checksum: C7D406652C8E26BEB2A7148397851D59;1475.
+(rerunfilecheck)             Checksum: 4E1C82E6A0D65074A34509CA371C42FE;1163.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 572.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 591.
  ) 
 Here is how much of TeX's memory you used:
- 10362 strings out of 493304
- 144526 string characters out of 6139871
- 267119 words of memory out of 5000000
- 13556 multiletter control sequences out of 15000+600000
+ 10345 strings out of 493304
+ 144333 string characters out of 6139871
+ 266944 words of memory out of 5000000
+ 13546 multiletter control sequences out of 15000+600000
  19852 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  33i,7n,58p,799b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1030,10 +1025,10 @@ r/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr
 /share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/t
 ype1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sftt1200.pfb>
-Output written on Objectif_Morse.pdf (24 pages, 4405470 bytes).
+Output written on Objectif_Morse.pdf (19 pages, 4407005 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 304 compressed objects within 4 object streams
- 84 named destinations out of 1000 (max. 500000)
- 236 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 310 PDF objects out of 1000 (max. 8388607)
+ 262 compressed objects within 3 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 188 words of extra memory for PDF output out of 10000 (max. 10000000)
 

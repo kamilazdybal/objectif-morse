@@ -112,7 +112,7 @@
         
 		\Large
 
- 		November, 2016
+ 		January, 2017
 	\end{center}
 \end{titlepage}
 
@@ -125,15 +125,13 @@
 
 \vspace*{2cm}
 
-Copyright \textcopyright \, Jakub Aleksanderek, Kamila Zdybał, 2016
+Copyright \textcopyright \, J. Aleksanderek, K. Zdybał, 2017
 
 For more projects similar to this one
 
-visit us on GitHub: @JAKUB @camillejr
+visit us on GitHub: @camillejr
 
 To contact us personally drop us a line at:
-
-\verb|jogurttruskawkowy@gmail.com|
 
 \verb|kamilazdybal@gmail.com|
 
@@ -160,6 +158,8 @@ You will soon begin a journey through secret coded messages transmitted between 
 The main purpose of this document is to keep the record of the ideas that we had, of the solutions that we came up with and of the observations that we have made. 
 
 The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. It is not very difficult! Following it, you will be able to (hopefully) accomplish the same mission! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Some basic understanding in all of these is requried as a prerequisite.
+
+All the codes produced are not included in this document. You can download everything needed from the \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
 Reach out to section [\ref{sec:equip}] to check if you have everything that you will need!
 
@@ -392,7 +392,7 @@ The final thing to do is to build the rest of the circuit connected to the plug,
 
 
 
-\subsection{ASCII to Morse} \label{sec:asciitomorse}
+\subsection{Alphanumeric to Morse} \label{sec:asciitomorse}
 
 Probably the most important part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representative in the Morse alphabet. Its definition is present in the file \verb|morse.cpp|. Notice that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate into the same Morse character.
 
@@ -432,11 +432,11 @@ For the characters used in this project we have the following ASCII numerations:
 \end{enumerate}
 
 
-We have then decided to map every legal alphanumeric ASCII character into the created array. This means that each ASCII character number gets the number of its position inside the \verb|morse::code| array. This is achieved by subtracting certain number from the ASCII numeration. The graphical representation of this mapping is presented below:
+We have then decided to map every legal alphanumeric ASCII character into the created array. This means that each alphanumeric character number gets the number of its position inside the \verb|morse::code| array. This is achieved by subtracting certain number from the ASCII numeration. The graphical representation of this mapping is presented below:
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{morse_code_map}
-\caption{Mapping ASCII characters to the morse code array.}				
+\caption{Mapping alphanumeric characters to the morse code array.}				
 \label{fig:morse_code_map}
 \end{figure}
 
@@ -504,6 +504,74 @@ else
 \section{How does it work}
 
 
+
+
+
+\subsection{Arduino part}
+
+
+
+\subsubsection{Initials}
+
+The aim of the Arduino code is to identify the signal as Low or High and to measure the time duration of that state. One of the sample Arduino outputs is therefore:
+
+\begin{snugshade}
+\begin{verbatim}
+L 200
+H 200
+L 400
+H 200
+L 200
+H 400
+\end{verbatim}
+\end{snugshade}
+
+Which has the interpretation as follows: Low state lasted 200ms, High state lasted 200ms, Low state lasted 400ms, and so on...
+
+
+
+
+\subsubsection{Variables}
+
+Variables used in the code:
+
+\verb|analogInPin| - specifies the analog pin that we connect to, in our case it's A0.
+
+\verb|sensorValue| - the value of voltage read using \verb|analogRead()| function. This value describes the luminosity change and comes directly from the phototransistor circuit. It's a number between 0 and 1023.
+
+\verb|sensorMean| - the mean luminosity, assuming that the LED diode is not lit up. It is calculated in the calibration part of the code.
+
+\verb|sensorThres| - the upper threshold of the Low state. Any value higher then this will be considered a High state. It is calculated in the calibration part of the code.
+
+\verb|prevSignal| - a boolean describing the state from which the switch has just occured. It is \verb|true| when the previous state was High and \verb|false| when the previous state was Low.
+
+\verb|timeDuration| - 
+
+\verb|timePrev| - 
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Calibration}
+
+The aim of the calibration is to measure the mean luminosity around the phototransistor and to use this information for further processing of the luminosity that comes from the LED diode itself. 
+
+The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want Arduino to correctly interpret what part of the luminosity comes from the general brightness of the day (or night) and what part will be changes due to the LED diode broadcasting the message.
+
+\subsubsection{Identifying the voltage changes}
+
+
+
+
+
+
+
 \chapter{Remarks}
 
 - reading secret alien messages
@@ -514,55 +582,6 @@ else
 
 
 \newpage
-
-\appendix
-
-\chapter{Broadcasting}
-
-
-\section{morse.h} \label{App:morse_h}
-
-%\lstinputlisting[label=morse_h, caption=File: \texttt{morse.h} ]{morse.h}
-
-
-
-
-
-\newpage
-
-\section{morse.cpp} \label{App:morse_cpp}
-
-%\lstinputlisting[label=morse_cpp, caption=File: \texttt{morse.cpp} ]{morse.cpp}
-
-\newpage
-
-\section{main.cpp} \label{App:main_cpp}
-
-
-
-\newpage
-
-
-\section{sendToPort.h} \label{App:sendToPort_h}
-
-
-\newpage
-
-\section{sendToPort.cpp} \label{App:sendToPort_cpp}
-
-
-
-
-\chapter{Receiving}
-
-
-
-
-
-
-
-
-
 
 
 \begin{thebibliography}{50}

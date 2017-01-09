@@ -4,10 +4,10 @@ const int analogInPin = A0;
 
 int sensorValue = 0;
 int sensorMean = 0;
+int sensorThres;
 boolean prevSignal = false;
 int timeDuration = 0;
 int timePrev = 0;
-int sensorThres;
 
 void setup() {
   
