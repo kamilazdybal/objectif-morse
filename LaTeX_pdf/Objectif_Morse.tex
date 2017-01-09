@@ -26,7 +26,7 @@
 \usepackage{framed}
 \definecolor{listinggray}{gray}{0.9}
 \definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
-\definecolor{shadecolor}{RGB}{179, 229, 184}
+\definecolor{shadecolor}{RGB}{224, 224, 224}
 
 \begin{document}
 
@@ -159,7 +159,7 @@ The main purpose of this document is to keep the record of the ideas that we had
 
 The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. It is not very difficult! Following it, you will be able to (hopefully) accomplish the same mission! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Some basic understanding in all of these is requried as a prerequisite.
 
-All the codes produced are not included in this document. You can download everything needed from the \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
+All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
 Reach out to section [\ref{sec:equip}] to check if you have everything that you will need!
 
@@ -509,24 +509,23 @@ else
 
 \subsection{Arduino part}
 
+In this part we describe the contents of the Arduino code.
 
+\subsubsection{The aim of the Arduino code}
 
-\subsubsection{Initials}
+The aim of the Arduino code is to identify the signal as Low (L) or High (H) and to measure the time duration in \textit{ms} of that state.
 
-The aim of the Arduino code is to identify the signal as Low or High and to measure the time duration of that state. One of the sample Arduino outputs is therefore:
+One of the sample Arduino outputs can be:
 
 \begin{snugshade}
 \begin{verbatim}
 L 200
 H 200
 L 400
-H 200
-L 200
-H 400
 \end{verbatim}
 \end{snugshade}
 
-Which has the interpretation as follows: Low state lasted 200ms, High state lasted 200ms, Low state lasted 400ms, and so on...
+Which has the interpretation as follows: Low state lasted 200 \textit{ms}, High state lasted 200 \textit{ms}, Low state lasted 400 \textit{ms}, and so on...
 
 
 
@@ -537,37 +536,79 @@ Variables used in the code:
 
 \verb|analogInPin| - specifies the analog pin that we connect to, in our case it's A0.
 
-\verb|sensorValue| - the value of voltage read using \verb|analogRead()| function. This value describes the luminosity change and comes directly from the phototransistor circuit. It's a number between 0 and 1023.
+\verb|sensorValue| - the value of voltage read using \verb|analogRead()| function. This value describes the luminosity as seen directly by the phototransistor. It's a number between 0 and 1023.
 
 \verb|sensorMean| - the mean luminosity, assuming that the LED diode is not lit up. It is calculated in the calibration part of the code.
 
-\verb|sensorThres| - the upper threshold of the Low state. Any value higher then this will be considered a High state. It is calculated in the calibration part of the code.
+\verb|sensorThres| - the lower threshold of the High state. Any value higher then this will be considered as a High state. It is calculated in the calibration part of the code.
 
-\verb|prevSignal| - a boolean describing the state from which the switch has just occured. It is \verb|true| when the previous state was High and \verb|false| when the previous state was Low.
+\verb|prevSignal| - a boolean describing the state from which the change has just occured. It is \verb|true| when the previous state was High and \verb|false| when the previous state was Low.
 
-\verb|timeDuration| - 
+\verb|timeDuration| - the total time of the last Low or High state.
 
-\verb|timePrev| - 
+\verb|timePrev| - the time in \textit{ms} at which the change from Low to High or from High to Low occured, measured from the beginning of the program operation.
 
+In the graph below we present in a closer detail how the Low and High state is interpreted by the Arduino code. Anything that is higher then \verb|sensorThres| is interpreted as a High state. Anything that is 10 from \verb|sensorMean| (either way) is interpreted as a Low state. There are two gaps, where the signal is not interpreted as either High or Low, which probably should be thought over...
 
-
-
-
-
-
+\begin{figure}[H]
+\centering\includegraphics[scale=0.18]{arduinocode}
+\caption{Interpretation of Low and High states using defined variables.}				
+\label{fig:arduino_code}
+\end{figure}
 
 
 
 \subsubsection{Calibration}
 
-The aim of the calibration is to measure the mean luminosity around the phototransistor and to use this information for further processing of the luminosity that comes from the LED diode itself. 
+The aim of the calibration is to measure the mean luminosity around the phototransistor and to use this information for further processing of the luminosity that comes from the LED diode itself. This mean luminosity will be present everytime we have a Low state in our signal - interpreted as "darkness".
 
-The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want Arduino to correctly interpret what part of the luminosity comes from the general brightness of the day (or night) and what part will be changes due to the LED diode broadcasting the message.
+The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want the Arduino to correctly interpret what part of the luminosity comes from the general brightness of the day (or night, or room) and what part will be changes due to the LED diode shining.
+
+The aim of the calibration is to obtain the value \verb|sensorMean|. This is performed by reading 10 values of \verb|sensorValue| in 100 \textit{ms} time steps and calculating their arithmetic average.
 
 \subsubsection{Identifying the voltage changes}
 
+Inside the \verb|loop()| function, the \verb|sensorValue| is read at the beginning and then if certain conditions are met, we have either signal changing from Low to High or changing from High to Low.
+
+The signal is changing from Low to High when the voltage read is greater than the \verb|sensorThres| and when the previous signal was Low (when the \verb|prevSignal| is set to false).
+
+\begin{figure}[H]
+\centering\includegraphics[scale=0.18]{lowtohigh}
+\caption{Signal changing from Low to High.}				
+\label{fig:arduino_code}
+\end{figure}
+
+The signal is changing from High to Low when the voltage read is in-between 10 from the \verb|sensorMean| value and when the previous signal was High (when the \verb|prevSignal| is set to true). 
+
+\begin{figure}[H]
+\centering\includegraphics[scale=0.18]{hightolow}
+\caption{Signal changing from High to Low.}				
+\label{fig:arduino_code}
+\end{figure}
+
+\subsubsection{Measuring the time durations}
+
+Each time we enter one of the two \verb|if()| conditions, the time of the last finished state (High or Low) must be measured, identified and printed on the Serial Monitor.
+
+Additionally, a flag \verb|prevSignal| is always changed to describe the currently entered state.
+
+For the purpose of measuring the time durations we use the built-in Arduino function \verb|millis()|. This function measures the time in \textit{ms} that has passed from the beginning of the operation of the program. It can therefore be viewed as an absolute time. It increases while the Arduino operates and is only set back to zero, when the Arduino is reset.
+
+The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. [\ref{fig:timedur}], the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
+\verb|timePrev| in this case is the time at which the High state has begun (marked red).
 
 
+\begin{figure}[H]
+\centering\includegraphics[scale=0.18]{timedurations}
+\caption{Measuring the time durations.}				
+\label{fig:timedur}
+\end{figure}
+
+The identification of the last finished state is made by entering the correct \verb|if()| condition, and then accordingly we print on the Serial Monitor either \verb|"L"| or \verb|"H"|, followed by the variable \verb|timeDuration|.
+
+The corresponding flag needs to be raised. If we entered a High state, the \verb|prevSignal| has to be set to true and if we entered a Low state, the \verb|prevSignal| has to be set to false.
+
+Finally, it should be noted that entering the \verb|if()| conditions happen only at changes between Low and High states. Outside of this changes, the \verb|loop()| function simply keeps measuring the \verb|sensorValue|.
 
 
 
