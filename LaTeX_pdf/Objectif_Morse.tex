@@ -151,7 +151,7 @@ To contact us personally drop us a line at:
 
 \chapter{Introduction}\label{chap:intro}
 
-\textbf{Welcome to the Objectif Morse project.} 
+\textbf{Welcome to the \textit{Objectif Morse} project.} 
 
 You will soon begin a journey through secret coded messages transmitted between powerful computers over tiny distances.
 
@@ -167,20 +167,18 @@ It's time to present the mission objectives...
 
 \section{Voici l'Objectif Morse}
 
-We have described the problem as follows:
-
-You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. The message is received and the war is won.
+You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. The message is received and the war is won.
 
 \subsection{Choice for the project name}
 
 The idea for this project was born while reading \textit{Les Aventures De Tintin}, comic books written by a belgian cartoonist Hergé, where messages transmitted in the Morse code are a common form of communication. 
 
-The name "Objectif Morse" is a reference to one of the books in the series "Objectif Lune", and is hence a tribute to our initial inspiration.
+The name \textit{Objectif Morse} is a reference to one of our favourite books in the series \textit{Objectif Lune}, and is hence a tribute to our initial inspiration.
 
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{le_lotus_bleu}
-\caption{Excerpt from "Les Aventures de Tintin: Le Lotus Bleu" by Hergé}			
+\caption{Excerpt from \textit{Les Aventures de Tintin: Le Lotus Bleu} by Hergé}			
 \label{fig:tintin}
 \end{figure}
 
@@ -195,9 +193,7 @@ The two phases are separated by a 1\textit{mm} air gap. What happens inside of t
 
 \section{Equipment used} \label{sec:equip}
 
-Here is the list of all the equipment that we have used.
-
-ELECTRONICS:
+Electronics:
 
 \begin{enumerate}
 
@@ -211,26 +207,37 @@ ELECTRONICS:
 
 \end{enumerate}
 
-COMPUTATION:
+Computation:
 
 \begin{enumerate}
 
 \item Arduino Uno with a USB A-B cable
-\item stationary computer with Linux ()
-\item portable computer with Linux (Ubuntu)
+\item stationary computer with Linux
+\item portable computer with Linux
 \item of course you need some monitors and keyboards...
 
 \end{enumerate}
 
-OPTIONAL (increases the interactivity of this project):
+Optional:
 
 \begin{enumerate}
 
-\item flashlight
+\item flashlight - increases the interactivity of this project
 
 \end{enumerate}
 
+\section{Code used}
 
+Stationary computer:
+
+
+
+Portable computer:
+
+
+
+
+Arduino:
 
 
 
@@ -238,11 +245,11 @@ OPTIONAL (increases the interactivity of this project):
 
 \chapter{Broadcasting}
 
-\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| The first phase of the Objectif Morse project is to translate the secret message from the regular text to the Morse code. This part introduces the message input using alphanumeric characters in the terminal, where the corresponding program is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse code. This part introduces the message input using alphanumeric characters into the terminal, where the corresponding program is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 \section{Code description}
 
-The Objectif Morse project is coded in C++ language. It utilises the most powerful part of C++: object-oriented programming.
+The \textit{Objectif Morse} project is coded in C++ language. It utilises the most powerful part of C++: object-oriented programming.
 
 The code for broadcasting the coded message consists of 5 files plus a makefile. 
 
@@ -259,7 +266,7 @@ The most important constituents of each file are presented in the graph below.
 
 
 
-\subsection{Class morse}
+\subsection{Class \texttt{morse}}
 
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
