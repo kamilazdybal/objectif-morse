@@ -30,29 +30,51 @@
 
 \begin{document}
 
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9,0.9,0.9}
 \lstset{
-		backgroundcolor=\color{lbcolor},
-   		tabsize=4,    
-    	language=C++,
-        basicstyle=\sffamily,
+backgroundcolor=\color{lbcolor},
+    tabsize=4,    
+%   rulecolor=,
+    language=[GNU]C++,
+        basicstyle=\scriptsize,
         upquote=true,
         aboveskip={1.5\baselineskip},
         columns=fixed,
         showstringspaces=false,
         extendedchars=false,
         breaklines=true,
+        prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+        frame=single,
         numbers=left,
         showtabs=false,
         showspaces=false,
         showstringspaces=false,
         identifierstyle=\ttfamily,
         keywordstyle=\color[rgb]{0,0,1},
-        commentstyle=\color[rgb]{0.026,0.5,0.095},
-        stringstyle=\color{mylilas},
-        numberstyle=\color{black},
-		emph={for, break, if, while},
-		emphstyle={\color{red}\textbf},
+        commentstyle=\color[rgb]{0.026,0.112,0.095},
+        stringstyle=\color[rgb]{0.627,0.126,0.941},
+        numberstyle=\color[rgb]{0.205, 0.142, 0.73},
+%        \lstdefinestyle{C++}{language=C++,style=numbers}’.
 }
+\lstset{
+    backgroundcolor=\color{lbcolor},
+    tabsize=4,
+  language=C++,
+  captionpos=b,
+  tabsize=3,
+  frame=lines,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  showstringspaces=false,
+  basicstyle=\footnotesize,
+%  identifierstyle=\color{magenta},
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color{Darkgreen},
+  stringstyle=\color{red}
+  }
 
 
 
@@ -199,7 +221,7 @@ Electronics:
 
 \item LED blue diode
 \item phototransistor
-\item resistors: 330, 10 000 Ohm
+\item resistors: 330 Ohm, 10 000 Ohm
 \item a few cables
 \item breadboard
 \item parallel port plug with soldered cables
@@ -226,26 +248,45 @@ Optional:
 
 \end{enumerate}
 
+\newpage
+
 \section{Code used}
+
+This is a scheme of how the code was distributed over devices:
 
 Stationary computer:
 
+\begin{verbatim}
+broadcastMain.cpp
+morse.cpp
+morse.h
+sendToPort.cpp
+sendToPort.h
 
+makeFileB
+\end{verbatim}
 
 Portable computer:
 
+\begin{verbatim}
+arduinoReceive.cpp
+arduinoReceive.h
+receiveMain.cpp
 
-
+makeFileR
+\end{verbatim}
 
 Arduino:
 
-
+\begin{verbatim}
+arduinoCode.ino
+\end{verbatim}
 
 \newpage
 
 \chapter{Broadcasting}
 
-\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse code. This part introduces the message input using alphanumeric characters into the terminal, where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse alphabet. This part introduces the message input using alphanumeric characters into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 \section{Code description}
 
@@ -253,7 +294,7 @@ The \textit{Objectif Morse} project is coded in C++ language. It utilises the mo
 
 The code for broadcasting the coded message consists of 5 files plus a makefile. 
 
-The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into operating on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
+The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into functions that operate on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
 
 The most important constituents of each file are presented in the graph below.
 
@@ -267,11 +308,30 @@ The most important constituents of each file are presented in the graph below.
 
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
-The definition of the class is presented in the listing \ref{App:morse_h}. We will now describe the class elements.
+The definition of the class is presented in the listing below.
 
-We start with the class functions:
 
-\rule{\textwidth}{0.5pt}
+\begin{lstlisting}
+class morse
+{
+
+	public:
+	void inputMorse(std::string);
+	void inputText(std::string);
+	std::string outputMorse();
+	std::string outputText();
+
+	private:
+	std::string morseMessage;
+	std::string textMessage;
+	static std::string code[];
+	char translation(std::string);
+
+};
+\end{lstlisting}
+
+
+We will now describe the class elements. We start with the class functions:
 
 \verb|morse::inputMorse()| - a public function that takes a string written in Morse alphabet as an input. Ideally, the input string should only consist of the following characters:
 
@@ -287,52 +347,44 @@ We start with the class functions:
 
 If the user inputs characters other then the listed above, they will be treated as unknowns in the message.
 
-\rule{\textwidth}{0.5pt}
 
-
-\verb|morse::inputText()| - a public function that takes a string written in alphanumeric as an input. The input string should only consist of:
+\verb|morse::inputText()| - a public function that takes a string written in alphanumeric alphabet as an input. The input string should only consist of:
 
 \begin{enumerate}
 \item letters \verb|A-Z| (\verb|a-z|)
 \item numbers \verb|0-9|
 \item space \verb|" "|
-\item dot \verb|"."|
+\item full stop \verb|"."|
 \item comma \verb|","|
 \end{enumerate}
 
-If the user inputs characters other then the listed above, they will be treated as unknowns in the message.
-
-\rule{\textwidth}{0.5pt}
-
-\verb|morse::outputMorse()| - 
-
-\rule{\textwidth}{0.5pt}
-
-\verb|morse::outputText()| - 
-
-\rule{\textwidth}{0.5pt}
-
-\verb|morse::translation()| - 
-
-\rule{\textwidth}{0.5pt}
+If the user inputs characters other then the listed above, they will be ignored in the message.
 
 
+
+\verb|morse::outputMorse()| - a public function that 
+
+
+
+\verb|morse::outputText()| - a public function that 
+
+
+
+\verb|morse::translation()| - a private function that translates a series of dots and dashes from the Morse message to the ASCII sequence.
 
 Following are the class variables:
 
-\rule{\textwidth}{0.5pt}
-
 \verb|morse::morseMessage| - is a private string that contains a message written in the Morse alphabet.
 
-\rule{\textwidth}{0.5pt}
+
 
 \verb|morse::textMessage| - is a private string that contains a message written in the alphanumeric characters.
 
-\rule{\textwidth}{0.5pt}
 
-\verb|morse::code| - is a private array of strings. A closer description of this array is given in section [\ref{sec:asciitomorse}]
 
-\rule{\textwidth}{0.5pt}
+\verb|morse::code| - is a private array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
+
+
 
 \subsection{Functions}
 
