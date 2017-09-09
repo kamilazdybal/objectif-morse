@@ -1,2 +1,2 @@
 all:
-	g++ -o komp receiveMain.cpp arduinoReceive.cpp morse.cpp
+	g++ -o receive receiveMain.cpp arduinoReceive.cpp morse.cpp

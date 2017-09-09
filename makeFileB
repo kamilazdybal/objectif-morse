@@ -1,2 +1,2 @@
 all:
-	g++ -o komp broadcastMain.cpp sendToPort.cpp morse.cpp
+	g++ -o broadcast broadcastMain.cpp sendToPort.cpp morse.cpp
