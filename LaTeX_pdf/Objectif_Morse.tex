@@ -245,7 +245,7 @@ Arduino:
 
 \chapter{Broadcasting}
 
-\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse code. This part introduces the message input using alphanumeric characters into the terminal, where the corresponding program is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse code. This part introduces the message input using alphanumeric characters into the terminal, where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 \section{Code description}
 
@@ -253,7 +253,7 @@ The \textit{Objectif Morse} project is coded in C++ language. It utilises the mo
 
 The code for broadcasting the coded message consists of 5 files plus a makefile. 
 
-The code is split into operating on the messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
+The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into operating on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
 
 The most important constituents of each file are presented in the graph below.
 
@@ -262,9 +262,6 @@ The most important constituents of each file are presented in the graph below.
 \caption{Code structure for \textbf{broadcasting} phase.}				
 \label{fig:br_code}
 \end{figure}
-
-
-
 
 \subsection{Class \texttt{morse}}
 

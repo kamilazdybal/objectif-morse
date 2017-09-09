@@ -5,8 +5,9 @@
 
 class morse
 {
+
 	public:
-	void inputMorse(std::string);	
+	void inputMorse(std::string);
 	void inputText(std::string);
 	std::string outputMorse();
 	std::string outputText();
@@ -16,6 +17,7 @@ class morse
 	std::string textMessage;
 	static std::string code[];
 	char translation(std::string);
+
 };
 
 #endif
