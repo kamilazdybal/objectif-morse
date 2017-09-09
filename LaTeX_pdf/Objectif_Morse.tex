@@ -153,11 +153,11 @@ To contact us personally drop us a line at:
 
 \textbf{Welcome to the Objectif Morse project.} 
 
-You will soon begin a journey through secret coded messages transmitted between powerful computers over tiny distances. 
+You will soon begin a journey through secret coded messages transmitted between powerful computers over tiny distances.
 
-The main purpose of this document is to keep the record of the ideas that we had, of the solutions that we came up with and of the observations that we have made. 
+The main purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
-The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. It is not very difficult! Following it, you will be able to (hopefully) accomplish the same mission! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Some basic understanding in all of these is requried as a prerequisite.
+The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not very difficult! Following the document, you will be able to (hopefully) accomplish the same mission or maybe even extend it with your own ideas! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn everything as you go.
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
@@ -167,11 +167,22 @@ It's time to present the mission objectives...
 
 \section{Voici l'Objectif Morse}
 
-The idea for this project was born while reading \href{https://fr.wikipedia.org/wiki/Objectif_Lune}{Tintin} comic books. 
+We have described the problem as follows:
 
-We have created the problem as follows:
+You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. The message is received and the war is won.
 
-You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor pass on the signal to the Arduino device. Arduino connected to a portable computer prints the received message on the Serial Monitor. The message is translated by reading the Arduino output and printed again in the terminal of the portable computer. The message is received and the war is won.
+\subsection{Choice for the project name}
+
+The idea for this project was born while reading \textit{Les Aventures De Tintin}, comic books written by a belgian cartoonist Hergé, where messages transmitted in the Morse code are a common form of communication. 
+
+The name "Objectif Morse" is a reference to one of the books in the series "Objectif Lune", and is hence a tribute to our initial inspiration.
+
+
+\begin{figure}[H]
+\centering\includegraphics[scale=0.1]{le_lotus_bleu}
+\caption{Excerpt from "Les Aventures de Tintin: Le Lotus Bleu" by Hergé}			
+\label{fig:tintin}
+\end{figure}
 
 
 \section{Project phases}
@@ -181,7 +192,6 @@ This project is divided into two phases: \textbf{broadcasting} and \textbf{recei
 In general, these two phases don't require each other to get them working, however, the \textbf{receiving} phase needs a light trigger to obtain a signal. If you didn't build the  \textbf{broadcasting} phase, you can use the light e.g. from a flashlight. Nevertheless, it's not recommended from the debugging point of view, unless you are an expert in broadcasting Morse signals by hand.
 
 The two phases are separated by a 1\textit{mm} air gap. What happens inside of the air gap shall forever remain a secret.
-
 
 \section{Equipment used} \label{sec:equip}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.3)  9 JAN 2017 19:40
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.3)  9 SEP 2017 15:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -867,7 +867,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <17.28> not available
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<DWGs/ex_libris.png, id=90, 1050.92625pt x 542.025pt>
+<DWGs/ex_libris.png, id=94, 1050.92625pt x 542.025pt>
 File: DWGs/ex_libris.png Graphic file (type png)
  <use DWGs/ex_libris.png>
 Package pdftex.def Info: DWGs/ex_libris.png used on input line 124.
@@ -895,16 +895,28 @@ l.139 \newpage
 Chapter 1.
 [3
 
-] [4] [5]
+] <DWGs/le_lotus_bleu.jpg, id=135, 1630.09pt x 1167.36125pt>
+File: DWGs/le_lotus_bleu.jpg Graphic file (type jpg)
+
+<use DWGs/le_lotus_bleu.jpg>
+Package pdftex.def Info: DWGs/le_lotus_bleu.jpg used on input line 182.
+(pdftex.def)             Requested size: 163.01854pt x 116.74297pt.
+ [4pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.200 E
+       LECTRONICS: <./DWGs/le_lotus_bleu.jpg>] [5]
 Chapter 2.
-<DWGs/bCodeStructure.png, id=152, 3859.41875pt x 1651.16875pt>
+<DWGs/bCodeStructure.png, id=160, 3859.41875pt x 1651.16875pt>
 File: DWGs/bCodeStructure.png Graphic file (type png)
 
 <use DWGs/bCodeStructure.png>
-Package pdftex.def Info: DWGs/bCodeStructure.png used on input line 244.
+Package pdftex.def Info: DWGs/bCodeStructure.png used on input line 254.
 (pdftex.def)             Requested size: 463.11028pt x 198.1317pt.
 
-Overfull \hbox (47.98456pt too wide) in paragraph at lines 244--245
+Overfull \hbox (47.98456pt too wide) in paragraph at lines 254--255
  [][] 
  []
 
@@ -912,152 +924,152 @@ Overfull \hbox (47.98456pt too wide) in paragraph at lines 244--245
 
 ]
 
-LaTeX Warning: Reference `App:morse_h' on page 7 undefined on input line 256.
+LaTeX Warning: Reference `App:morse_h' on page 7 undefined on input line 266.
 
 [7pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.280 
+l.290 
        <./DWGs/bCodeStructure.png>] [8] [9]
-<DWGs/par_port.jpg, id=184, 1683.28876pt x 1776.6375pt>
+<DWGs/par_port.jpg, id=190, 1683.28876pt x 1776.6375pt>
 File: DWGs/par_port.jpg Graphic file (type jpg)
 
 <use DWGs/par_port.jpg>
-Package pdftex.def Info: DWGs/par_port.jpg used on input line 358.
+Package pdftex.def Info: DWGs/par_port.jpg used on input line 368.
 (pdftex.def)             Requested size: 227.62204pt x 240.24236pt.
 
-<DWGs/parport_plug.jpg, id=185, 1927.2pt x 1900.09875pt>
+<DWGs/parport_plug.jpg, id=191, 1927.2pt x 1900.09875pt>
 File: DWGs/parport_plug.jpg Graphic file (type jpg)
 
 <use DWGs/parport_plug.jpg>
-Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 377.
+Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 387.
 (pdftex.def)             Requested size: 227.62204pt x 224.40686pt.
  [10pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.381 
+l.391 
        <./DWGs/par_port.jpg>]
-<DWGs/broadcast_circuit.png, id=192, 846.16125pt x 701.62125pt>
+<DWGs/broadcast_circuit.png, id=198, 846.16125pt x 701.62125pt>
 File: DWGs/broadcast_circuit.png Graphic file (type png)
 
 <use DWGs/broadcast_circuit.png>
-Package pdftex.def Info: DWGs/broadcast_circuit.png used on input line 387.
+Package pdftex.def Info: DWGs/broadcast_circuit.png used on input line 397.
 (pdftex.def)             Requested size: 227.62204pt x 188.73367pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.398 
+l.408 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.398 
+l.408 
        <./DWGs/parport_plug.jpg> <./DWGs/broadcast_circuit.png>]
-<DWGs/morse--code.png, id=200, 3934.7pt x 421.575pt>
+<DWGs/morse--code.png, id=206, 3934.7pt x 421.575pt>
 File: DWGs/morse--code.png Graphic file (type png)
 
 <use DWGs/morse--code.png>
-Package pdftex.def Info: DWGs/morse--code.png used on input line 402.
+Package pdftex.def Info: DWGs/morse--code.png used on input line 412.
 (pdftex.def)             Requested size: 393.49306pt x 42.15996pt.
 
-<DWGs/morse_code_map.png, id=201, 3929.68124pt x 1360.08125pt>
+<DWGs/morse_code_map.png, id=207, 3929.68124pt x 1360.08125pt>
 File: DWGs/morse_code_map.png Graphic file (type png)
 
 <use DWGs/morse_code_map.png>
-Package pdftex.def Info: DWGs/morse_code_map.png used on input line 438.
+Package pdftex.def Info: DWGs/morse_code_map.png used on input line 448.
 (pdftex.def)             Requested size: 392.99115pt x 136.01608pt.
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.442 
+l.452 
        <./DWGs/morse--code.png>] [13pdfTeX warning (ext4): destination with the
  same identifier (name{figure.2.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.491 \end{snugshade}
+l.501 \end{snugshade}
                       <./DWGs/morse_code_map.png>] [14]
 Chapter 3.
 [15
 
-] <DWGs/arduinocode.png, id=230, 2203.23125pt x 1033.8625pt>
+] <DWGs/arduinocode.png, id=236, 2203.23125pt x 1033.8625pt>
 File: DWGs/arduinocode.png Graphic file (type png)
 
 <use DWGs/arduinocode.png>
-Package pdftex.def Info: DWGs/arduinocode.png used on input line 554.
+Package pdftex.def Info: DWGs/arduinocode.png used on input line 564.
 (pdftex.def)             Requested size: 396.56451pt x 186.08722pt.
  [16]
-<DWGs/lowtohigh.png, id=236, 1304.875pt x 607.26875pt>
+<DWGs/lowtohigh.png, id=242, 1304.875pt x 607.26875pt>
 File: DWGs/lowtohigh.png Graphic file (type png)
 
 <use DWGs/lowtohigh.png>
-Package pdftex.def Info: DWGs/lowtohigh.png used on input line 576.
+Package pdftex.def Info: DWGs/lowtohigh.png used on input line 586.
 (pdftex.def)             Requested size: 234.86737pt x 109.30365pt.
  [17pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.580 
+l.590 
        <./DWGs/arduinocode.png>]
-<DWGs/hightolow.png, id=245, 1304.875pt x 537.00626pt>
+<DWGs/hightolow.png, id=251, 1304.875pt x 537.00626pt>
 File: DWGs/hightolow.png Graphic file (type png)
 
 <use DWGs/hightolow.png>
-Package pdftex.def Info: DWGs/hightolow.png used on input line 584.
+Package pdftex.def Info: DWGs/hightolow.png used on input line 594.
 (pdftex.def)             Requested size: 234.86737pt x 96.65695pt.
  [18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.599 
+l.609 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.599 
+l.609 
        <./DWGs/lowtohigh.png> <./DWGs/hightolow.png>]
-<DWGs/timedurations.png, id=258, 2303.60625pt x 893.3375pt>
+<DWGs/timedurations.png, id=264, 2303.60625pt x 893.3375pt>
 File: DWGs/timedurations.png Graphic file (type png)
 
 <use DWGs/timedurations.png>
-Package pdftex.def Info: DWGs/timedurations.png used on input line 602.
+Package pdftex.def Info: DWGs/timedurations.png used on input line 612.
 (pdftex.def)             Requested size: 414.63124pt x 160.79381pt.
  [19pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.616 \chapter
+l.626 \chapter
               {Remarks} <./DWGs/timedurations.png>]
 Chapter 4.
 [20
 
 ]
 
-LaTeX Warning: Empty `thebibliography' environment on input line 630.
+LaTeX Warning: Empty `thebibliography' environment on input line 640.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 632.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 642.
 [21
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 632.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 642.
  (./Objectif_Morse.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 632.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 632.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 642.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 642.
 Package rerunfilecheck Info: File `Objectif_Morse.out' has not changed.
-(rerunfilecheck)             Checksum: 4E1C82E6A0D65074A34509CA371C42FE;1163.
+(rerunfilecheck)             Checksum: 02BD13C7F05CA80AFC5EA355EF84169B;1244.
 
 
 LaTeX Warning: There were undefined references.
@@ -1065,16 +1077,16 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 632.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 642.
  ) 
 Here is how much of TeX's memory you used:
- 10375 strings out of 493304
- 144881 string characters out of 6139871
- 267097 words of memory out of 5000000
- 13564 multiletter control sequences out of 15000+600000
+ 10384 strings out of 493304
+ 145061 string characters out of 6139871
+ 267189 words of memory out of 5000000
+ 13570 multiletter control sequences out of 15000+600000
  19852 words of font info for 57 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 33i,7n,58p,799b,455s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 33i,7n,58p,801b,362s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
@@ -1087,10 +1099,10 @@ r/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr
 /share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/t
 ype1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sftt1200.pfb>
-Output written on Objectif_Morse.pdf (22 pages, 4591658 bytes).
+Output written on Objectif_Morse.pdf (22 pages, 5047743 bytes).
 PDF statistics:
- 338 PDF objects out of 1000 (max. 8388607)
- 279 compressed objects within 3 object streams
- 85 named destinations out of 1000 (max. 500000)
- 208 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 344 PDF objects out of 1000 (max. 8388607)
+ 284 compressed objects within 3 object streams
+ 87 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
