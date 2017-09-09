@@ -17,12 +17,11 @@ int len = textMessage.size();
 int num;
 
 // This for loop runs over all text characters and matches them with the Morse alphabet characters from the Morse alphabet table.
-
 for(int n = 0 ; n < len ; ++n)
 {
 	num = (int)textMessage[n];
 	if(num > 64 && num < 91) morseMessage += code[num - 65];				// upper-case letters
-	else if(num > 47 && num < 58) morseMessage += code[num - 22];		// numbers (-48 +26)
+	else if(num > 47 && num < 58) morseMessage += code[num - 22];		// numbers
 	else if(num > 96 && num < 123) morseMessage += code[num - 97];	// lower-case letters
 	else
 	{
@@ -67,13 +66,12 @@ int len = morseCode.size(); // number of characters in the full Morse message
 char tempChar;					// stores one character from the Morse message
 std::string tempString; // stores a set of characters from the Morse message (typically one full word)
 
-// This while loop runs over all Morse alphabet characters in the Morse message and checks what alphanumeric characters they are.
-// Characters allowed during typing are "/", ".", "-", " ". Other characters, if typed, are replaced with "*".
-// Unknown Morse alphabet characters are replaced with "_".
-
 int n = 0;
 bool addDot = false;
 
+// This while loop runs over all Morse alphabet characters in the Morse message and checks what alphanumeric characters they are.
+// Characters allowed during typing are "/", ".", "-", " ". Other characters, if typed, are replaced with "*".
+// Unknown Morse alphabet characters are replaced with "_".
 while (n < len)
 {
 	tempChar = morseCode[n];

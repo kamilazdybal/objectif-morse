@@ -15,53 +15,37 @@ cout << "Select translation:" << endl << "1) Text to Morse" << endl << "2) Morse
 cin >> i;
 cin.get();
 
+// Trigger translation from text to Morse:
 if (i == 1)
 {
-// TESTING TEXT >> MORSE:
+  morse secretMessage;
 
-morse secretMessage;
+  cout << "Type text message:" << endl;
+  getline(cin, inputString);
+  secretMessage.inputText(inputString);
+  cout << "You've typed: " << endl << secretMessage.outputText() << endl;
+  cout << "Morse code: " << endl << secretMessage.outputMorse() << endl;
 
-cout << "Type text message:" << endl;
-
-getline(cin, inputString);
-
-secretMessage.inputText(inputString);
-
-cout << "You've typed: " << endl << secretMessage.outputText() << endl;
-cout << "Morse code: " << endl << secretMessage.outputMorse() << endl;
-
-// Sending the message to the parallel port
-sendToPort(secretMessage.outputMorse(), 1, 25000);
-
+  // Send message to the parallel port:
+  sendToPort(secretMessage.outputMorse(), 1, 25000);
 }
 
+// Trigger translation from Morse to text:
 else if (i == 2)
 {
-// TESTING MORSE >> TEXT:
+  morse userInputMorse;
 
-morse userInputMorse;
-
-cout << "Type Morse message:" << endl;
-
-getline(cin, inputString);
-
-userInputMorse.inputMorse(inputString);
-
-cout << "You've typed: " << endl << userInputMorse.outputMorse() << endl;
-cout << "Text message: " << endl << userInputMorse.outputText() << endl;
+  cout << "Type Morse message:" << endl;
+  getline(cin, inputString);
+  userInputMorse.inputMorse(inputString);
+  cout << "You've typed: " << endl << userInputMorse.outputMorse() << endl;
+  cout << "Text message: " << endl << userInputMorse.outputText() << endl;
 }
 
+// No message translation option has been chosen:
 else
 {
-cout << "Unrecognized command." << endl;
-return -1;
+  cout << "Unrecognized command." << endl;
+  return -1;
 }
-// OTHER TESTS:
-
-//morse uncodedMessage;
-//uncodedMessage.inputMorse(secretMessage.outputMorse());
-
-//cout << "Message uncoded back: " << endl << uncodedMessage.outputText() << endl;
-//cout << "Just in case, message in Morse code: " << endl << uncodedMessage.outputMorse() << endl;
-
 }
