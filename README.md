@@ -1,6 +1,10 @@
 # objectif_morse
 Code and documentation for the Objectif Morse project.
 
+![Screenshot](objectif_morse.jpg)
+
+---------------------------------------------------------------------
+
 Star Log // star date 28.10.2016 // modifier: camillejr
 
 **Voici l'Objectif Morse:**
@@ -23,6 +27,8 @@ e.g. Arduino.
 Arduino connected to a portable computer, like a laptop, prints
 a translated message in the Arduino console.
 
+---------------------------------------------------------------------
+
 Star Log // star date 08.01.2017 // modifier: camillejr
 
 **Closing up the project:**
@@ -31,6 +37,8 @@ On closing up the project we tweak the codes to be more elegant and
 nicely commented.
 
 We prepare the project description in a .pdf file.
+
+---------------------------------------------------------------------
 
 Star Log // star date 09.09.2017 // modifier: camillejr
 
