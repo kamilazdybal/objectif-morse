@@ -27,6 +27,7 @@
 \definecolor{listinggray}{gray}{0.9}
 \definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
 \definecolor{shadecolor}{RGB}{224, 224, 224}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -134,7 +135,7 @@ backgroundcolor=\color{lbcolor},
         
 		\Large
 
- 		January, 2017
+ 		October, 2016 - September, 2017
 	\end{center}
 \end{titlepage}
 
@@ -154,6 +155,8 @@ For more projects similar to this one
 visit us on GitHub: @camillejr
 
 To contact us personally drop us a line at:
+
+\verb|jakubaleksanderek@gmail.com|
 
 \verb|kamilazdybal@gmail.com|
 
@@ -179,7 +182,7 @@ You will soon begin a journey through secret coded messages transmitted between 
 
 The main purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
-The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not very difficult! Following the document, you will be able to (hopefully) accomplish the same mission or maybe even extend it with your own ideas! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn everything as you go.
+The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not very difficult! Following the document, you will be able to (hopefully) accomplish the same mission or maybe even extend it with your own ideas! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
@@ -195,7 +198,7 @@ You type a secret message on a stationary computer into the terminal. This messa
 
 The idea for this project was born while reading \textit{Les Aventures De Tintin}, comic books written by a belgian cartoonist Hergé, where messages transmitted in the Morse code are a common form of communication. 
 
-The name \textit{Objectif Morse} is a reference to one of our favourite books in the series \textit{Objectif Lune}, and is hence a tribute to our initial inspiration.
+The name \textit{Objectif Morse} is a reference to one of our favourite books in the series \textit{Objectif Lune} (eng. \textit{Destination Moon}), and is hence a tribute to our initial inspiration.
 
 
 \begin{figure}[H]
@@ -252,28 +255,30 @@ Optional:
 
 \section{Code used}
 
-This is a scheme of how the code was distributed over devices:
+The \textit{Objectif Morse} project is coded in C++ language and we have utilised the most powerful part of C++: object-oriented programming.
+
+This is a scheme of how the code should be distributed over devices:
 
 Stationary computer:
 
 \begin{verbatim}
-broadcastMain.cpp
-morse.cpp
-morse.h
-sendToPort.cpp
-sendToPort.h
+	broadcastMain.cpp
+	morse.cpp
+	morse.h
+	sendToPort.cpp
+	sendToPort.h
 
-makeFileB
+	makeFileB
 \end{verbatim}
 
 Portable computer:
 
 \begin{verbatim}
-arduinoReceive.cpp
-arduinoReceive.h
-receiveMain.cpp
+	arduinoReceive.cpp
+	arduinoReceive.h
+	receiveMain.cpp
 
-makeFileR
+	makeFileR
 \end{verbatim}
 
 Arduino:
@@ -290,16 +295,14 @@ arduinoCode.ino
 
 \section{Code description}
 
-The \textit{Objectif Morse} project is coded in C++ language. It utilises the most powerful part of C++: object-oriented programming.
-
-The code for broadcasting the coded message consists of 5 files plus a makefile. 
+The code for broadcasting the secret message in Morse consists of 5 files plus a makefile.
 
 The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into functions that operate on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
 
 The most important constituents of each file are presented in the graph below.
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.12]{bCodeStructure}
+\centering\includegraphics[scale=0.1]{bCodeStructure}
 \caption{Code structure for \textbf{broadcasting} phase.}				
 \label{fig:br_code}
 \end{figure}
@@ -309,7 +312,6 @@ The most important constituents of each file are presented in the graph below.
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
 The definition of the class is presented in the listing below.
-
 
 \begin{lstlisting}
 class morse
@@ -331,7 +333,7 @@ class morse
 \end{lstlisting}
 
 
-We will now describe the class elements. We start with the class functions:
+We have the following class functions:
 
 \verb|morse::inputMorse()| - a public function that takes a string written in Morse alphabet as an input. Ideally, the input string should only consist of the following characters:
 
@@ -360,15 +362,9 @@ If the user inputs characters other then the listed above, they will be treated 
 
 If the user inputs characters other then the listed above, they will be ignored in the message.
 
+\verb|morse::outputMorse()| - a public function that simply returns the ready string consisting of message written in Morse alphabet.
 
-
-\verb|morse::outputMorse()| - a public function that 
-
-
-
-\verb|morse::outputText()| - a public function that 
-
-
+\verb|morse::outputText()| - a public function that simply returns the ready string consisting of the message written in alphanumeric.
 
 \verb|morse::translation()| - a private function that translates a series of dots and dashes from the Morse message to the ASCII sequence.
 
@@ -376,24 +372,11 @@ Following are the class variables:
 
 \verb|morse::morseMessage| - is a private string that contains a message written in the Morse alphabet.
 
-
-
 \verb|morse::textMessage| - is a private string that contains a message written in the alphanumeric characters.
-
-
 
 \verb|morse::code| - is a private array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
 
-
-
 \subsection{Functions}
-
-
-
-
-
-
-
 
 
 
@@ -405,18 +388,61 @@ Following are the class variables:
 
 
 
-\subsection{Makefile}
+\subsection{Fire it up using makefile}
 
-To compile the code on your computer you can use the following makefile:
+To compile the code on your computer you can use the makefile \verb|makeFileB|.
 
+Simply teleport yourself to the place where the 5 files are placed and at that location run in the command line:
 
+\begin{snugshade}
+\verb|make -f makeFileB|
+\end{snugshade}
 
+This will result in the creation of one more file called \verb|broadcast|.
+
+To fire up the whole code structure (in fact, to primarily run the \verb|main| function from \verb|broadcastMain.cpp|) type in the comman line:
+
+\begin{snugshade}
+\verb|./broadcast|
+\end{snugshade}
+
+\subsection{Test run}
+
+One thing that you can do right now is to ask the program to translate something for you! After the code is started you should see:
+
+\begin{snugshade}
+\begin{verbatim}
+Select translation:
+1) Text to Morse
+2) Morse to text
+\end{verbatim}
+\end{snugshade}
+
+Type either 1 or 2 to select an option and then input the message to translate it!
+
+As long as the electronics isn't connected to the parallel port, when you select 1, there will be an error message at the end of the translation:
+
+\begin{snugshade}
+\begin{verbatim}
+Select translation:
+1) Text to Morse
+2) Morse to text
+1
+Type text message:
+Hello world
+You've typed: 
+Hello world
+Morse code: 
+.... . .-.. .-.. ---   .-- --- .-. .-.. -.. 
+Error sending message to parallel port.
+\end{verbatim}
+\end{snugshade}
 
 \section{How does it work}
 
-\newpage
+This section is diving a little deeper into explanation of ideas behind the \textbf{broadcasting} phase and it also tells you how to set up the electronics part.
 
-\subsection{Parallel port}
+\subsection{Parallel port connection}
 
 In this section we describe how to connect to the parallel port and how to build a simple circuit with an LED diode. Notice that not every computer has got a parallel port! Usually, a modern portable computer will not be equiped with a parport, so try to get one oldschool stationary computer like we did! The parallel port is big and pink like this one:
 
@@ -679,6 +705,15 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 
 
+\chapter{Putting it all together}
+
+
+
+Include a picture with a full setup!
+
+
+
+
 \chapter{Remarks}
 
 - reading secret alien messages
@@ -692,6 +727,12 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 
 \begin{thebibliography}{50}
+
+\bibitem{objectif_lune} \hyperlink{https://fr.wikipedia.org/wiki/Objectif_Lune}{\textit{Les Aventures De Tintin: Objectif Lune}}, Hergé
+
+\bibitem{le_lotus_bleu} \hyperlink{https://fr.wikipedia.org/wiki/Le_Lotus_bleu}{\textit{Les Aventures De Tintin: Le Lotus Bleu}}, Hergé
+
+\bibitem{ioperm} \hyperlink{http://man7.org/linux/man-pages/man2/ioperm.2.html}{\texttt{ioperm}}, Linux Programmer's Manual
 
 \end{thebibliography}
 

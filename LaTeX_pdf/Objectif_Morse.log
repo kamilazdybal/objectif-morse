@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.11.3)  9 SEP 2017 19:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.10)  10 SEP 2017 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -728,29 +728,32 @@ LaTeX Warning: Label `fig:arduino_code' multiply defined.
 
 LaTeX Warning: Label `fig:arduino_code' multiply defined.
 
+
+LaTeX Warning: Label `le_lotus_bleu' multiply defined.
+
 )
 \openout1 = `Objectif_Morse.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
-LaTeX Font Info:    ... okay on input line 31.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 31.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 32.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    ... okay on input line 32.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -781,7 +784,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box61
-Package hyperref Info: Link coloring OFF on input line 31.
+Package hyperref Info: Link coloring OFF on input line 32.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -791,9 +794,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count141
 )
-LaTeX Info: Redefining \ref on input line 31.
-LaTeX Info: Redefining \pageref on input line 31.
-LaTeX Info: Redefining \nameref on input line 31.
+LaTeX Info: Redefining \ref on input line 32.
+LaTeX Info: Redefining \pageref on input line 32.
+LaTeX Info: Redefining \nameref on input line 32.
 
 (./Objectif_Morse.out) (./Objectif_Morse.out)
 \@outlinefile=\write3
@@ -850,35 +853,36 @@ File: lstlang1.sty 2013/08/26 1.5b listings language file
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 103.
+LaTeX Font Info:    Try loading font information for U+msa on input line 104.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 103.
+LaTeX Font Info:    Try loading font information for U+msb on input line 104.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 103.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <17.28> not available
-(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 103.
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 104.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<DWGs/ex_libris.png, id=98, 1050.92625pt x 542.025pt>
+<DWGs/ex_libris.png, id=106, 1050.92625pt x 542.025pt>
 File: DWGs/ex_libris.png Graphic file (type png)
- <use DWGs/ex_libris.png>
-Package pdftex.def Info: DWGs/ex_libris.png used on input line 146.
+
+<use DWGs/ex_libris.png>
+Package pdftex.def Info: DWGs/ex_libris.png used on input line 147.
 (pdftex.def)             Requested size: 199.16928pt x 102.72115pt.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 158.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 159.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
@@ -887,7 +891,7 @@ File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.161 \newpage
+l.164 \newpage
                [1 <./DWGs/ex_libris.png>] (./Objectif_Morse.toc)
 \tf@toc=\write4
 \openout4 = `Objectif_Morse.toc'.
@@ -899,214 +903,220 @@ l.161 \newpage
 Chapter 1.
 [3
 
-] <DWGs/le_lotus_bleu.jpg, id=141, 1630.09pt x 1167.36125pt>
+] <DWGs/le_lotus_bleu.jpg, id=151, 1630.09pt x 1167.36125pt>
 File: DWGs/le_lotus_bleu.jpg Graphic file (type jpg)
 
 <use DWGs/le_lotus_bleu.jpg>
-Package pdftex.def Info: DWGs/le_lotus_bleu.jpg used on input line 202.
+Package pdftex.def Info: DWGs/le_lotus_bleu.jpg used on input line 205.
 (pdftex.def)             Requested size: 163.01854pt x 116.74297pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{figure.1.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.222 \item L
+l.225 \item L
              ED blue diode <./DWGs/le_lotus_bleu.jpg>] [5] [6]
 Chapter 2.
-<DWGs/bCodeStructure.png, id=171, 3844.3625pt x 2092.81876pt>
+<DWGs/bCodeStructure.png, id=181, 3844.3625pt x 2092.81876pt>
 File: DWGs/bCodeStructure.png Graphic file (type png)
 
 <use DWGs/bCodeStructure.png>
-Package pdftex.def Info: DWGs/bCodeStructure.png used on input line 302.
-(pdftex.def)             Requested size: 461.3036pt x 251.12741pt.
-
-Overfull \hbox (46.17789pt too wide) in paragraph at lines 302--303
- [][] 
- []
-
-[7
+Package pdftex.def Info: DWGs/bCodeStructure.png used on input line 305.
+(pdftex.def)             Requested size: 384.45877pt x 209.29413pt.
+ [7
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 307.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 310.
  [8pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.336 \verb
-           |morse::inputMorse()| - a public function that takes a string wri...
- <./DWGs/bCodeStructure.png>] [9] [10]
-<DWGs/par_port.jpg, id=221, 1683.28876pt x 1776.6375pt>
+l.341 \item d
+             ot \verb|"."| <./DWGs/bCodeStructure.png>] [9] [10]
+<DWGs/par_port.jpg, id=231, 1683.28876pt x 1776.6375pt>
 File: DWGs/par_port.jpg Graphic file (type jpg)
 
 <use DWGs/par_port.jpg>
-Package pdftex.def Info: DWGs/par_port.jpg used on input line 424.
+Package pdftex.def Info: DWGs/par_port.jpg used on input line 450.
 (pdftex.def)             Requested size: 227.62204pt x 240.24236pt.
-
-<DWGs/parport_plug.jpg, id=222, 1927.2pt x 1900.09875pt>
-File: DWGs/parport_plug.jpg Graphic file (type jpg)
-
-<use DWGs/parport_plug.jpg>
-Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 443.
-(pdftex.def)             Requested size: 227.62204pt x 224.40686pt.
  [11pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.447 
+l.456 
        <./DWGs/par_port.jpg>]
-<DWGs/broadcast_circuit.png, id=229, 846.16125pt x 701.62125pt>
+<DWGs/parport_plug.jpg, id=237, 1927.2pt x 1900.09875pt>
+File: DWGs/parport_plug.jpg Graphic file (type jpg)
+
+<use DWGs/parport_plug.jpg>
+Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 469.
+(pdftex.def)             Requested size: 227.62204pt x 224.40686pt.
+
+<DWGs/broadcast_circuit.png, id=238, 846.16125pt x 701.62125pt>
 File: DWGs/broadcast_circuit.png Graphic file (type png)
 
 <use DWGs/broadcast_circuit.png>
-Package pdftex.def Info: DWGs/broadcast_circuit.png used on input line 453.
+Package pdftex.def Info: DWGs/broadcast_circuit.png used on input line 479.
 (pdftex.def)             Requested size: 227.62204pt x 188.73367pt.
  [12pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.464 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-2.4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.464 
-       <./DWGs/parport_plug.jpg> <./DWGs/broadcast_circuit.png>]
-<DWGs/morse--code.png, id=238, 3934.7pt x 421.575pt>
+l.483 
+       <./DWGs/parport_plug.jpg>]
+<DWGs/morse--code.png, id=247, 3934.7pt x 421.575pt>
 File: DWGs/morse--code.png Graphic file (type png)
 
 <use DWGs/morse--code.png>
-Package pdftex.def Info: DWGs/morse--code.png used on input line 468.
+Package pdftex.def Info: DWGs/morse--code.png used on input line 494.
 (pdftex.def)             Requested size: 393.49306pt x 42.15996pt.
+ [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+4}) has been already used, duplicate ignored
 
-<DWGs/morse_code_map.png, id=239, 3929.68124pt x 1360.08125pt>
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.514 \item l
+             ower-case letters \verb|a-z| : 97 - 122pdfTeX warning (ext4): dest
+ination with the same identifier (name{figure.2.5}) has been already used, dupl
+icate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.514 \item l
+             ower-case letters \verb|a-z| : 97 - 122 <./DWGs/broadcast_circuit.
+png> <./DWGs/morse--code.png>]
+<DWGs/morse_code_map.png, id=255, 3929.68124pt x 1360.08125pt>
 File: DWGs/morse_code_map.png Graphic file (type png)
 
 <use DWGs/morse_code_map.png>
-Package pdftex.def Info: DWGs/morse_code_map.png used on input line 504.
+Package pdftex.def Info: DWGs/morse_code_map.png used on input line 530.
 (pdftex.def)             Requested size: 392.99115pt x 136.01608pt.
- [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
-5}) has been already used, duplicate ignored
+ [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.508 
-       <./DWGs/morse--code.png>] [14pdfTeX warning (ext4): destination with the
- same identifier (name{figure.2.6}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.557 \end{snugshade}
-                      <./DWGs/morse_code_map.png>] [15]
+l.552 
+       <./DWGs/morse_code_map.png>] [15]
 Chapter 3.
 [16
 
-] <DWGs/arduinocode.png, id=267, 2203.23125pt x 1033.8625pt>
+] <DWGs/arduinocode.png, id=277, 2203.23125pt x 1033.8625pt>
 File: DWGs/arduinocode.png Graphic file (type png)
 
 <use DWGs/arduinocode.png>
-Package pdftex.def Info: DWGs/arduinocode.png used on input line 620.
+Package pdftex.def Info: DWGs/arduinocode.png used on input line 646.
 (pdftex.def)             Requested size: 396.56451pt x 186.08722pt.
  [17]
-<DWGs/lowtohigh.png, id=273, 1304.875pt x 607.26875pt>
+<DWGs/lowtohigh.png, id=284, 1304.875pt x 607.26875pt>
 File: DWGs/lowtohigh.png Graphic file (type png)
 
 <use DWGs/lowtohigh.png>
-Package pdftex.def Info: DWGs/lowtohigh.png used on input line 642.
+Package pdftex.def Info: DWGs/lowtohigh.png used on input line 668.
 (pdftex.def)             Requested size: 234.86737pt x 109.30365pt.
  [18pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 1}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.646 
+l.672 
        <./DWGs/arduinocode.png>]
-<DWGs/hightolow.png, id=284, 1304.875pt x 537.00626pt>
+<DWGs/hightolow.png, id=294, 1304.875pt x 537.00626pt>
 File: DWGs/hightolow.png Graphic file (type png)
 
 <use DWGs/hightolow.png>
-Package pdftex.def Info: DWGs/hightolow.png used on input line 650.
+Package pdftex.def Info: DWGs/hightolow.png used on input line 676.
 (pdftex.def)             Requested size: 234.86737pt x 96.65695pt.
  [19pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.665 
+l.691 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 3.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.665 
+l.691 
        <./DWGs/lowtohigh.png> <./DWGs/hightolow.png>]
-<DWGs/timedurations.png, id=296, 2303.60625pt x 893.3375pt>
+<DWGs/timedurations.png, id=306, 2303.60625pt x 893.3375pt>
 File: DWGs/timedurations.png Graphic file (type png)
 
 <use DWGs/timedurations.png>
-Package pdftex.def Info: DWGs/timedurations.png used on input line 668.
+Package pdftex.def Info: DWGs/timedurations.png used on input line 694.
 (pdftex.def)             Requested size: 414.63124pt x 160.79381pt.
  [20pdfTeX warning (ext4): destination with the same identifier (name{figure.3.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.682 \chapter
-              {Remarks} <./DWGs/timedurations.png>]
+l.708 \chapter
+              {Putting it all together} <./DWGs/timedurations.png>]
 Chapter 4.
 [21
 
 ]
-
-LaTeX Warning: Empty `thebibliography' environment on input line 696.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 698.
+Chapter 5.
 [22
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 698.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 739.
+ [23
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 739.
  (./Objectif_Morse.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 698.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 698.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 739.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 739.
 Package rerunfilecheck Info: File `Objectif_Morse.out' has not changed.
-(rerunfilecheck)             Checksum: FF2525BF8CF6CB0EFBC4C69AACA46A6C;1300.
+(rerunfilecheck)             Checksum: 3805189EB64F7EAFF4BDCECA5CB6A896;1449.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 698.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 739.
  ) 
 Here is how much of TeX's memory you used:
- 10556 strings out of 493304
- 147096 string characters out of 6139871
- 289745 words of memory out of 5000000
- 13712 multiletter control sequences out of 15000+600000
+ 10570 strings out of 493304
+ 147378 string characters out of 6139871
+ 289815 words of memory out of 5000000
+ 13717 multiletter control sequences out of 15000+600000
  24563 words of font info for 70 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  40i,7n,67p,810b,741s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-sup
-er/sfbi1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></us
-r/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/
-type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-supe
-r/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr
-/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/t
-ype1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super
-/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/
-share/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/ty
-pe1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/
-sftt1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on Objectif_Morse.pdf (23 pages, 5203702 bytes).
+pdfTeX warning (dest): name{http://man7.org/linux/man-pages/man2/ioperm.2.htm
+l} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{https://fr.wikipedia.org/wiki/Le_Lotus_bleu} has be
+en referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{https://fr.wikipedia.org/wiki/Objectif_Lune} has be
+en referenced but does not exist, replaced by a fixed one
+
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sfbi1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/
+share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/ty
+pe1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/
+sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0600.pfb></usr/s
+hare/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/typ
+e1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/s
+frm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/sh
+are/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type
+1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
+tt1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb>
+Output written on Objectif_Morse.pdf (24 pages, 5209300 bytes).
 PDF statistics:
- 394 PDF objects out of 1000 (max. 8388607)
- 327 compressed objects within 4 object streams
- 106 named destinations out of 1000 (max. 500000)
- 229 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 420 PDF objects out of 1000 (max. 8388607)
+ 352 compressed objects within 4 object streams
+ 115 named destinations out of 1000 (max. 500000)
+ 245 words of extra memory for PDF output out of 10000 (max. 10000000)
 
