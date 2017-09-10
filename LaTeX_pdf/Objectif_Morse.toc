@@ -15,15 +15,20 @@
 \contentsline {subsection}{\numberline {2.1.6}Test run}{10}{subsection.2.1.6}
 \contentsline {section}{\numberline {2.2}How does it work}{11}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Parallel port connection}{11}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Alphanumeric to Morse}{13}{subsection.2.2.2}
-\contentsline {chapter}{\numberline {3}Receiving}{16}{chapter.3}
-\contentsline {section}{\numberline {3.1}Code description}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}How does it work}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Arduino part}{16}{subsection.3.2.1}
-\contentsline {subsubsection}{The aim of the Arduino code}{16}{section*.2}
-\contentsline {subsubsection}{Variables}{17}{section*.3}
-\contentsline {subsubsection}{Calibration}{18}{section*.4}
-\contentsline {subsubsection}{Identifying the voltage changes}{18}{section*.5}
-\contentsline {subsubsection}{Measuring the time durations}{19}{section*.6}
-\contentsline {chapter}{\numberline {4}Putting it all together}{21}{chapter.4}
-\contentsline {chapter}{\numberline {5}Remarks}{22}{chapter.5}
+\contentsline {subsection}{\numberline {2.2.2}Alphanumeric to Morse}{14}{subsection.2.2.2}
+\contentsline {chapter}{\numberline {3}Receiving}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Code description}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}How does it work}{17}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Arduino part}{17}{subsection.3.2.1}
+\contentsline {subsubsection}{The aim of the Arduino code}{17}{section*.2}
+\contentsline {subsubsection}{Variables}{18}{section*.3}
+\contentsline {subsubsection}{Calibration}{19}{section*.4}
+\contentsline {subsubsection}{Identifying the voltage changes}{19}{section*.5}
+\contentsline {subsubsection}{Measuring the time durations}{20}{section*.6}
+\contentsline {chapter}{\numberline {4}Putting it all together}{22}{chapter.4}
+\contentsline {chapter}{\numberline {5}It doesn't end here}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}Reading secret alien messages}{23}{section.5.1}
+\contentsline {section}{\numberline {5.2}How fast can it go?}{23}{section.5.2}
+\contentsline {section}{\numberline {5.3}Sending a picture}{23}{section.5.3}
+\contentsline {section}{\numberline {5.4}Light to sound}{23}{section.5.4}
+\contentsline {section}{\numberline {5.5}Want to see more?}{24}{section.5.5}

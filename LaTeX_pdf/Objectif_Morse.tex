@@ -400,11 +400,13 @@ Simply teleport yourself to the place where the 5 files are placed and at that l
 
 This will result in the creation of one more file called \verb|broadcast|.
 
-To fire up the whole code structure (in fact, to primarily run the \verb|main| function from \verb|broadcastMain.cpp|) type in the comman line:
+To fire up the whole code structure (in fact, to primarily run the \verb|main| function from \verb|broadcastMain.cpp|) type in the command line:
 
 \begin{snugshade}
-\verb|./broadcast|
+\verb|sudo ./broadcast|
 \end{snugshade}
+
+and type in your root password.
 
 \subsection{Test run}
 
@@ -420,7 +422,9 @@ Select translation:
 
 Type either 1 or 2 to select an option and then input the message to translate it!
 
-As long as the electronics isn't connected to the parallel port, when you select 1, there will be an error message at the end of the translation:
+As long as the electronics isn't connected to the parallel port, when you select 1, nothing more spectacular should happen.
+
+Any errors in trying to send the message to the parallel port will result in an error message at the end of the translation:
 
 \begin{snugshade}
 \begin{verbatim}
@@ -437,6 +441,8 @@ Morse code:
 Error sending message to parallel port.
 \end{verbatim}
 \end{snugshade}
+
+The functionality to translate from Morse to text has been added mostly for fun here. When you input message directly in Morse alphabet it won't be transmitted, this is because our initial objective was to input secret message in regular text. Feel free to translate the subtitle from the front page of this document!
 
 \section{How does it work}
 
@@ -714,17 +720,41 @@ Include a picture with a full setup!
 
 
 
-\chapter{Remarks}
+\chapter{It doesn't end here}
 
-- reading secret alien messages
+This last chapter is a collection of post-credit scenes where we present a few of our ways of exploiting the machinery that we have created. Implementing these ideas required sometimes to make changes in the code.
 
-- laser beam
+\section{Reading secret alien messages}
 
 
 
+\section{How fast can it go?}
+
+The parameter dotTime alows you to control the speed of the transmission .
+
+We wanted to check how fast can we run the Morse message before significant errors in transmission begin to occur.
+
+\section{Sending a picture}
+
+How uneffective it would be to transfer images between computer using Morse? Let's find out!
+
+\section{Light to sound}
+
+At some point we realized that it won't be a lot of effort to replace light Morse transmission with sound Morse transmission! Using a microphone and a buzzer you can achieve pretty much the same thing.
+
+\section{Want to see more?}
+
+There was a lot of more ideas and unfortunately not always enough free time.
+
+One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
+
+As Cliff Stoll once said [\cite{cliff_stoll}]: 
+
+\textit{I'm interested in the question marks. I'm interested in seeing where the curiosity will lead to, not: oh, where have we been.}
+
+We encourage you to explore and perhaps share your own ideas with us!
 
 \newpage
-
 
 \begin{thebibliography}{50}
 
@@ -733,6 +763,8 @@ Include a picture with a full setup!
 \bibitem{le_lotus_bleu} \hyperlink{https://fr.wikipedia.org/wiki/Le_Lotus_bleu}{\textit{Les Aventures De Tintin: Le Lotus Bleu}}, Hergé
 
 \bibitem{ioperm} \hyperlink{http://man7.org/linux/man-pages/man2/ioperm.2.html}{\texttt{ioperm}}, Linux Programmer's Manual
+
+\bibitem{cliff_stoll} \hyperlink{https://www.youtube.com/watch?v=xHEIOgONq6A}{Cliff Stoll: Good Science}
 
 \end{thebibliography}
 
