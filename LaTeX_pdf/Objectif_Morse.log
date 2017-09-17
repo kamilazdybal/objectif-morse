@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.10)  17 SEP 2017 17:55
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.10)  17 SEP 2017 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,12 +871,12 @@ LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <17.28> not available
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<DWGs/ex_libris.png, id=134, 1050.92625pt x 542.025pt>
-File: DWGs/ex_libris.png Graphic file (type png)
+<DWGs/arduino_dwg.jpg, id=134, 2008.50375pt x 1807.75375pt>
+File: DWGs/arduino_dwg.jpg Graphic file (type jpg)
 
-<use DWGs/ex_libris.png>
-Package pdftex.def Info: DWGs/ex_libris.png used on input line 147.
-(pdftex.def)             Requested size: 199.16928pt x 102.72115pt.
+<use DWGs/arduino_dwg.jpg>
+Package pdftex.def Info: DWGs/arduino_dwg.jpg used on input line 147.
+(pdftex.def)             Requested size: 227.62204pt x 204.86685pt.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 159.
@@ -889,7 +889,7 @@ File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 <to be read again> 
                    \relax 
 l.164 \newpage
-               [1 <./DWGs/ex_libris.png>] (./Objectif_Morse.toc)
+               [1 <./DWGs/arduino_dwg.jpg>] (./Objectif_Morse.toc)
 \tf@toc=\write4
 \openout4 = `Objectif_Morse.toc'.
 
@@ -900,7 +900,7 @@ l.164 \newpage
 Chapter 1.
 [3
 
-] <DWGs/le_lotus_bleu.jpg, id=187, 1630.09pt x 1167.36125pt>
+] <DWGs/le_lotus_bleu.jpg, id=185, 1630.09pt x 1167.36125pt>
 File: DWGs/le_lotus_bleu.jpg Graphic file (type jpg)
 
 <use DWGs/le_lotus_bleu.jpg>
@@ -914,7 +914,7 @@ Package pdftex.def Info: DWGs/le_lotus_bleu.jpg used on input line 205.
 l.225 \item L
              ED diode <./DWGs/le_lotus_bleu.jpg>] [5] [6]
 Chapter 2.
-<DWGs/bCodeStructure.png, id=216, 1537.745pt x 837.1275pt>
+<DWGs/bCodeStructure.png, id=214, 1537.745pt x 837.1275pt>
 File: DWGs/bCodeStructure.png Graphic file (type png)
 
 <use DWGs/bCodeStructure.png>
@@ -937,14 +937,14 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <14.4> not available
                                                   \fi \fi 
 l.339 
        <./DWGs/bCodeStructure.png>] [9] [10]
-<DWGs/par_port.jpg, id=266, 1683.28876pt x 1776.6375pt>
+<DWGs/par_port.jpg, id=265, 1683.28876pt x 1776.6375pt>
 File: DWGs/par_port.jpg Graphic file (type jpg)
 
 <use DWGs/par_port.jpg>
 Package pdftex.def Info: DWGs/par_port.jpg used on input line 456.
 (pdftex.def)             Requested size: 227.62204pt x 240.24236pt.
  [11]
-<DWGs/parport_plug.jpg, id=271, 1927.2pt x 1900.09875pt>
+<DWGs/parport_plug.jpg, id=270, 1927.2pt x 1900.09875pt>
 File: DWGs/parport_plug.jpg Graphic file (type jpg)
 
 <use DWGs/parport_plug.jpg>
@@ -957,7 +957,7 @@ Package pdftex.def Info: DWGs/parport_plug.jpg used on input line 475.
                                                   \fi \fi 
 l.479 
        <./DWGs/par_port.jpg>]
-<DWGs/broadcast_circuit.png, id=279, 846.16125pt x 701.62125pt>
+<DWGs/broadcast_circuit.png, id=278, 846.16125pt x 701.62125pt>
 File: DWGs/broadcast_circuit.png Graphic file (type png)
 
 <use DWGs/broadcast_circuit.png>
@@ -976,14 +976,14 @@ l.496
                                                   \fi \fi 
 l.496 
        <./DWGs/parport_plug.jpg> <./DWGs/broadcast_circuit.png>]
-<DWGs/morse--code.png, id=287, 3934.7pt x 421.575pt>
+<DWGs/morse--code.png, id=286, 3934.7pt x 421.575pt>
 File: DWGs/morse--code.png Graphic file (type png)
 
 <use DWGs/morse--code.png>
 Package pdftex.def Info: DWGs/morse--code.png used on input line 500.
 (pdftex.def)             Requested size: 393.49306pt x 42.15996pt.
 
-<DWGs/morse_code_map.png, id=288, 3929.68124pt x 1360.08125pt>
+<DWGs/morse_code_map.png, id=287, 3929.68124pt x 1360.08125pt>
 File: DWGs/morse_code_map.png Graphic file (type png)
 
 <use DWGs/morse_code_map.png>
@@ -1004,7 +1004,7 @@ e ignored
 l.589 \end{snugshade}
                       <./DWGs/morse_code_map.png>] [16]
 Chapter 3.
-<DWGs/receive_circuit.jpg, id=312, 2099.845pt x 1834.855pt>
+<DWGs/receive_circuit.jpg, id=311, 2099.845pt x 1834.855pt>
 File: DWGs/receive_circuit.jpg Graphic file (type jpg)
 
 <use DWGs/receive_circuit.jpg>
@@ -1019,7 +1019,7 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.620 \subsubsection
                     {The aim of the Arduino code} <./DWGs/receive_circuit.jpg>]
-[18] <DWGs/arduinocode.png, id=325, 2203.23125pt x 1033.8625pt>
+[18] <DWGs/arduinocode.png, id=324, 2203.23125pt x 1033.8625pt>
 File: DWGs/arduinocode.png Graphic file (type png)
 
 <use DWGs/arduinocode.png>
@@ -1032,14 +1032,14 @@ Package pdftex.def Info: DWGs/arduinocode.png used on input line 660.
                                                   \fi \fi 
 l.680 
        <./DWGs/arduinocode.png>]
-<DWGs/lowtohigh.png, id=334, 1304.875pt x 607.26875pt>
+<DWGs/lowtohigh.png, id=333, 1304.875pt x 607.26875pt>
 File: DWGs/lowtohigh.png Graphic file (type png)
 
 <use DWGs/lowtohigh.png>
 Package pdftex.def Info: DWGs/lowtohigh.png used on input line 682.
 (pdftex.def)             Requested size: 234.86737pt x 109.30365pt.
 
-<DWGs/hightolow.png, id=335, 1304.875pt x 537.00626pt>
+<DWGs/hightolow.png, id=334, 1304.875pt x 537.00626pt>
 File: DWGs/hightolow.png Graphic file (type png)
 
 <use DWGs/hightolow.png>
@@ -1058,7 +1058,7 @@ l.705
                                                   \fi \fi 
 l.705 
        <./DWGs/lowtohigh.png> <./DWGs/hightolow.png>]
-<DWGs/timedurations.png, id=346, 2303.60625pt x 893.3375pt>
+<DWGs/timedurations.png, id=345, 2303.60625pt x 893.3375pt>
 File: DWGs/timedurations.png Graphic file (type png)
 
 <use DWGs/timedurations.png>
@@ -1072,7 +1072,7 @@ Package pdftex.def Info: DWGs/timedurations.png used on input line 708.
 l.722 \chapter
               {Putting it all together} <./DWGs/timedurations.png>]
 Chapter 4.
-<DWGs/full_setup.jpg, id=353, 2008.50375pt x 1341.01pt>
+<DWGs/full_setup.jpg, id=352, 2008.50375pt x 1341.01pt>
 File: DWGs/full_setup.jpg Graphic file (type jpg)
 
 <use DWGs/full_setup.jpg>
@@ -1083,7 +1083,7 @@ Overfull \hbox (11.66562pt too wide) in paragraph at lines 726--727
  [][] 
  []
 
-<DWGs/scheme.png, id=354, 848.81824pt x 429.36882pt>
+<DWGs/scheme.png, id=353, 848.81824pt x 429.36882pt>
 File: DWGs/scheme.png Graphic file (type png)
  <use DWGs/scheme.png>
 Package pdftex.def Info: DWGs/scheme.png used on input line 732.
@@ -1098,7 +1098,7 @@ has been already used, duplicate ignored
                                                   \fi \fi 
 l.736 
        <./DWGs/full_setup.jpg>]
-<DWGs/circuits.jpg, id=360, 2251.41125pt x 2566.58875pt>
+<DWGs/circuits.jpg, id=359, 2251.41125pt x 2566.58875pt>
 File: DWGs/circuits.jpg Graphic file (type jpg)
 
 <use DWGs/circuits.jpg>
@@ -1139,7 +1139,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 799.
  ) 
 Here is how much of TeX's memory you used:
  10622 strings out of 493304
- 148237 string characters out of 6139871
+ 148247 string characters out of 6139871
  290141 words of memory out of 5000000
  13749 multiletter control sequences out of 15000+600000
  24563 words of font info for 70 fonts, out of 8000000 for 9000
@@ -1172,9 +1172,9 @@ frm1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm2074.pfb></usr/sh
 are/texmf/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type
 1/public/cm-super/sftt1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sf
 tt1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on Objectif_Morse.pdf (27 pages, 6619532 bytes).
+Output written on Objectif_Morse.pdf (27 pages, 6942334 bytes).
 PDF statistics:
- 483 PDF objects out of 1000 (max. 8388607)
+ 482 PDF objects out of 1000 (max. 8388607)
  407 compressed objects within 5 object streams
  131 named destinations out of 1000 (max. 500000)
  321 words of extra memory for PDF output out of 10000 (max. 10000000)
