@@ -222,11 +222,11 @@ Electronics:
 
 \begin{enumerate}
 
-\item LED blue diode
+\item LED diode
 \item phototransistor
 \item resistors: 330 Ohm, 10 000 Ohm
 \item a few cables
-\item breadboard
+\item at least one breadboard
 \item parallel port plug with soldered cables
 \item piece of paper (I know, that doesn't really count as electronics)
 
@@ -255,11 +255,11 @@ Optional:
 
 \section{Code used}
 
-The \textit{Objectif Morse} project is coded in C++ language and we have utilised the most powerful part of C++: object-oriented programming.
+The \textit{Objectif Morse} project is coded in C++ language.
 
 This is a scheme of how the code should be distributed over devices:
 
-Stationary computer:
+\textbf{Stationary computer}
 
 \begin{verbatim}
 	broadcastMain.cpp
@@ -271,7 +271,7 @@ Stationary computer:
 	makeFileB
 \end{verbatim}
 
-Portable computer:
+\textbf{Portable computer}
 
 \begin{verbatim}
 	arduinoReceive.cpp
@@ -281,7 +281,7 @@ Portable computer:
 	makeFileR
 \end{verbatim}
 
-Arduino:
+\textbf{Arduino}
 
 \begin{verbatim}
 arduinoCode.ino
@@ -302,7 +302,7 @@ The code is split into user input/output interactive part (\verb|broadcastMain.c
 The most important constituents of each file are presented in the graph below.
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.1]{bCodeStructure}
+\centering\includegraphics[width=15cm]{bCodeStructure}
 \caption{Code structure for \textbf{broadcasting} phase.}				
 \label{fig:br_code}
 \end{figure}
@@ -311,7 +311,7 @@ The most important constituents of each file are presented in the graph below.
 
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
-The definition of the class is presented in the listing below.
+The definition of the class is presented in the listing below:
 
 \begin{lstlisting}
 class morse
@@ -335,7 +335,7 @@ class morse
 
 We have the following class functions:
 
-\verb|morse::inputMorse()| - a public function that takes a string written in Morse alphabet as an input. Ideally, the input string should only consist of the following characters:
+\verb|morse::inputMorse()| - takes a string written in Morse alphabet as an input. Ideally, the input string should only consist of the following characters:
 
 \begin{enumerate}
 \item dot \verb|"."|
@@ -350,7 +350,7 @@ We have the following class functions:
 If the user inputs characters other then the listed above, they will be treated as unknowns in the message.
 
 
-\verb|morse::inputText()| - a public function that takes a string written in alphanumeric alphabet as an input. The input string should only consist of:
+\verb|morse::inputText()| - takes a string written in alphanumeric alphabet as an input. The input string should only consist of:
 
 \begin{enumerate}
 \item letters \verb|A-Z| (\verb|a-z|)
@@ -362,19 +362,19 @@ If the user inputs characters other then the listed above, they will be treated 
 
 If the user inputs characters other then the listed above, they will be ignored in the message.
 
-\verb|morse::outputMorse()| - a public function that simply returns the ready string consisting of message written in Morse alphabet.
+\verb|morse::outputMorse()| - function that returns the ready string consisting of message written in Morse alphabet.
 
-\verb|morse::outputText()| - a public function that simply returns the ready string consisting of the message written in alphanumeric.
+\verb|morse::outputText()| - function that returns the ready string consisting of the message written in alphanumeric characters.
 
-\verb|morse::translation()| - a private function that translates a series of dots and dashes from the Morse message to the ASCII sequence.
+\verb|morse::translation()| - translates a series of dots and dashes from the Morse message to the ASCII sequence.
 
 Following are the class variables:
 
-\verb|morse::morseMessage| - is a private string that contains a message written in the Morse alphabet.
+\verb|morse::morseMessage| - contains message written in the Morse alphabet.
 
-\verb|morse::textMessage| - is a private string that contains a message written in the alphanumeric characters.
+\verb|morse::textMessage| - contains message written in the alphanumeric characters.
 
-\verb|morse::code| - is a private array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
+\verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
 
 \subsection{Functions}
 
@@ -492,9 +492,9 @@ The final thing to do is to build the rest of the circuit connected to the plug,
 
 \subsection{Alphanumeric to Morse} \label{sec:asciitomorse}
 
-Probably the most important part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representative in the Morse alphabet. Its definition is present in the file \verb|morse.cpp|. Notice that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate into the same Morse character.
+Probably the most important (and interesting) part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representative in the Morse alphabet. Notice also, that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate to the same Morse character. So how can the sequence of dots and dashes be translated to C++?
 
-We created an array of strings called \verb|morse::code| that contains the Morse alphabet. Its graphical representation is shown below:
+The definition of the Morse alphabet is present in the file \verb|morse.cpp| inside the variable called \verb|morse::code|. This is an array of strings that contains all Morse alphabet characters. Its graphical representation is shown below:
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{morse--code}
@@ -502,7 +502,7 @@ We created an array of strings called \verb|morse::code| that contains the Morse
 \label{fig:morse_code_array}
 \end{figure}
 
-Every ASCII character is assigned a number, which inside of a C++ code can be retrieved by casting the character into the integer. This is done by the following line: 
+Every ASCII character is assigned a number, which inside the C++ language can be retrieved by casting the character into the integer. This is done by the following line inside the function \verb|morse::inputText()|: 
 
 \begin{snugshade}
 \verb|num = (int)textMessage[n];|
@@ -534,7 +534,7 @@ We have then decided to map every legal alphanumeric ASCII character into the cr
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{morse_code_map}
-\caption{Mapping alphanumeric characters to the morse code array.}				
+\caption{Mapping alphanumeric characters to the morse code array elements.}				
 \label{fig:morse_code_map}
 \end{figure}
 
@@ -602,6 +602,14 @@ else
 \section{How does it work}
 
 
+\subsection{Arduino connection}
+
+\begin{figure}[H]
+\centering\includegraphics[width=8cm]{receive_circuit}
+\caption{Electronic circuit for the receiving phase.}				
+\label{fig:receiving_circuit}
+\end{figure}
+
 
 
 
@@ -619,11 +627,11 @@ One of the sample Arduino outputs can be:
 \begin{verbatim}
 L 200
 H 200
-L 400
+L 600
 \end{verbatim}
 \end{snugshade}
 
-Which has the interpretation as follows: Low state lasted 200 \textit{ms}, High state lasted 200 \textit{ms}, Low state lasted 400 \textit{ms}, and so on...
+Which has the interpretation as follows: Low state lasted 200 \textit{ms}, High state lasted 200 \textit{ms}, Low state lasted 600 \textit{ms}, and so on...
 
 
 
@@ -660,7 +668,7 @@ In the graph below we present in a closer detail how the Low and High state is i
 
 The aim of the calibration is to measure the mean luminosity around the phototransistor and to use this information for further processing of the luminosity that comes from the LED diode itself. This mean luminosity will be present everytime we have a Low state in our signal - interpreted as "darkness".
 
-The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want the Arduino to correctly interpret what part of the luminosity comes from the general brightness of the day (or night, or room) and what part will be changes due to the LED diode shining.
+The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want the Arduino to correctly interpret what part of the luminosity comes from the general brightness of the surroundings and what part are changes due to the LED diode.
 
 The aim of the calibration is to obtain the value \verb|sensorMean|. This is performed by reading 10 values of \verb|sensorValue| in 100 \textit{ms} time steps and calculating their arithmetic average.
 
@@ -714,29 +722,49 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 \chapter{Putting it all together}
 
 
+\begin{figure}[H]
+\centering\includegraphics[width=15cm]{full_setup}
+\caption{Objectif Morse full setup.}				
+\label{fig:full_setup}
+\end{figure}
 
-Include a picture with a full setup!
+\begin{figure}[H]
+\centering\includegraphics[width=8cm]{scheme}
+\caption{Scheme of the electronic circuits put together.}				
+\label{fig:circuits}
+\end{figure}
 
+\begin{figure}[H]
+\centering\includegraphics[width=8cm]{circuits}
+\caption{Electronic circuits put together.}				
+\label{fig:circuits_pic}
+\end{figure}
 
 
 
 \chapter{It doesn't end here}
 
-This last chapter is a collection of post-credit scenes where we present a few of our ways of exploiting the machinery that we have created. Implementing these ideas required sometimes to make changes in the code.
+This last chapter is a collection of post-credit scenes where we present a few of our ways of exploiting the machinery that we have created.
 
 \section{Reading secret alien messages}
 
 
 
+
+
+\section{How far can it go?}
+
+~ 22cm separation was the maximum that we've observed during daylight of a gloomy day, with closed window shades and with no artificial light in the room.
+
+
 \section{How fast can it go?}
 
-The parameter dotTime alows you to control the speed of the transmission .
+The parameter \verb|dotTime| alows you to control the speed of the transmission. Feel free to play around with it! We've observed that \verb|dotTime < 2000 ms| is when the transmission errors begin to occur. It is also dependent on the distance between LED diode and the phototransistor and on the general luminosity.
 
-We wanted to check how fast can we run the Morse message before significant errors in transmission begin to occur.
 
 \section{Sending a picture}
 
-How uneffective it would be to transfer images between computer using Morse? Let's find out!
+How uneffective it would be to transfer images between computers using Morse? Let's find out!
 
 \section{Light to sound}
 
@@ -748,11 +776,11 @@ There was a lot of more ideas and unfortunately not always enough free time.
 
 One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
 
-As Cliff Stoll once said [\cite{cliff_stoll}]: 
+As Cliff Stoll once said \cite{cliff_stoll}: 
 
-\textit{I'm interested in the question marks. I'm interested in seeing where the curiosity will lead to, not: oh, where have we been.}
+\textit{I'm interested in seeing where the curiosity will lead to, not: oh, where have we been.}
 
-We encourage you to explore and perhaps share your own ideas with us!
+We encourage you to explore and perhaps even share your own ideas with us!
 
 \newpage
 

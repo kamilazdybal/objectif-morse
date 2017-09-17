@@ -19,16 +19,18 @@
 \contentsline {chapter}{\numberline {3}Receiving}{17}{chapter.3}
 \contentsline {section}{\numberline {3.1}Code description}{17}{section.3.1}
 \contentsline {section}{\numberline {3.2}How does it work}{17}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Arduino part}{17}{subsection.3.2.1}
-\contentsline {subsubsection}{The aim of the Arduino code}{17}{section*.2}
+\contentsline {subsection}{\numberline {3.2.1}Arduino connection}{17}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Arduino part}{18}{subsection.3.2.2}
+\contentsline {subsubsection}{The aim of the Arduino code}{18}{section*.2}
 \contentsline {subsubsection}{Variables}{18}{section*.3}
 \contentsline {subsubsection}{Calibration}{19}{section*.4}
 \contentsline {subsubsection}{Identifying the voltage changes}{19}{section*.5}
 \contentsline {subsubsection}{Measuring the time durations}{20}{section*.6}
 \contentsline {chapter}{\numberline {4}Putting it all together}{22}{chapter.4}
-\contentsline {chapter}{\numberline {5}It doesn't end here}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Reading secret alien messages}{23}{section.5.1}
-\contentsline {section}{\numberline {5.2}How fast can it go?}{23}{section.5.2}
-\contentsline {section}{\numberline {5.3}Sending a picture}{23}{section.5.3}
-\contentsline {section}{\numberline {5.4}Light to sound}{23}{section.5.4}
-\contentsline {section}{\numberline {5.5}Want to see more?}{24}{section.5.5}
+\contentsline {chapter}{\numberline {5}It doesn't end here}{24}{chapter.5}
+\contentsline {section}{\numberline {5.1}Reading secret alien messages}{24}{section.5.1}
+\contentsline {section}{\numberline {5.2}How far can it go?}{24}{section.5.2}
+\contentsline {section}{\numberline {5.3}How fast can it go?}{24}{section.5.3}
+\contentsline {section}{\numberline {5.4}Sending a picture}{24}{section.5.4}
+\contentsline {section}{\numberline {5.5}Light to sound}{25}{section.5.5}
+\contentsline {section}{\numberline {5.6}Want to see more?}{25}{section.5.6}

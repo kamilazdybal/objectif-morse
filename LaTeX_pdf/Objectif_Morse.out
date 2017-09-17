@@ -18,11 +18,13 @@
 \BOOKMARK [0][-]{chapter.3}{Receiving}{}% 18
 \BOOKMARK [1][-]{section.3.1}{Code description}{chapter.3}% 19
 \BOOKMARK [1][-]{section.3.2}{How does it work}{chapter.3}% 20
-\BOOKMARK [2][-]{subsection.3.2.1}{Arduino part}{section.3.2}% 21
-\BOOKMARK [0][-]{chapter.4}{Putting it all together}{}% 22
-\BOOKMARK [0][-]{chapter.5}{It doesn't end here}{}% 23
-\BOOKMARK [1][-]{section.5.1}{Reading secret alien messages}{chapter.5}% 24
-\BOOKMARK [1][-]{section.5.2}{How fast can it go?}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.3}{Sending a picture}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.4}{Light to sound}{chapter.5}% 27
-\BOOKMARK [1][-]{section.5.5}{Want to see more?}{chapter.5}% 28
+\BOOKMARK [2][-]{subsection.3.2.1}{Arduino connection}{section.3.2}% 21
+\BOOKMARK [2][-]{subsection.3.2.2}{Arduino part}{section.3.2}% 22
+\BOOKMARK [0][-]{chapter.4}{Putting it all together}{}% 23
+\BOOKMARK [0][-]{chapter.5}{It doesn't end here}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Reading secret alien messages}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{How far can it go?}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{How fast can it go?}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.4}{Sending a picture}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.5}{Light to sound}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.6}{Want to see more?}{chapter.5}% 30
