@@ -28,6 +28,7 @@
 \definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
 \definecolor{shadecolor}{RGB}{224, 224, 224}
 \usepackage{hyperref}
+\usepackage{soul}
 
 \begin{document}
 
@@ -152,14 +153,18 @@ Copyright \textcopyright \, J. Aleksanderek, K. Zdybał, 2017
 
 For more projects similar to this one
 
-visit us on GitHub: @camillejr
+visit me GitHub: @camillejr
 
-To contact us personally drop us a line at:
-
-\verb|jakubaleksanderek@gmail.com|
+To contact me personally drop me a line at:
 
 \verb|kamilazdybal@gmail.com|
 
+
+\vspace*{1cm}
+
+\verb|Objectif Morse|
+
+\verb|version 1.0|
 \end{center}
 \newpage
 
@@ -182,7 +187,7 @@ You will soon begin a journey through secret coded messages transmitted between 
 
 The main purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
-The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not very difficult! Following the document, you will be able to (hopefully) accomplish the same mission or maybe even extend it with your own ideas! This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
+The second purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not a very difficult road to go. Following the document, you will be able to (hopefully) accomplish the same mission or maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
@@ -192,18 +197,19 @@ It's time to present the mission objectives...
 
 \section{Voici l'Objectif Morse}
 
-You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. The message is received and the war is won.
+You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. 
+
+The message is received and the war is won.
 
 \subsection{Choice for the project name}
 
 The idea for this project was born while reading \textit{Les Aventures De Tintin}, comic books written by a belgian cartoonist Hergé, where messages transmitted in the Morse code are a common form of communication. 
 
-The name \textit{Objectif Morse} is a reference to one of our favourite books in the series \textit{Objectif Lune} (eng. \textit{Destination Moon}), and is hence a tribute to our initial inspiration.
-
+The name \textit{Objectif Morse} is a reference to one of our favourite books in the series \textit{Objectif Lune} \cite{objectif_lune} (eng. \textit{Destination Moon}), and is hence a tribute to our initial inspiration.
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{le_lotus_bleu}
-\caption{Excerpt from \textit{Les Aventures de Tintin: Le Lotus Bleu} by Hergé}			
+\caption{Excerpt from \textit{Les Aventures de Tintin: Le Lotus Bleu} by Hergé \cite{le_lotus_bleu}}			
 \label{fig:tintin}
 \end{figure}
 
@@ -212,9 +218,9 @@ The name \textit{Objectif Morse} is a reference to one of our favourite books in
 
 This project is divided into two phases: \textbf{broadcasting} and \textbf{receiving}. 
 
-In general, these two phases don't require each other to get them working, however, the \textbf{receiving} phase needs a light trigger to obtain a signal. If you didn't build the  \textbf{broadcasting} phase, you can use the light e.g. from a flashlight. Nevertheless, it's not recommended from the debugging point of view, unless you are an expert in broadcasting Morse signals by hand.
+These two phases don't require each other to get them working, however, the \textbf{receiving} phase needs a light trigger to obtain a signal. If you didn't build the  \textbf{broadcasting} phase, you can use for example the light from a flashlight. Nevertheless, it's not recommended from the debugging point of view, unless you are an expert in broadcasting Morse signals by hand.
 
-The two phases are separated by a 1\textit{mm} air gap. What happens inside of the air gap shall forever remain a secret.
+The two phases are separated by a few centimeters of an air gap. What happens inside of the air gap shall remain a secret.
 
 \section{Equipment used} \label{sec:equip}
 
@@ -226,9 +232,8 @@ Electronics:
 \item phototransistor
 \item resistors: 330 Ohm, 10 000 Ohm
 \item a few cables
-\item at least one breadboard
+\item at least one breadboard but best to have two
 \item parallel port plug with soldered cables
-\item piece of paper (I know, that doesn't really count as electronics)
 
 \end{enumerate}
 
@@ -267,7 +272,6 @@ This is a scheme of how the code should be distributed over devices:
 	morse.h
 	sendToPort.cpp
 	sendToPort.h
-
 	makeFileB
 \end{verbatim}
 
@@ -277,7 +281,6 @@ This is a scheme of how the code should be distributed over devices:
 	arduinoReceive.cpp
 	arduinoReceive.h
 	receiveMain.cpp
-
 	makeFileR
 \end{verbatim}
 
@@ -287,11 +290,17 @@ This is a scheme of how the code should be distributed over devices:
 arduinoCode.ino
 \end{verbatim}
 
+\section{Legal note}
+
+First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions arised when we were working on this project, which led to our success and it might take some effort before they reappear again\footnote{it is quite common among computers that the nerby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.}.
+
+If you have just said: \textit{"How awesome! I can't wait for that!"}, then I wish you a lot of errors in your life, because you're going to learn a lot from them. You're the right person in the right place.
+
 \newpage
 
 \chapter{Broadcasting}
 
-\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse alphabet. This part introduces the message input using alphanumeric characters into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse alphabet. This part comprises the message input using alphanumeric characters into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 \section{Code description}
 
@@ -332,8 +341,11 @@ class morse
 };
 \end{lstlisting}
 
+\subsection{Functions and variables}
 
-We have the following class functions:
+In this subsection we are going to take a closer look how the functions and variables declared inside the \verb|morse| class are defined. This part is for you to better understand how they work, so that perhaps you can point out (and we secretly hope for that) where they could be improved and build much better ones yourself.
+
+\textbf{Functions}
 
 \verb|morse::inputMorse()| - takes a string written in Morse alphabet as an input. Ideally, the input string should only consist of the following characters:
 
@@ -348,7 +360,6 @@ We have the following class functions:
 \end{enumerate}
 
 If the user inputs characters other then the listed above, they will be treated as unknowns in the message.
-
 
 \verb|morse::inputText()| - takes a string written in alphanumeric alphabet as an input. The input string should only consist of:
 
@@ -368,7 +379,7 @@ If the user inputs characters other then the listed above, they will be ignored 
 
 \verb|morse::translation()| - translates a series of dots and dashes from the Morse message to the ASCII sequence.
 
-Following are the class variables:
+\textbf{Variables}
 
 \verb|morse::morseMessage| - contains message written in the Morse alphabet.
 
@@ -376,23 +387,29 @@ Following are the class variables:
 
 \verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
 
-\subsection{Functions}
-
-
-
 \subsection{Sending output to the parallel port}
+
+The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
 
 
 
 \subsection{Main}
 
+The C++ "Main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be made, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
 
+There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one "dot" signal in the Morse alphabet. This duration in micro seconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
+
+\begin{lstlisting}
+sendToPort(secretMessage.outputMorse(), 1, 25000);
+\end{lstlisting}
+
+but can be adjusted to your needs.
 
 \subsection{Fire it up using makefile}
 
 To compile the code on your computer you can use the makefile \verb|makeFileB|.
 
-Simply teleport yourself to the place where the 5 files are placed and at that location run in the command line:
+Simply teleport yourself to the place where the 5 files are placed and at that location run from the command line:
 
 \begin{snugshade}
 \verb|make -f makeFileB|
@@ -504,9 +521,9 @@ The definition of the Morse alphabet is present in the file \verb|morse.cpp| ins
 
 Every ASCII character is assigned a number, which inside the C++ language can be retrieved by casting the character into the integer. This is done by the following line inside the function \verb|morse::inputText()|: 
 
-\begin{snugshade}
-\verb|num = (int)textMessage[n];|
-\end{snugshade}
+\begin{lstlisting}
+num = (int)textMessage[n];
+\end{lstlisting}
 
 For example, for a \verb|textMessage| character equal to "\verb|f|" the parameter \verb|num| will be equal to 102.
 
@@ -540,13 +557,11 @@ We have then decided to map every legal alphanumeric ASCII character into the cr
 
 Inside of the code we have therefore:
 
-\begin{snugshade}
-\begin{verbatim}
+\begin{lstlisting}
 if (num > 64 && num < 91) morseMessage += code[num - 65];
-else if (num > 47 && num < 58) morseMessage += code[num - 22];
-else if (num > 96 && num < 123) morseMessage += code[num - 97];
-\end{verbatim}
-\end{snugshade}
+	else if (num > 47 && num < 58) morseMessage += code[num - 22];
+	else if (num > 96 && num < 123) morseMessage += code[num - 97];
+\end{lstlisting}
 
 Using our previous example, the character "\verb|f|" will result in \verb|num| = 102, and since this number is between 96 and 123 (lower-case character), the number subtracted will be 97. This will altogether result in the position with index 5 in the \verb|morse::code| array, which corresponds to a string "$\cdot\cdot$\text{-}$\cdot$". 
 
@@ -557,8 +572,7 @@ And so with each run of the \verb|for| loop, the coded message will be appended 
 Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a dot, a space and a comma. Every other character is by default replaced with a space in the translation.
 
 
-\begin{snugshade}
-\begin{verbatim}
+\begin{lstlisting}
 else
 {
 	switch (num)
@@ -585,16 +599,14 @@ else
 		}
 	}
 }
-\end{verbatim}
-\end{snugshade}
+\end{lstlisting}
 
 
 \newpage
 
 \chapter{Receiving}
 
-\verb|OBJECTIF_MORSE, PHASE: RECEIVING -|
-
+\verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and passes in on to the receiving code running on a different machine for further interpretation and output.
 
 \section{Code description}
 
@@ -619,7 +631,7 @@ In this part we describe the contents of the Arduino code.
 
 \subsubsection{The aim of the Arduino code}
 
-The aim of the Arduino code is to identify the signal as Low (L) or High (H) and to measure the time duration in \textit{ms} of that state.
+The aim of the Arduino code is to identify the signal as Low (\verb|L|) or High (\verb|H|) and to measure the time duration in \textit{ms} of that state.
 
 One of the sample Arduino outputs can be:
 
@@ -631,7 +643,7 @@ L 600
 \end{verbatim}
 \end{snugshade}
 
-Which has the interpretation as follows: Low state lasted 200 \textit{ms}, High state lasted 200 \textit{ms}, Low state lasted 600 \textit{ms}, and so on...
+Which has the interpretation as follows: Low state lasted 200 \textit{ms}, then High state lasted 200 \textit{ms}, then Low state lasted 600 \textit{ms}, and so on...
 
 
 
@@ -748,8 +760,7 @@ This last chapter is a collection of post-credit scenes where we present a few o
 
 \section{Reading secret alien messages}
 
-
-
+Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better then me, it took me about 20 unsuccessful trials before I broadcasted the first letter of my name. Good luck.
 
 
 \section{How far can it go?}
@@ -774,13 +785,13 @@ At some point we realized that it won't be a lot of effort to replace light Mors
 
 There was a lot of more ideas and unfortunately not always enough free time.
 
-One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
+One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of the internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
 
 As Cliff Stoll once said \cite{cliff_stoll}: 
 
 \textit{I'm interested in seeing where the curiosity will lead to, not: oh, where have we been.}
 
-We encourage you to explore and perhaps even share your own ideas with us!
+We encourage you to explore, learn, make a lot of mistakes and the most important: have a lot of pleasure of finding things out. Perhaps we'll hear from you soon when you share with us your ideas!
 
 \newpage
 
