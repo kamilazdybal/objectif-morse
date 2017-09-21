@@ -191,7 +191,7 @@ The second purpose is to serve as a tutorial for you, if you ever feel like emba
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
-Reach out to section [\ref{sec:equip}] to check if you have everything that you will need!
+Reach out to section \ref{sec:equip} to check if you have everything that you will need!
 
 It's time to present the mission objectives...
 
@@ -214,7 +214,9 @@ The name \textit{Objectif Morse} is a reference to one of our favourite books in
 \end{figure}
 
 
-\section{Project phases}
+\section{Preparation}
+
+\subsection{Project phases}
 
 This project is divided into two phases: \textbf{broadcasting} and \textbf{receiving}. 
 
@@ -222,7 +224,7 @@ These two phases don't require each other to get them working, however, the \tex
 
 The two phases are separated by a few centimeters of an air gap. What happens inside of the air gap shall remain a secret.
 
-\section{Equipment used} \label{sec:equip}
+\subsection{Equipment used} \label{sec:equip}
 
 Electronics:
 
@@ -258,7 +260,7 @@ Optional:
 
 \newpage
 
-\section{Code used}
+\subsection{Code used}
 
 The \textit{Objectif Morse} project is coded in C++ language.
 
@@ -292,9 +294,19 @@ arduinoCode.ino
 
 \section{Legal note}
 
-First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions arised when we were working on this project, which led to our success and it might take some effort before they reappear again\footnote{it is quite common among computers that the nerby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.}.
+First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nerby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arised when we were working on this project and it might take some effort to make them reappear again.
 
-If you have just said: \textit{"How awesome! I can't wait for that!"}, then I wish you a lot of errors in your life, because you're going to learn a lot from them. You're the right person in the right place.
+If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, then you're the right person in the right place. We wish you a lot of errors as you go, because you're going to learn a lot from them. 
+
+\section{Morse alphabet}
+
+
+
+
+
+The Morse alphabet is scalable
+
+
 
 \newpage
 
@@ -306,13 +318,13 @@ If you have just said: \textit{"How awesome! I can't wait for that!"}, then I wi
 
 The code for broadcasting the secret message in Morse consists of 5 files plus a makefile.
 
-The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into functions that operate on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
+The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into functions that operate on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output to the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
 
 The most important constituents of each file are presented in the graph below:
 
 \begin{figure}[H]
 \centering\includegraphics[width=15cm]{bCodeStructure}
-\caption{Code structure for \textbf{broadcasting} phase.}				
+\caption{Code structure for the \textbf{broadcasting} phase.}				
 \label{fig:br_code}
 \end{figure}
 
@@ -343,7 +355,7 @@ class morse
 
 \subsection{Functions and variables}
 
-In this subsection we are going to take a closer look how the functions and variables declared inside the \verb|morse| class are defined. This part is for you to better understand how they work, so that perhaps you can point out (and we secretly hope for that) where they could be improved and build much better ones yourself.
+In this subsection we are going to take a closer look into what the functions and variables declared inside the \verb|morse| class do. This part is for you to get a quick overview and to help you glue the things together in your head before you read the section \ref{sec:howB}, which describes the inner cogs much deeper.
 
 \textbf{Functions}
 
@@ -388,9 +400,6 @@ If the user inputs characters other then the listed above, they will be ignored 
 \verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
 
 
-
-
-
 \subsection{Main}
 
 The "Main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be performed, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
@@ -413,9 +422,16 @@ Simply teleport yourself to the place where the 5 files are placed and at that l
 \verb|make -f makeFileB|
 \end{snugshade}
 
-This will result in the creation of one more file called \verb|broadcast|.
+This will result in the creation of one more file, a binary called \verb|broadcast|.
 
 To fire up the whole code structure (in fact, to primarily run the \verb|main| function from \verb|broadcastMain.cpp|) type in the command line:
+
+\begin{snugshade}
+\verb|./broadcast|
+\end{snugshade}
+
+
+In certain cases you may need to run the binary as \verb|root|:
 
 \begin{snugshade}
 \verb|sudo ./broadcast|
@@ -459,13 +475,13 @@ Error sending message to parallel port.
 
 The functionality to translate from Morse to text has been added mostly for fun here. When you input message directly in Morse alphabet it won't be transmitted, this is because our initial objective was to input secret message in regular text. Feel free to translate the subtitle from the front page of this document!
 
-\section{How does it work}
+\section{How does it work} \label{sec:howB}
 
-This section is diving a little deeper into explanation of ideas behind the \textbf{broadcasting} phase and it also tells you how to set up the electronics part.
+This section is diving a little deeper into explanation of the ideas behind the \textbf{broadcasting} phase and it also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
 
 \subsection{Parallel port connection}
 
-In this section we describe how to connect to the parallel port and how to build a simple circuit with an LED diode. Notice that not every computer has got a parallel port! Usually, a modern portable computer will not be equiped with a parport, so try to get one oldschool stationary computer like we did! The parallel port is big and pink like this one:
+In this section we describe how to connect to the parallel port (parport\footnote{if you wish to sound more technical.}) and how to build a simple circuit with an LED diode. Notice that not every computer has got a parallel port. Usually, a portable computer will not be equiped with a parport, so try to get one oldschool stationary computer like we did! The parallel port is big and pink like this one:
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{par_port}
@@ -473,18 +489,17 @@ In this section we describe how to connect to the parallel port and how to build
 \label{fig:par_port}
 \end{figure}
 
-You should be mostly interested in two sets of pins on the parport - data pins (DATA) and ground pins (GND). There's eight data pins, marked in red in the picture above. They will serve as our (+) and they are the ones, who's high and low states can be controlled from the program. There's also eight ground pins, marked in black in the picture and they serve as our (-).
+You should be mostly interested in two sets of pins here - data pins (DATA) and ground pins (GND). There's eight data pins, marked in red in the picture above. They will serve as our (+) and they are the ones, who's high and low states can be controlled from the program. There's also eight ground pins, marked in black in the picture and they serve as our (-).
 
-It doesn't really matter which ground pin you connect to. It also doesn't matter which data pin you connect to but you should adjust the number of that pin, entering new value in the place of \verb|yourNewPinNumber| in the file \verb|sendToPort.cpp|:
+It doesn't really matter which ground pin you connect to. It also doesn't matter which data pin you connect to but you should adjust the value in the place of \verb|yourNumber| in the file \verb|sendToPort.cpp|:
 
 \begin{snugshade}
-\verb|ioperm(base, yourNewPinNumber, 1)|
+\verb|ioperm(base, yourNumber, 1)|
 \end{snugshade}
 
+By this value you specify up to which DATA pin you give the permission to connect to. For example, if you set \verb|yourNumber = 3|, you will be allowed to use pins first, second and third. Since we only needed one DATA pin to connect to, we've given ourselves permission to access just the first one, so this value is 1 by default. To read more about \verb|ioperm| check out this page \cite{ioperm}.
 
-We have connected to the zero$^{th}$ data pin.
-
-You should also be equiped with a parallel port plug. The best idea is to solder ground and data cables so that they stick firmly to the plug. Here's the picture of our plug, connected to the cables:
+You should also be equipped with a parallel port plug. The best idea is to solder ground and data cables so that they stick firmly to the plug. Here's the picture of our plug, connected to the cables:
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{parport_plug}
@@ -492,7 +507,7 @@ You should also be equiped with a parallel port plug. The best idea is to solder
 \label{fig:parport_plug}
 \end{figure}
 
-Remember that you only need two cables - one ground and one data. You don't have to worry about other cables present in the picture above.
+Remember that you only need two cables - one ground and one data. You don't have to worry about other colourful cables in the picture above.
 
 The final thing to do is to build the rest of the circuit connected to the plug, which is very simple! It only consist of an LED diode and a 330$\Omega$ resistor.
 
@@ -502,12 +517,9 @@ The final thing to do is to build the rest of the circuit connected to the plug,
 \label{fig:broadcast_circuit}
 \end{figure}
 
-
-
-
 \subsection{Alphanumeric to Morse} \label{sec:asciitomorse}
 
-Probably the most important (and interesting) part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representative in the Morse alphabet. Notice also, that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate to the same Morse character. So how can the sequence of dots and dashes be translated to C++?
+Probably the most important (and interesting) part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representation in the Morse alphabet. Notice also, that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate to the same Morse character. So how can the sequence of dots and dashes be implemented in C++?
 
 The definition of the Morse alphabet is present in the file \verb|morse.cpp| inside the variable called \verb|morse::code|. This is an array of strings that contains all Morse alphabet characters. Its graphical representation is shown below:
 
@@ -553,7 +565,7 @@ We have then decided to map every legal alphanumeric ASCII character into the cr
 \label{fig:morse_code_map}
 \end{figure}
 
-Inside of the code we have therefore:
+Inside the code we have therefore:
 
 \begin{lstlisting}
 if (num > 64 && num < 91) morseMessage += code[num - 65];
@@ -561,11 +573,11 @@ if (num > 64 && num < 91) morseMessage += code[num - 65];
 	else if (num > 96 && num < 123) morseMessage += code[num - 97];
 \end{lstlisting}
 
-Using our previous example, the character "\verb|f|" will result in \verb|num| = 102, and since this number is between 96 and 123 (lower-case character), the number subtracted will be 97. This will altogether result in the position with index 5 in the \verb|morse::code| array, which corresponds to a string "$\cdot\cdot$\text{-}$\cdot$". 
+Using our previous example, the character "\verb|f|" will result in \verb|num| = 102 and since this number is between 96 and 123 (lower-case character), the number subtracted will be 97. This will altogether result in the position with index 5 in the \verb|morse::code| array, which corresponds to a string "$\cdot\cdot$\text{-}$\cdot$". 
 
 This string will be added (\verb|+=|) to the message translation variable \verb|morseMessage|.
 
-And so with each run of the \verb|for| loop, the coded message will be appended by the next corresponding Morse code character.
+With each run of the \verb|for| loop in the \verb|morse::inputText()| function, the coded message will be appended by the next Morse code character.
 
 Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a dot, a space and a comma. Every other character is by default replaced with a space in the translation.
 
@@ -573,29 +585,29 @@ Notice that there is also an \verb|else| statement, which takes care of other no
 \begin{lstlisting}
 else
 {
-	switch (num)
-	{
-		case 46:
-		{
-		morseMessage+="/";
-		break;
-		}
-		case 32:
-		{
-		morseMessage+=" ";
-		break;
-		}
-		case 44:
-		{
-		morseMessage+="/";
-		break;
-		}
-		default:
-		{
-		morseMessage+=" ";
-		break;
-		}
-	}
+  switch (num)
+  {
+    case 46:
+    {
+      morseMessage += "/";
+      break;
+    }
+    case 32:
+    {
+      morseMessage += " ";
+      break;
+    }
+    case 44:
+    {
+      morseMessage += "/";
+      break;
+    }
+    default:
+    {
+      morseMessage += " ";
+      break;
+    }
+  }
 }
 \end{lstlisting}
 
@@ -662,9 +674,40 @@ The code structure is presented in the graph below:
 
 \subsection{Class \texttt{arduino}}
 
+For handling the output received from Arduino we created a class called \verb|arduino|:
 
+\begin{lstlisting}
+class arduino
+{
+
+	public:
+	void start();
+	void stop();
+	void read();
+	void clear();
+	std::string output();
+
+	private:
+	FILE* arduinoFile;
+	std::vector<int> durations;
+	
+};
+\end{lstlisting}
 
 \subsection{Functions and variables}
+
+\verb|arduino::start()| - function that 
+
+\verb|arduino::stop()| - function that 
+
+\verb|arduino::read()| - function that 
+
+\verb|arduino::clear()| - function that 
+
+\verb|arduino::output()| - function that 
+
+
+
 
 
 \subsection{Main}
@@ -672,17 +715,61 @@ The code structure is presented in the graph below:
 
 \subsection{Fire it up with makefile}
 
+The code is compiled in an analogous way to the \textbf{broadcasting} phase. Once you have all 5 files in one place run from the command line:
 
+\begin{snugshade}
+\verb|make -f makeFileR|
+\end{snugshade}
 
+A new binary file called \verb|receive| will be produced.
+
+To run the receiving phase type in the command line:
+
+\begin{snugshade}
+\verb|./receive|
+\end{snugshade}
+
+If this doesn't work, you might need to run the binary as \verb|root|:
+
+\begin{snugshade}
+\verb|sudo ./receive|
+\end{snugshade}
+
+And the code should be up and running!
 
 \subsection{Test run}
 
+Weather you've already built the \textbf{broadcasting} phase or not, you can run the binary \verb|receive| and see for yourself what the \textit{Objectif Morse} is capable of!
+
+When the code is started you will see the modest:
+
+\begin{snugshade}
+\verb|Input time:|
+\end{snugshade}
+
+You should type the time in seconds during which the setup will "listen" to the incomming message.
+
+If you have a flashlight at hand you may want to play a little with broadcasting Morse signals by hand. Just type for example 30 seconds and hit Enter:
+
+\begin{snugshade}
+\begin{verbatim}
+Input time:
+30
+\end{verbatim}
+\end{snugshade}
 
 
 \section{How does it work}
 
 
+
+
+
 \subsection{Arduino connection}
+
+The picture below describes how to build the electronic circuit for the \textbf{receiving} phase. It consists of a phototransistor and a 10 000$\Omega$ resistor. \textbf{Always double-check the circuit that gets connected to Arduino} because the mistakes may sometimes be sad for your little Italian device. It's a good habit to first upload the code on Arduino (only connecting it to the USB A-B cable) then disconnect the Arduino from USB and assemble the circuit in a powered-off mode.
+
+We use the analog pin A0, as well as the 5V pin and the GND pin.
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{receive_circuit}
@@ -693,11 +780,11 @@ The code structure is presented in the graph below:
 
 
 
-\subsection{Arduino part}
+\subsection{Arduino code}
 
-In this part we describe the contents of the Arduino code.
+In this part we describe the contents of the Arduino code \verb|arduinoCode.ino|. This code is written in C language and should be uploaded to your Arduino device. We recommend downloading Arduino IDE for Linux - a neat little program in which you can easily verify and upload Arduino codes. It also comes with a library of examples that could be useful in your future projects.
 
-\subsubsection{The aim of the Arduino code}
+\subsubsection{Arduino's job}
 
 The aim of the Arduino code is to identify the signal as Low (\verb|L|) or High (\verb|H|) and to measure the time duration in \textit{ms} of that state.
 
