@@ -153,14 +153,14 @@ Copyright \textcopyright \, J. Aleksanderek, K. Zdybał, 2017
 
 For more projects similar to this one
 
-visit me GitHub: @camillejr
+visit me on GitHub: @camillejr
 
 To contact me personally drop me a line at:
 
 \verb|kamilazdybal@gmail.com|
 
 
-\vspace*{1cm}
+\vspace*{2cm}
 
 \verb|Objectif Morse|
 
@@ -308,7 +308,7 @@ The code for broadcasting the secret message in Morse consists of 5 files plus a
 
 The code is split into user input/output interactive part (\verb|broadcastMain.cpp|), into functions that operate on messages (\verb|morse.cpp| and \verb|morse.h|) and into sending output on the parallel port (\verb|sendToPort.cpp| and \verb|sendToPort.h|).
 
-The most important constituents of each file are presented in the graph below.
+The most important constituents of each file are presented in the graph below:
 
 \begin{figure}[H]
 \centering\includegraphics[width=15cm]{bCodeStructure}
@@ -387,15 +387,13 @@ If the user inputs characters other then the listed above, they will be ignored 
 
 \verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
 
-\subsection{Sending output to the parallel port}
 
-The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
 
 
 
 \subsection{Main}
 
-The C++ "Main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be made, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
+The "Main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be performed, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
 
 There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one "dot" signal in the Morse alphabet. This duration in micro seconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
 
@@ -405,7 +403,7 @@ sendToPort(secretMessage.outputMorse(), 1, 25000);
 
 but can be adjusted to your needs.
 
-\subsection{Fire it up using makefile}
+\subsection{Fire it up with makefile}
 
 To compile the code on your computer you can use the makefile \verb|makeFileB|.
 
@@ -602,6 +600,45 @@ else
 \end{lstlisting}
 
 
+\subsection{Sending output to the parallel port}
+
+The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 
 \chapter{Receiving}
@@ -609,6 +646,37 @@ else
 \verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and passes in on to the receiving code running on a different machine for further interpretation and output.
 
 \section{Code description}
+
+The code for receiving phase consists of 5 files plus a makefile. 
+
+The broadcasting and receiving phase share the same \verb|morse.cpp| file responsible for operation on messages. Additionally, there is a set of functions that parse the Arduino output (\verb|arduinoReceive.cpp|, \verb|ArduinoReceive.h|) and the output part (\verb|receiveMain.cpp|, \verb|receiveMain.h|) responsible for printing the result of the message translation in the command line.
+
+The code structure is presented in the graph below:
+
+\begin{figure}[H]
+\centering\includegraphics[width=15cm]{rCodeStructure}
+\caption{Code structure for \textbf{receiving} phase.}	
+\label{fig:re_code}
+\end{figure}
+
+
+\subsection{Class \texttt{arduino}}
+
+
+
+\subsection{Functions and variables}
+
+
+\subsection{Main}
+
+
+\subsection{Fire it up with makefile}
+
+
+
+
+\subsection{Test run}
+
 
 
 \section{How does it work}
