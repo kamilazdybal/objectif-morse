@@ -64,12 +64,12 @@ morseMessage = morseCode;		// full Morse message
 int len = morseCode.size(); // number of characters in the full Morse message
 
 char tempChar;					// stores one character from the Morse message
-std::string tempString; // stores a set of characters from the Morse message (typically one full word)
+std::string tempString; // stores a set of characters from the Morse message (one full alphanumeric character)
 
 int n = 0;
 bool addDot = false;
 
-// This while loop runs over all Morse alphabet characters in the Morse message and checks what alphanumeric characters they are.
+// This while loop runs over all Morse alphabet characters in the Morse message and translates them to the alphanumeric alphabet by calling the morse::translation() function.
 // Characters allowed during typing are "/", ".", "-", " ". Other characters, if typed, are replaced with "*".
 // Unknown Morse alphabet characters are replaced with "_".
 while (n < len)
@@ -116,12 +116,12 @@ while (n < len)
 				++n;
 			}
 
-			if (spaceCount < 3) // case: 0, 1 or 2 spaces - do nothing - interpreted as space between charaters
+			if (spaceCount < 3) // case: 1, 2 or 3 spaces - do nothing - interpreted as space between charaters
 			{
 				break;
 			}
 
-			else // case: 3 or more spaces - interpreted as space between words
+			else // case: 4 or more spaces - interpreted as space between words
 			{
 				textMessage += " ";
 				break;
@@ -150,11 +150,11 @@ if (!tempString.empty())
 		{
 			if (tempString == code[k])
 			{
-				if (k > 25)	// numbers in Morse code
+				if (k > 25)	// numbers in Morse alphabet
 				{
 					return (char)(k + 22);
 				}
-				else				// letters in Morse code
+				else				// letters in Morse alphabet
 				{
 					return (char)(k + 97);
 				}

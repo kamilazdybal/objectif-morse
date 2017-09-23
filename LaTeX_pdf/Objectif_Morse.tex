@@ -627,6 +627,119 @@ else
 \end{lstlisting}
 
 
+
+
+\subsection{Morse to alphanumeric}
+
+The translation from the Morse alphabet to the regular text is taken care by two \verb|morse| class functions: \verb|morse::inputMorse()| and \verb|morse::translation()|.
+
+The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. 
+
+\begin{lstlisting}
+if (!tempString.empty())
+{
+	for (int k = 0 ; k < 36 ; ++k)
+		{
+			if (tempString == code[k])
+			{
+				if (k > 25)
+				{
+					return (char)(k + 22);
+				}
+				else	
+				{
+					return (char)(k + 97);
+				}
+				break;
+			}
+			if (k == 35)	
+			{
+				return "_";
+			}
+		}
+}
+\end{lstlisting}
+
+This \verb|if()| statement takes one Morse character as an input. Then it runs through the \verb|morse::code| array and checks if the character matches any of the entries inside this array. If it does, then it's going to be either a letter or a number written in the Morse code.
+
+As previously described, all letters have indices 0-25 and all numbers have indices 26-35. Instead of subtracting a number we now have to add it to the index in the \verb|morse::code| array to obtain the corresponding ASCII numeration. The returned value is an integer casted into a character. This is the translation of one character from the secret message written in Morse.
+
+\verb|addDot|
+
+\begin{lstlisting}
+while (n < len)
+{
+	tempChar = morseCode[n];
+	switch (tempChar)
+	{
+		case ".":
+		{
+			tempString += ".";
+			++n;
+			break;
+		}
+		case "-":
+		{
+			tempString += "-";
+			++n;
+			break;
+		}
+		case "/":
+		{
+			addDot = true;
+			++n;
+		}
+		default:
+		{
+			textMessage += "*";
+			break;
+		}
+	}
+}
+\end{lstlisting}
+
+
+
+
+
+And may we draw your attention to this final \verb|case|:
+
+\begin{lstlisting}
+case " ":
+{
+  textMessage += translation(tempString);
+
+  tempString.clear();
+
+  if (addDot == true)
+  {
+    textMessage += ". ";
+    addDot = false;
+  }
+
+  int spaceCount = 0;
+
+  while (morseCode[n] == " " && n < len)
+  {
+    ++spaceCount;
+    ++n;
+  }
+
+  if (spaceCount < 3)
+  {
+    break;
+  }
+
+  else
+  {
+    textMessage += " ";
+    break;
+  }
+}
+\end{lstlisting}
+
+
+
 \subsection{Sending output to the parallel port}
 
 The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
@@ -905,9 +1018,6 @@ The identification of the last finished state as High or Low is made by entering
 The corresponding flag needs to be raised. If we entered the High state, the \verb|prevSignal| has to be set to true and if we entered the Low state, the \verb|prevSignal| has to be set to false.
 
 Finally, it should be noted that entering the \verb|if()| conditions happen only at changes between Low and High states. Outside of this changes, the \verb|loop()| function simply keeps measuring the \verb|sensorValue|.
-
-
-
 
 \chapter{Putting it all together}
 
