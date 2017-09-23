@@ -16,6 +16,7 @@
 \definecolor{mygreen}{RGB}{70, 180, 90}
 \definecolor{mylilas}{RGB}{255, 117, 45}
 \definecolor{cadr}{rgb}{0.89, 0.0, 0.13}
+
 \graphicspath{{DWGs/}}
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -187,9 +188,9 @@ You will soon begin a journey through secret coded messages transmitted between 
 
 The first purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
-The second and the most important purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. And it is not a very difficult road to go. Following the document you should be able to accomplish the same mission and maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is requried as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
+The second and more important purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. Following the document you should be able to accomplish the same mission and maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is required as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
 
-This project is aimed for explorers and experimenters for whom it may perhaps seem difficult at first. We have kept the spirit of "learning by doing" because we believe that this is the most effective way to understand the difficult. 
+This project is aimed for explorers and experimenters for whom it may seem difficult at first. But we believe that the spirit of "learning by doing" is the most effective way to understand the difficult. 
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
@@ -199,7 +200,7 @@ It's time to present the mission objectives...
 
 \section{Voici l'Objectif Morse}
 
-You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port's pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated after reading the Arduino output and printed again in the terminal of the portable computer. 
+You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated to regular text after reading the Arduino output and printed in the terminal of the portable computer. 
 
 The message is received and the war is won.
 
@@ -215,8 +216,7 @@ The name \textit{Objectif Morse} is a reference to one of our favourite books in
 \label{fig:tintin}
 \end{figure}
 
-
-\section{Preparation}
+\section{Preparation} \label{sec:equip}
 
 \subsection{Project phases}
 
@@ -226,7 +226,7 @@ These two phases don't require each other to get them working, however, the \tex
 
 The two phases are separated by a few centimetres air gap. What happens inside of the air gap shall remain a secret.
 
-\subsection{Equipment used} \label{sec:equip}
+\subsection{Equipment used} 
 
 Electronics:
 
@@ -294,6 +294,14 @@ This is a scheme of how the code should be distributed over devices:
 arduinoCode.ino
 \end{verbatim}
 
+In order to download our GitHub repository with all the necessary codes it's best to have \verb|git| installed on your computers. Then type in the command line:
+
+\begin{snugshade}
+\verb|git clone https://github.com/camillejr/objectif_morse.git|
+\end{snugshade}
+
+
+
 \section{Legal note}
 
 First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nerby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arised when we were working on this project and it might take some effort to make them reappear again.
@@ -302,11 +310,16 @@ If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, 
 
 \section{Morse alphabet}
 
+The Morse alphabet characters are the following:
 
 
 
 
-The Morse alphabet is scalable
+
+
+
+
+The Morse alphabet is scalable, which means that you can set the \verb|dotTime| to whatever time you need, and all the remaining intervals will simply become a corresponding multiple of that unit.
 
 
 
@@ -479,7 +492,7 @@ The functionality to translate from Morse to text has been added mostly for fun 
 
 \section{How does it work} \label{sec:howB}
 
-This section is diving a little deeper into explanation of the ideas behind the \textbf{broadcasting} phase and it also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
+This section is diving a little deeper into explanation of the ideas behind the \textbf{broadcasting} phase. It also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
 
 \subsection{Parallel port connection}
 
@@ -499,7 +512,7 @@ It doesn't really matter which ground pin you connect to. It also doesn't matter
 \verb|ioperm(base, yourNumber, 1)|
 \end{snugshade}
 
-By this value you specify up to which DATA pin you give the permission to connect to. For example, if you set \verb|yourNumber = 3|, you will be allowed to use pins first, second and third. Since we only needed one DATA pin to connect to, we've given ourselves permission to access just the first one, so this value is 1 by default. To read more about \verb|ioperm| check out this page \cite{ioperm}.
+By this value you specify up to which DATA pin you give the permission to connect to. For example, if you set \verb|yourNumber = 3|, you will be allowed to use pins: first, second and third. Since we only needed one DATA pin to connect to, we've given ourselves permission to access just the first one, so this value is 1 by default. To read more about \verb|ioperm| check out this page \cite{ioperm}.
 
 You should also be equipped with a parallel port plug. The best idea is to solder ground and data cables so that they stick firmly to the plug. Here's the picture of our plug, connected to the cables:
 
@@ -521,7 +534,7 @@ The final thing to do is to build the rest of the circuit connected to the plug,
 
 \subsection{Alphanumeric to Morse} \label{sec:asciitomorse}
 
-Probably the most important (and interesting) part of the \textbf{broadcasting} phase is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representation in the Morse alphabet. Notice also, that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate to the same Morse character. So how can the sequence of dots and dashes be implemented in C++?
+Probably the most important (and interesting) part of the \textit{Objectif Morse} is the introduction of the Morse alphabet in the code. Each letter \verb|A-Z| (\verb|a-z|) and each digit \verb|0-9| has got its representation in the Morse alphabet. Notice also, that the Morse alphabet is not case sensitive and both lower-case and upper-case letters translate to the same Morse character. So how can the sequence of dots and dashes be implemented in C++?
 
 The definition of the Morse alphabet is present in the file \verb|morse.cpp| inside the variable called \verb|morse::code|. This is an array of strings that contains all Morse alphabet characters. Its graphical representation is shown below:
 
@@ -531,7 +544,7 @@ The definition of the Morse alphabet is present in the file \verb|morse.cpp| ins
 \label{fig:morse_code_array}
 \end{figure}
 
-Every ASCII character is assigned a number, which inside the C++ language can be retrieved by casting the character into the integer. This is done by the following line inside the function \verb|morse::inputText()|: 
+Every ASCII character is assigned a number, which inside the C++ language can be retrieved by casting the character into an integer. This is done by the following line inside the function \verb|morse::inputText()|: 
 
 \begin{lstlisting}
 num = (int)textMessage[n];
@@ -552,7 +565,7 @@ For the characters used in this project we have the following ASCII numerations:
 
 \item space \verb|" "| : 32
 
-\item dot \verb|"."| : 46
+\item full stop \verb|"."| : 46
 
 \item comma \verb|","| : 44
 
@@ -581,7 +594,7 @@ This string will be added (\verb|+=|) to the message translation variable \verb|
 
 With each run of the \verb|for| loop in the \verb|morse::inputText()| function, the coded message will be appended by the next Morse code character.
 
-Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a dot, a space and a comma. Every other character is by default replaced with a space in the translation.
+Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a full stop, a space and a comma. Every other character is by default replaced with a space in the translation.
 
 
 \begin{lstlisting}
@@ -657,7 +670,7 @@ The code responsible for sending the message as high and low states to the paral
 
 \chapter{Receiving}
 
-\verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and passes in on to the receiving code running on a different machine for further interpretation and output.
+\verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and passes in on to the receiving code running on a different machine for further translation and output.
 
 \section{Code description}
 
@@ -769,9 +782,9 @@ Input time:
 
 \subsection{Arduino connection}
 
-The picture below describes how to build the electronic circuit for the \textbf{receiving} phase. It consists of a phototransistor and a 10 000$\Omega$ resistor. \textbf{Always double-check the circuit that gets connected to Arduino} because the mistakes may sometimes be sad for your little Italian device. It's a good habit to first upload the code on Arduino (only connecting it to the USB A-B cable) then disconnect the Arduino from USB and assemble the circuit in a powered-off mode.
+The picture below describes how to build the electronic circuit for the \textbf{receiving} phase. It consists of a phototransistor and a 10 000$\Omega$ resistor. \textbf{Always double-check the circuit that gets connected to Arduino} because the mistakes may sometimes be sad for your little Italian device. It's a good habit to first upload the code to Arduino (only connecting it to a USB A-B cable) then disconnect the Arduino from the USB and assemble the circuit in a powered-off mode.
 
-We use the analog pin A0, as well as the 5V pin and the GND pin.
+We use the analog pin A0, as well as the 5V pin to serve as our (+) and the GND pin to serve as (-).
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{receive_circuit}
@@ -837,7 +850,7 @@ In the graph below we present in a closer detail how the Low and High state is i
 
 The aim of the calibration is to measure the mean luminosity around the phototransistor and to use this information for further processing of the luminosity that comes from the LED diode itself. This mean luminosity will be present everytime we have a Low state in our signal - interpreted as "darkness".
 
-The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want the Arduino to correctly interpret what part of the luminosity comes from the general brightness of the surroundings and what part are changes due to the LED diode.
+The need to do this comes from the fact that we can send our coded messages during sunny or gloomy day or during the night, and we want the Arduino to correctly interpret what part of the luminosity comes from the general brightness of the surroundings and what part are the changes due to the LED diode.
 
 The aim of the calibration is to obtain the value \verb|sensorMean|. This is performed by reading 10 values of \verb|sensorValue| in 100 \textit{ms} time steps and calculating their arithmetic average.
 
@@ -845,15 +858,23 @@ The aim of the calibration is to obtain the value \verb|sensorMean|. This is per
 
 Inside the \verb|loop()| function, the \verb|sensorValue| is read at the beginning and then if certain conditions are met, we have either signal changing from Low to High or changing from High to Low.
 
-The signal is changing from Low to High when the voltage read is greater than the \verb|sensorThres| and when the previous signal was Low (when the \verb|prevSignal| is set to false).
+The signal is changing from Low to High when the voltage read is greater than the \verb|sensorThres| and when the previous signal was Low (when the \verb|prevSignal| is set to false). This condition is comprised in the following \verb|if()| statement:
+
+\begin{lstlisting}
+if (sensorValue > sensorThres && !prevSignal)
+\end{lstlisting}
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.18]{lowtohigh}
-\caption{Signal changing from Low to High.}				
+\caption{Signal changing from Low to High. Red dots represent the \texttt{sensorValue} measurement.}				
 \label{fig:arduino_code}
 \end{figure}
 
-The signal is changing from High to Low when the voltage read is in-between 10 from the \verb|sensorMean| value and when the previous signal was High (when the \verb|prevSignal| is set to true). 
+The signal is changing from High to Low when the voltage read is within 10 from the \verb|sensorMean| value and when the previous signal was High (when the \verb|prevSignal| is set to true). This condition is comprised in the following \verb|if()| statement:
+
+\begin{lstlisting}
+if (sensorValue - sensorMean < 10 && prevSignal)
+\end{lstlisting}
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.18]{hightolow}
@@ -863,14 +884,14 @@ The signal is changing from High to Low when the voltage read is in-between 10 f
 
 \subsubsection{Measuring the time durations}
 
-Each time we enter one of the two \verb|if()| conditions, the time of the last finished state (High or Low) must be measured, identified and printed on the Serial Monitor.
+Each time we enter one of the two \verb|if()| statements, the time of the last finished state (High or Low) must be identified, measured and printed on the Serial Monitor.
 
 Additionally, a flag \verb|prevSignal| is always changed to describe the currently entered state.
 
 For the purpose of measuring the time durations we use the built-in Arduino function \verb|millis()|. This function measures the time in \textit{ms} that has passed from the beginning of the operation of the program. It can therefore be viewed as an absolute time. It increases while the Arduino operates and is only set back to zero, when the Arduino is reset.
 
 The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. [\ref{fig:timedur}], the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
-\verb|timePrev| in this case is the time at which the High state has begun (marked red).
+\textcolor{cadr}{\texttt{timePrev}} in this case is the time at which the High state has begun.
 
 
 \begin{figure}[H]
@@ -879,9 +900,9 @@ The variable \verb|timeDuration|, which we are interested in, is therefore measu
 \label{fig:timedur}
 \end{figure}
 
-The identification of the last finished state is made by entering the correct \verb|if()| condition, and then accordingly we print on the Serial Monitor either \verb|"L"| or \verb|"H"|, followed by the variable \verb|timeDuration|.
+The identification of the last finished state as High or Low is made by entering the correct \verb|if()| condition, and then accordingly we print on the Serial Monitor either \verb|"H"| or \verb|"L"|, followed by the current value of the variable \verb|timeDuration|.
 
-The corresponding flag needs to be raised. If we entered a High state, the \verb|prevSignal| has to be set to true and if we entered a Low state, the \verb|prevSignal| has to be set to false.
+The corresponding flag needs to be raised. If we entered the High state, the \verb|prevSignal| has to be set to true and if we entered the Low state, the \verb|prevSignal| has to be set to false.
 
 Finally, it should be noted that entering the \verb|if()| conditions happen only at changes between Low and High states. Outside of this changes, the \verb|loop()| function simply keeps measuring the \verb|sensorValue|.
 
