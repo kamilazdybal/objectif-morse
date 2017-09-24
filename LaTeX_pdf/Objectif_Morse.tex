@@ -309,11 +309,33 @@ The Morse alphabet characters are the following:
 \begin{figure}[H]
 \centering\includegraphics[width=10cm]{morse_alphabet}
 \caption{Morse alphabet.}			
-\label{fig:tintin}
+\label{fig:morse_alphabet}
+\end{figure}
+
+The basic unit of durations of signals in the Morse alphabet is what we call in out project \verb|dotTime|. This is the time that it takes to transmit the single dot signal. All the other durations are built from this unit time and so we have:
+
+\begin{enumerate}
+\item the dot signal lasts \verb|dotTime|
+
+\item the dash signal lasts \verb|3| $\times$ \verb|dotTime|
+
+\item the space between signals within one character lasts \verb|dotTime|
+
+\item the space between characters within one word lasts \verb|3| $\times$ \verb|dotTime|
+
+\item the space between words lasts \verb|7| $\times$ \verb|dotTime|
+
+\end{enumerate}
+
+There is also a slash symbol used to represent the end of a sentence and unless the transmission system is capable of sending this character, it would typically lasts more than \verb|7| $\times$ \verb|dotTime| or not be recognized at all.
+
+\begin{figure}[H]
+\centering\includegraphics[width=14.5cm]{morse_durations}
+\caption{Durations in the Morse alphabet.}			
+\label{fig:morse_durations}
 \end{figure}
 
 The Morse alphabet is scalable, which means that you can set the \verb|dotTime| to whatever time you need, and all the remaining intervals will simply become a corresponding multiple of that unit.
-
 
 \section{Legal note}
 
@@ -657,7 +679,7 @@ if (!tempString.empty())
 }
 \end{lstlisting}
 
-This \verb|if()| statement takes one Morse character as an input. An example \verb|tempString| might for instance be equal to "$\cdot\cdot$\text{-}$\cdot$". Then it runs through the \verb|morse::code| array and checks if the character matches any of the entries inside this array. If it does, then it's going to be either a letter or a number written in the Morse code.
+This \verb|if()| statement takes one Morse character as an input. An example \verb|tempString| might for instance be equal to "$\cdot\cdot$\text{-}$\cdot$". Then it runs through the \verb|morse::code| array and checks if the character matches any of the entries inside the array. If it does, then it's going to be either a letter or a number written in the Morse code.
 
 As previously described, all letters have indices 0-25 and all numbers have indices 26-35. Instead of subtracting a number we now have to add it to the index in the \verb|morse::code| array to obtain the corresponding ASCII numeration. The returned value is an integer casted to a character, either:
 
@@ -719,7 +741,6 @@ while (n < len)
 }
 \end{lstlisting}
 
-
 The drawing below shows how we define \verb|tempChar| and \verb|tempString|. Each blue box would be one \verb|tempChar| that the \verb|while()| is currently looking at. It would contain either one Morse signal (one dot or one dash), or a space or, if the sentence has ended, the slash symbol.
 
 \begin{figure}[H]
@@ -774,26 +795,7 @@ textMessage += translation(tempString);
 
 This line is saying: \textit{Hey! That's the end of a character! Dear function} \verb|morse::translation()|\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
 
-Next, we have to make sure what is the reason for why the character has ended. It might be twofold: either it's a space between Morse characters within the same word, or it's a space at which separates two words. If you remember from  \ref{sec:morse}, the standard space between characters within one word is of one unit and the space between words is three units. This final \verb|case| is counting how many spaces are there after the first encountered, and it's classifying . We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Next, we have to make sure what is the reason for why the character has ended. It might be twofold: either it's a space between Morse characters within the same word, or it's a space which separates two words. If you remember from  \ref{sec:morse}, the standard space between characters within one word is of one unit and the space between words is three units. This final \verb|case| is counting how many spaces are there after the first encountered, and then it's classifying the reason. We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words and in the message translation to regular text we have to add a space as well.
 
 \subsection{Sending output to the parallel port}
 
@@ -844,7 +846,7 @@ The code responsible for sending the message as high and low states to the paral
 
 The code for receiving phase consists of 5 files plus a makefile. 
 
-The broadcasting and receiving phase share the same \verb|morse.cpp| file responsible for operation on messages. Additionally, there is a set of functions that parse the Arduino output (\verb|arduinoReceive.cpp|, \verb|ArduinoReceive.h|) and the output part (\verb|receiveMain.cpp|, \verb|receiveMain.h|) responsible for printing the result of the message translation in the command line.
+The broadcasting and receiving phase share the same \verb|morse.cpp| file responsible for translation of messages. Additionally, there is a set of functions that parse the Arduino output (\verb|arduinoReceive.cpp|, \verb|ArduinoReceive.h|) and the output part (\verb|receiveMain.cpp|, \verb|receiveMain.h|) responsible for printing the result of the message translation in the command line.
 
 The code structure is presented in the graph below:
 
