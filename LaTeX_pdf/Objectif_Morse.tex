@@ -180,7 +180,7 @@ To contact me personally drop me a line at:
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.0}
 
-\chapter{Introduction}\label{chap:intro}
+\chapter{Introduction} \label{chap:intro}
 
 \textbf{Welcome to the \textit{Objectif Morse} project.}
 
@@ -302,7 +302,7 @@ In order to download our GitHub repository with all the necessary codes it's bes
 
 \newpage
 
-\section{Morse alphabet}
+\section{Morse alphabet}  \label{sec:morse}
 
 The Morse alphabet characters are the following:
 
@@ -336,7 +336,7 @@ The code is split into user input/output interactive part (\verb|broadcastMain.c
 The most important constituents of each file are presented in the graph below:
 
 \begin{figure}[H]
-\centering\includegraphics[width=15cm]{bCodeStructure}
+\centering\includegraphics[width=14.5cm]{bCodeStructure}
 \caption{Code structure for the \textbf{broadcasting} phase.}				
 \label{fig:br_code}
 \end{figure}
@@ -552,7 +552,6 @@ For example, for a \verb|textMessage| character equal to "\verb|f|" the paramete
 
 For the characters used in this project we have the following ASCII numerations:
 
-
 \begin{enumerate}
 
 \item upper-case letters \verb|A-Z| : 65 - 90
@@ -625,13 +624,13 @@ else
 \end{lstlisting}
 
 
-
-
 \subsection{Morse to alphanumeric}
 
-The translation from the Morse alphabet to the regular text is taken care by two \verb|morse| class functions: \verb|morse::inputMorse()| and \verb|morse::translation()|.
+The translation from the Morse alphabet to the regular text is taken care of by two \verb|morse| class functions: \verb|morse::inputMorse()| and \verb|morse::translation()|.
 
-The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. 
+The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. So let's take a closer look:
+
+\newpage
 
 \begin{lstlisting}
 if (!tempString.empty())
@@ -658,11 +657,35 @@ if (!tempString.empty())
 }
 \end{lstlisting}
 
-This \verb|if()| statement takes one Morse character as an input. Then it runs through the \verb|morse::code| array and checks if the character matches any of the entries inside this array. If it does, then it's going to be either a letter or a number written in the Morse code.
+This \verb|if()| statement takes one Morse character as an input. An example \verb|tempString| might for instance be equal to "$\cdot\cdot$\text{-}$\cdot$". Then it runs through the \verb|morse::code| array and checks if the character matches any of the entries inside this array. If it does, then it's going to be either a letter or a number written in the Morse code.
 
-As previously described, all letters have indices 0-25 and all numbers have indices 26-35. Instead of subtracting a number we now have to add it to the index in the \verb|morse::code| array to obtain the corresponding ASCII numeration. The returned value is an integer casted into a character. This is the translation of one character from the secret message written in Morse.
+As previously described, all letters have indices 0-25 and all numbers have indices 26-35. Instead of subtracting a number we now have to add it to the index in the \verb|morse::code| array to obtain the corresponding ASCII numeration. The returned value is an integer casted to a character, either:
 
-\verb|addDot|
+\begin{lstlisting}
+return (char)(k + 22);
+\end{lstlisting}
+
+for numbers, or:
+
+\begin{lstlisting}
+return (char)(k + 97);
+\end{lstlisting}
+
+for letters.
+
+This returned value is the translation of one character from the secret message written in Morse. For example, if the \verb|tempString| was equal to "$\cdot\cdot$\text{-}$\cdot$", the index in the array \verb|morse::code| is \verb|k = 5|. Since \verb|k| is less than 25, we know that it's a letter in ASCII and that we have to add 97 to match the ASCII numeration. 
+
+\newpage
+
+\begin{lstlisting}
+return (char)(5 + 97);
+\end{lstlisting}
+
+Turning the number 102 to character gives us the letter \verb|"f"|.
+
+The \verb|while()| in the function  \verb|morse::inputMorse()| is making an initial preparation of a Morse character - it's building the content of the variable \verb|tempString|. You can think of the job done by the \verb|while()| as "slicing" the secret message to chunks consisting of single Morse characters.
+
+This is a piece of that \verb|while()|, without one final \verb|case|, which we'll describe next:
 
 \begin{lstlisting}
 while (n < len)
@@ -697,10 +720,17 @@ while (n < len)
 \end{lstlisting}
 
 
+The drawing below shows how we define \verb|tempChar| and \verb|tempString|. Each blue box would be one \verb|tempChar| that the \verb|while()| is currently looking at. It would contain either one Morse signal (one dot or one dash), or a space or, if the sentence has ended, the slash symbol.
 
+\begin{figure}[H]
+\centering\includegraphics[width=14.5cm]{temp_string}
+\caption{How \texttt{tempChar}, \texttt{tempString} and \texttt{textMessage} are defined.}
+\label{fig:temp_char}
+\end{figure}
 
+You're maybe wondering what is this variable \verb|addDot| all about. It simply states whether a full stop "." should be appended to the message translation. Whenever slash is present in the Morse message, it means that a sentence has ended and in the message written in regular text a full stop should be placed at the end of a sentence. So the flag \verb|addDot| is raised to \verb|true|, saying: \textit{Yup! We have the end of the sentence!} 
 
-And may we draw your attention to this final \verb|case|:
+May we now bring your attention to this final \verb|case|. The interesting thing happens when the \verb|while()| encounters a space in the message \verb|" "|. 
 
 \begin{lstlisting}
 case " ":
@@ -735,6 +765,33 @@ case " ":
   }
 }
 \end{lstlisting}
+
+First of all, this means that one full Morse character has finished and it can be translated, hence the first thing to do is:
+
+\begin{lstlisting}
+textMessage += translation(tempString);
+\end{lstlisting}
+
+This line is saying: \textit{Hey! That's the end of a character! Dear function} \verb|morse::translation()|\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
+
+Next, we have to make sure what is the reason for why the character has ended. It might be twofold: either it's a space between Morse characters within the same word, or it's a space at which separates two words. If you remember from  \ref{sec:morse}, the standard space between characters within one word is of one unit and the space between words is three units. This final \verb|case| is counting how many spaces are there after the first encountered, and it's classifying . We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -792,7 +849,7 @@ The broadcasting and receiving phase share the same \verb|morse.cpp| file respon
 The code structure is presented in the graph below:
 
 \begin{figure}[H]
-\centering\includegraphics[width=15cm]{rCodeStructure}
+\centering\includegraphics[width=14.5cm]{rCodeStructure}
 \caption{Code structure for \textbf{receiving} phase.}	
 \label{fig:re_code}
 \end{figure}
