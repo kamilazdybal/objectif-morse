@@ -188,19 +188,19 @@ You will soon begin a journey through secret coded messages transmitted between 
 
 The first purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
-The second and more important purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. Following the document you should be able to accomplish the same mission and maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is required as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
+The second and more important purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. Following this document you should be able to accomplish the same mission and maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is required as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
 
-This project is aimed for explorers and experimenters for whom it may seem difficult at first. But we believe that the spirit of "learning by doing" is the most effective way to understand the difficult. 
+This project is aimed for explorers and experimenters for whom it may seem difficult at first. We believe that the spirit of "learning by doing" is the most effective way to understand the difficult.
 
 All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
-Reach out to section \ref{sec:equip} to check if you have everything that you will need!
+Reach out to section \ref{sec:equip} to check if you have everything that you need!
 
 It's time to present the mission objectives...
 
 \section{Voici l'Objectif Morse}
 
-You type a secret message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated to regular text after reading the Arduino output and printed in the terminal of the portable computer. 
+You type a secret text message on a stationary computer into the terminal. This message is translated into Morse alphabet and the signal of dots and dashes is sent to the parallel port as high and low states. The parallel port pins are connected to a small circuit with an LED diode, which blinks accordingly to the message translation. No spies should be observing the diode. This message is received by a phototransistor, situated in the close proximity of the LED. The phototransistor passes the signal to the Arduino device. Arduino connected to a portable computer prints the received message in Morse on the Serial Monitor. The message is translated to regular text after reading the Arduino output and printed in the terminal of the portable computer. 
 
 The message is received and the war is won.
 
@@ -264,7 +264,7 @@ Optional:
 
 \subsection{Code used}
 
-The \textit{Objectif Morse} project is coded in C++ language.
+The \textit{Objectif Morse} project is coded in C++ language. We've used one of its famous features - Object Oriented Programming (OOP). If you're not a fan of OOP then to make your reading more interesting, we give you a full permission to silently complain about our code.
 
 This is a scheme of how the code should be distributed over devices:
 
@@ -347,7 +347,7 @@ If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, 
 
 \chapter{Broadcasting}
 
-\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from the regular text to the Morse alphabet. This part comprises the message input using alphanumeric characters into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+\verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from regular text to Morse alphabet. This part comprises the message input into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 \section{Code description}
 
@@ -390,7 +390,7 @@ class morse
 
 \subsection{Functions and variables}
 
-In this subsection we are going to take a closer look into what the functions and variables declared inside the \verb|morse| class do. This part is for you to get a quick overview and to help you glue the things together in your head before you read the section \ref{sec:howB}, which describes the inner cogs much deeper.
+In this subsection we are going to take a closer look into what the functions and variables declared inside the \verb|morse| class do. This part is for you to get a quick overview and to help you glue things together in your head before you read the section \ref{sec:howB}, which describes the inner cogs much deeper.
 
 \textbf{Functions}
 
@@ -408,7 +408,7 @@ In this subsection we are going to take a closer look into what the functions an
 
 If the user inputs characters other then the listed above, they will be treated as unknowns in the message.
 
-\verb|morse::inputText()| - takes a string written in alphanumeric alphabet as an input. The input string should only consist of:
+\verb|morse::inputText()| - takes a string written in alphanumeric characters as an input. The input string should only consist of:
 
 \begin{enumerate}
 \item letters \verb|A-Z| (\verb|a-z|)
@@ -428,18 +428,17 @@ If the user inputs characters other then the listed above, they will be ignored 
 
 \textbf{Variables}
 
-\verb|morse::morseMessage| - contains message written in the Morse alphabet.
+\verb|morse::morseMessage| - contains message written in Morse alphabet.
 
-\verb|morse::textMessage| - contains message written in the alphanumeric characters.
+\verb|morse::textMessage| - contains message written in alphanumeric characters.
 
-\verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section [\ref{sec:asciitomorse}].
-
+\verb|morse::code| - an array of strings that create the Morse alphabet table. A closer description of this array is given in section \ref{sec:asciitomorse}.
 
 \subsection{Main}
 
-The "Main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be performed, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
+The "main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be performed, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface\footnote{brave words.} in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
 
-There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one "dot" signal in the Morse alphabet. This duration in micro seconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
+There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one dot signal (see \ref{sec:morse}) in the Morse alphabet. This duration in micro seconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
 
 \begin{lstlisting}
 sendToPort(secretMessage.outputMorse(), 1, 25000);
@@ -472,8 +471,6 @@ In certain cases you may need to run the binary as \verb|root|:
 \verb|sudo ./broadcast|
 \end{snugshade}
 
-and type in your root password.
-
 \subsection{Test run}
 
 One thing that you can do right now is to ask the program to translate something for you! After the code is started you should see:
@@ -486,7 +483,7 @@ Select translation:
 \end{verbatim}
 \end{snugshade}
 
-Type either 1 or 2 to select an option and then input the message to translate it!
+Type either 1 or 2 to select an option and then input the message to translate!
 
 As long as the electronics isn't connected to the parallel port, when you select 1, nothing more spectacular should happen.
 
@@ -512,7 +509,7 @@ The functionality to translate from Morse to text has been added mostly for fun 
 
 \section{How does it work} \label{sec:howB}
 
-This section is diving a little deeper into explanation of the ideas behind the \textbf{broadcasting} phase. It also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
+This section is diving a little deeper into an explanation of the ideas behind the \textbf{broadcasting} phase. It also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
 
 \subsection{Parallel port connection}
 
@@ -532,7 +529,7 @@ It doesn't really matter which ground pin you connect to. It also doesn't matter
 \verb|ioperm(base, yourNumber, 1)|
 \end{snugshade}
 
-By this value you specify up to which DATA pin you give the permission to connect to. For example, if you set \verb|yourNumber = 3|, you will be allowed to use pins: first, second and third. Since we only needed one DATA pin to connect to, we've given ourselves permission to access just the first one, so this value is 1 by default. To read more about \verb|ioperm| check out this page \cite{ioperm}.
+By this value you specify up to which DATA pin you give the permission to connect to. For example, if you set \verb|yourNumber = 3|, you will be allowed to use pins: first, second and third. Since we only needed one DATA pin to connect to, we've given ourselves permission to access just the first one, so this value is 1 by default. To read more about \verb|ioperm| (short from input/output permission) check out this page \cite{ioperm}.
 
 You should also be equipped with a parallel port plug. The best idea is to solder ground and data cables so that they stick firmly to the plug. Here's the picture of our plug, connected to the cables:
 
@@ -591,7 +588,7 @@ For the characters used in this project we have the following ASCII numerations:
 \end{enumerate}
 
 
-We have then decided to map every legal alphanumeric ASCII character into the created array. This means that each alphanumeric character number gets the number of its position inside the \verb|morse::code| array. This is achieved by subtracting certain number from the ASCII numeration. The graphical representation of this mapping is presented below:
+We have then decided to map every legal alphanumeric ASCII character into the created array. This means that each alphanumeric character number gets the number of its index inside the \verb|morse::code| array. This is achieved by subtracting certain number from the ASCII numeration. The graphical representation of this mapping is presented below:
 
 \begin{figure}[H]
 \centering\includegraphics[scale=0.1]{morse_code_map}
@@ -741,7 +738,7 @@ while (n < len)
 }
 \end{lstlisting}
 
-The drawing below shows how we define \verb|tempChar| and \verb|tempString|. Each blue box would be one \verb|tempChar| that the \verb|while()| is currently looking at. It would contain either one Morse signal (one dot or one dash), or a space or, if the sentence has ended, the slash symbol.
+The drawing below shows how we define \verb|tempChar|, \verb|tempString| and \verb|textMessage|. Each blue box would be one \verb|tempChar| that the \verb|while()| is currently looking at. It would contain either one Morse signal (one dot or one dash), or a space or, if the sentence has ended, the slash symbol.
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{temp_string}
@@ -793,9 +790,20 @@ First of all, this means that one full Morse character has finished and it can b
 textMessage += translation(tempString);
 \end{lstlisting}
 
-This line is saying: \textit{Hey! That's the end of a character! Dear function} \verb|morse::translation()|\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
+This line is saying: \textit{Hey! That's the end of a character! Dear function} \texttt{morse::translation()}\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
 
-Next, we have to make sure what is the reason for why the character has ended. It might be twofold: either it's a space between Morse characters within the same word, or it's a space which separates two words. If you remember from  \ref{sec:morse}, the standard space between characters within one word is of one unit and the space between words is three units. This final \verb|case| is counting how many spaces are there after the first encountered, and then it's classifying the reason. We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words and in the message translation to regular text we have to add a space as well.
+Next, we have to find out what is the reason for why the character has ended. Let's look at the message as the user might input it into the terminal:
+
+\begin{snugshade}
+\verb|--- -.   -.--   ...- .-/|
+\end{snugshade}
+
+
+So the reason might be twofold: either it's a space between Morse characters within the same word, or it's a space which separates two words. This final \verb|case| is counting how many spaces are there after the first encountered, and then it's classifying the reason. We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words and in the message translation to regular text we have to add a space as well.
+
+\begin{snugshade}
+\verb|on y va.|
+\end{snugshade}
 
 \subsection{Sending output to the parallel port}
 
@@ -1060,7 +1068,7 @@ Additionally, a flag \verb|prevSignal| is always changed to describe the current
 
 For the purpose of measuring the time durations we use the built-in Arduino function \verb|millis()|. This function measures the time in \textit{ms} that has passed from the beginning of the operation of the program. It can therefore be viewed as an absolute time. It increases while the Arduino operates and is only set back to zero, when the Arduino is reset.
 
-The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. [\ref{fig:timedur}], the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
+The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. \ref{fig:timedur}, the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
 \textcolor{cadr}{\texttt{timePrev}} in this case is the time at which the High state has begun.
 
 
@@ -1105,7 +1113,7 @@ This last chapter is a collection of post-credit scenes where we present a few o
 
 \section{Reading secret alien messages}
 
-Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better then me, it took me about 20 unsuccessful trials before I broadcasted the first letter of my name. Good luck.
+Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better then us!
 
 
 \section{How far can it go?}
