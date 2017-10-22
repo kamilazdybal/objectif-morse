@@ -9,7 +9,7 @@
 
 #define base 0x378
 
-int sendToPort(std::string stringToSend, char bitsOn, unsigned int dotTime)
+int sendToPort(std::string stringToSend, unsigned int dotTime)
 {
 
 	if (ioperm(base, 1, 1))
@@ -30,7 +30,7 @@ int sendToPort(std::string stringToSend, char bitsOn, unsigned int dotTime)
 		{
 			case '.':
 			{
-		    outb(bitsOn, base);
+		    outb(1, base);
 				usleep(dotTime);
 				outb(0, base);
 				usleep(dotTime);
@@ -38,7 +38,7 @@ int sendToPort(std::string stringToSend, char bitsOn, unsigned int dotTime)
 			}
 			case '-':
 			{
-		    outb(bitsOn, base);
+		    outb(1, base);
 				usleep(3*dotTime);
 				outb(0, base);
 				usleep(dotTime);

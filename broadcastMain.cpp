@@ -27,7 +27,7 @@ if (i == 1)
   cout << "Morse code: " << endl << secretMessage.outputMorse() << endl;
 
   // Send message to the parallel port:
-  sendToPort(secretMessage.outputMorse(), 1, 25000);
+  sendToPort(secretMessage.outputMorse(), 25000);
 }
 
 // Trigger translation from Morse to text:

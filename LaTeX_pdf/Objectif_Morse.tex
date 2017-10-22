@@ -137,7 +137,7 @@ backgroundcolor=\color{lbcolor},
         
 		\Large
 
- 		October, 2016 - September, 2017
+ 		October, 2016 - October, 2017
 	\end{center}
 \end{titlepage}
 
@@ -236,7 +236,7 @@ Electronics:
 \item phototransistor
 \item resistors: 330 Ohm, 10 000 Ohm
 \item a few cables
-\item at least one breadboard but best to have two
+\item at least one breadboard but it's best to have two
 \item parallel port plug with soldered cables
 
 \end{enumerate}
@@ -264,7 +264,7 @@ Optional:
 
 \subsection{Code used}
 
-The \textit{Objectif Morse} project is coded in C++ language. We've used one of its famous features - Object Oriented Programming (OOP). If you're not a fan of OOP then to make your reading more interesting, we give you a full permission to silently complain about our code.
+The \textit{Objectif Morse} project is coded in C++ language. We've used one of its famous features - Object Oriented Programming (OOP). If you're not a fan of OOP then to make your reading more interesting we give you a full permission to silently complain about our code.
 
 This is a scheme of how the code should be distributed over devices:
 
@@ -339,7 +339,7 @@ The Morse alphabet is scalable, which means that you can set the \verb|dotTime| 
 
 \section{Legal note}
 
-First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nerby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arised when we were working on this project and it might take some effort to make them reappear again.
+First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nearby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arose when we were working on this project and it might take some effort to make them reappear again.
 
 If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, then you're the right person in the right place. We wish you a lot of errors as you go, because you're going to learn a lot from them. 
 
@@ -511,9 +511,9 @@ The functionality to translate from Morse to text has been added mostly for fun 
 
 This section is diving a little deeper into an explanation of the ideas behind the \textbf{broadcasting} phase. It also tells you how to set up the electronics part and hence we hope that things will get much more fun right now!
 
-\subsection{Parallel port connection}
+\subsection{Parallel port connection} \label{sec:parportcon}
 
-In this section we describe how to connect to the parallel port (parport\footnote{if you wish to sound more technical.}) and how to build a simple circuit with an LED diode. Notice that not every computer has got a parallel port. Usually, a portable computer will not be equiped with a parport, so try to get one oldschool stationary computer like we did! The parallel port is big and pink like this one:
+In this section we describe how to connect to the parallel port (parport\footnote{if you wish to sound more technical.}) and how to build a simple circuit with an LED diode. Notice that not every computer has got a parallel port. Usually, a portable computer will not be equipped with a parport, so try to get one old-school stationary computer like we did! The parallel port is big and pink like this one:
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{par_port}
@@ -805,10 +805,29 @@ So the reason might be twofold: either it's a space between Morse characters wit
 \verb|on y va.|
 \end{snugshade}
 
-\subsection{Sending output to the parallel port}
+\subsection{Sending the output to the parallel port}
 
 The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
 
+There is only one function defined in this file and it is called \texttt{sendToPort()}.
+
+But before we jump into this function's body, let's take a closer look at the declarations section. You can see the mysterious line here:
+
+\begin{lstlisting}
+#define base 0x378
+\end{lstlisting}
+
+The hex number \texttt{0x378} defines a position of a particular cell in the memory. This cell is 8-bits long and each of its bits is directly linked to each of the DATA pins on the parport. The low or high state at any bit of this cell (represented by either 0 or 1) is going to be the same at the parport pin linked to this bit.
+
+We can then tell the bit to turn its value to 1 and the state of the corresponding DATA pin will become high - meaning that if an LED diode was connected to this pin it would light up.
+
+So that's how we're going to transmit the message to the parallel port - by simply writing correct values to this special memory place.
+
+If you're curious about the \texttt{\#define} instruction we encourage you to read more about macros\footnote{and you will most likely read that they are best to be avoided!} in C++. All that is important to know for now is that this line is saying: whenever you see "\texttt{base}" written in the code, replace it with the value \texttt{0x378}. It's much like an alias and a somewhat more fancy way of stating that \texttt{base = 0x378}.
+
+Now let's come back to the \texttt{sendToPort()} function and see what's coded inside!
+
+First, you'll see the \texttt{if()} statement with the \texttt{ioperm()} function that you've already heard about in the subsection \ref{sec:parportcon}. This is just a check in case something goes wrong with obtaining permissions to access the parallel port.
 
 
 
@@ -821,19 +840,13 @@ The code responsible for sending the message as high and low states to the paral
 
 
 
+An example of the function callout could be the one from \texttt{broadcastMain.cpp}:
 
+\begin{lstlisting}
+sendToPort(secretMessage.outputMorse(), 1, 25000);
+\end{lstlisting}
 
-
-
-
-
-
-
-
-
-
-
-
+And so we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()}, the character \texttt{bitsOn = 1} and the time duration \texttt{dotTime = 25000}.
 
 
 
@@ -1071,7 +1084,6 @@ For the purpose of measuring the time durations we use the built-in Arduino func
 The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. \ref{fig:timedur}, the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
 \textcolor{cadr}{\texttt{timePrev}} in this case is the time at which the High state has begun.
 
-
 \begin{figure}[H]
 \centering\includegraphics[scale=0.18]{timedurations}
 \caption{Measuring the time durations.}				
@@ -1086,6 +1098,9 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 \chapter{Putting it all together}
 
+Now comes the moment we've all been waiting for. It's time to put the two phases: \textbf{broadcasting} and \textbf{receiving} together and see how the whole project is working in all of its beauty!
+
+The picture below shows our complete setup of \textit{Objectif Morse}.
 
 \begin{figure}[H]
 \centering\includegraphics[width=15cm]{full_setup}
@@ -1107,36 +1122,40 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 
 
-\chapter{It doesn't end here}
+\chapter{Post-credit scenes}
 
-This last chapter is a collection of post-credit scenes where we present a few of our ways of exploiting the machinery that we have created.
+This last chapter is a collection of post-credit scenes where we present a few of our ideas of exploiting the machinery that we have created.
 
-\section{Reading secret alien messages}
+\section{It doesn't end here}
+
+
+
+\subsubsection{Reading secret alien messages}
 
 Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better then us!
 
 
-\section{How far can it go?}
+\subsubsection{How far can it go?}
 
-~ 22cm separation was the maximum that we've observed during daylight of a gloomy day, with closed window shades and with no artificial light in the room.
-
-
-\section{How fast can it go?}
-
-The parameter \verb|dotTime| alows you to control the speed of the transmission. Feel free to play around with it! We've observed that \verb|dotTime < 2000 ms| is when the transmission errors begin to occur. It is also dependent on the distance between LED diode and the phototransistor and on the general luminosity.
+Approximately 22cm separation was the maximum that we've observed during daylight of a gloomy day, with closed window shades and with no artificial light in the room. 
 
 
-\section{Sending a picture}
+\subsubsection{How fast can it go?}
 
-How uneffective it would be to transfer images between computers using Morse? Let's find out!
+The parameter \verb|dotTime| alows you to control the speed of the transmission. Feel free to play around with it! We've observed that \verb|dotTime < 2000 ms| is when the transmission errors begin to occur. It is also dependent on the distance between LED diode and the phototransistor and on the general luminosity of the surroundings.
 
-\section{Light to sound}
+
+\subsubsection{Sending a picture}
+
+Can you imagine how uneffective it would be to transfer images between computers using Morse?
+
+\subsubsection{Light to sound}
 
 At some point we realized that it won't be a lot of effort to replace light Morse transmission with sound Morse transmission! Using a microphone and a buzzer you can achieve pretty much the same thing.
 
-\section{Want to see more?}
+\section{Want to do more?}
 
-There was a lot of more ideas and unfortunately not always enough free time.
+There was a lot more ideas and unfortunately not always enough time.
 
 One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of the internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
 
@@ -1144,7 +1163,7 @@ As Cliff Stoll once said \cite{cliff_stoll}:
 
 \textit{I'm interested in seeing where the curiosity will lead to, not: oh, where have we been.}
 
-We encourage you to explore, learn, make a lot of mistakes and the most important: have a lot of pleasure of finding things out. Perhaps we'll hear from you soon when you share with us your ideas!
+We encourage you to explore, learn, make a lot of mistakes and the most important: have a lot of pleasure of finding things out. Perhaps we'll hear from you soon when you share your ideas with us!
 
 \newpage
 
