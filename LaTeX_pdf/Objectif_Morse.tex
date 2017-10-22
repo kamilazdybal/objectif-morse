@@ -799,7 +799,7 @@ Next, we have to find out what is the reason for why the character has ended. Le
 \end{snugshade}
 
 
-So the reason might be twofold: either it's a space between Morse characters within the same word, or it's a space which separates two words. This final \verb|case| is counting how many spaces are there after the first encountered, and then it's classifying the reason. We have given some flexibility here as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words and in the message translation to regular text we have to add a space as well.
+So the reason might be twofold: either it's a space between Morse characters within the same word, or it's a space which separates two words. This final \verb|case| is counting how many spaces are there after the first encountered, and then it's classifying the reason. We have given it some flexibility as well, so you can see that when the total number of clustered spaces is less than or equal to three, we're doing nothing and just treating this as a space between Morse characters. If it's any larger than 3 we're interpreting that as a space between words and in the message translation to regular text we have to add a space as well.
 
 \begin{snugshade}
 \verb|on y va.|
@@ -817,7 +817,7 @@ But before we jump into this function's body, let's take a closer look at the de
 #define base 0x378
 \end{lstlisting}
 
-The hex number \texttt{0x378} defines a position of a particular cell in the memory. This cell is 8-bits long and each of its bits is directly linked to each of the 8 DATA pins on the parport. The low or high state at any bit of this cell (represented by either 0 or 1) is going to be the same at the parport pin linked to this bit.
+The hex number \texttt{0x378} defines a register address in the memory. This memory area is 8-bits long and each of its bits is directly linked to each of the 8 DATA pins on the parport. The low or high state at any bit of this area (represented by either 0 or 1) is going to be the same at the parport pin linked to this bit.
 
 We can then tell the bit to turn its value to 1 and the state of the corresponding DATA pin will become high - meaning that if an LED diode was connected to this pin it would light up.
 
@@ -829,16 +829,65 @@ Now let's come back to the \texttt{sendToPort()} function and see what's coded i
 
 First, you'll see the \texttt{if()} statement with the \texttt{ioperm()} function that you've already heard about in the subsection \ref{sec:parportcon}. This is just a check in case something goes wrong with obtaining permissions to access the parallel port.
 
+Then comes the \texttt{for()} loop which iterates over every character in the secret message \texttt{stringToSend} and then classifies what it is using \texttt{switch()}.
 
+\begin{lstlisting}
+switch (stringChar)
+{
+  case ".":
+  {
+    outb(1, base);
+    usleep(dotTime);
+    outb(0, base);
+    usleep(dotTime);
+    break;
+  }
+  case "-":
+  {
+    outb(1, base);
+    usleep(3*dotTime);
+    outb(0, base);
+    usleep(dotTime);
+    break;
+  }
+  case " ":
+  {
+    outb(0, base);
+    usleep(2*dotTime);
+    if (stringToSend[i+1] == " ")
+    {
+      ++i;
+      if (stringToSend[i+1] == " ")
+      {
+        ++i;
+        usleep(4*dotTime);
+      }
+    }
+    break;
+  }
+  case "/":
+  {
+    usleep(6*dotTime);
+    break;
+  }
+}
+\end{lstlisting}
 
+There are two helpful functions that we're using. The first one is the function \texttt{outb()} , used here to write low (0) or high (1) state into the register address \texttt{0x378}. The second one, function \texttt{usleep()}, is simply telling the program to "\textit{wait and do nothing}" for a period of time specified as its argument; we're going to call it "sleep".
 
+Analyzing the first two cases you can probably see right away what is happening: we write (1) to the register, which lights up the diode and then we "sleep" for a certain period of time which corresponds to the Morse signal that we're broadcasting, e.g. for \verb|dotTime| when the signal is a dot or for \verb|3| $\times$ \verb|dotTime| when the signal is a dash. While we "sleep" the diode is turned on all that time. After that we turn the diode off by writing a low state (0) into the register.
 
+Notice that at the end of broadcasting a dot or a dash there is always one more sleep in the "off" state for the duration of \verb|dotTime|. This is done in order to transmit the space between Morse signals - which lasts one \verb|dotTime|.
 
+Again the most interesting thing happens when the current character \texttt{stringChar} is a space " ". First of all, this means that one full Morse character has ended. And this would mean that it's either a space between characters within one word or a space between words. In any case, we can already "sleep" for another \verb|2| $\times$ \verb|dotTime|.\footnote{observe that we already sleep one \texttt{dotTime} after every Morse signal, so the additional \texttt{2} $\times$ \texttt{dotTime} will add up to sleeping \texttt{3} $\times$ \texttt{dotTime} if this is the end of the Morse character.} 
 
+Next, we check if there are still more spaces after the first encountered. If there is a space still ahead, we simply move on to the next character in the \texttt{stringChar} and we check again (in the second \texttt{if()} statement) if there is one more space ahead - this already means that there are three consecutive spaces, which means the space between words and we sleep for another \verb|4| $\times$ \verb|dotTime|\footnote{so that altogether we have slept for \texttt{7} $\times$ \texttt{dotTime} here.}
 
+Finally, in the last \texttt{case}, where the character encountered is "/" we simply sleep for \verb|6| $\times$ \verb|dotTime|\footnote{again, altogether we have slept for \texttt{7} $\times$ \texttt{dotTime} here.} and this would be the end of a sentence.
 
+Uffff. We realize that keeping track of all these durations can be a real pain in the neck! This was a source of a lot of mistakes in our initial versions of the code. For example we forgot that we were already sleeping one \verb|dotTime| after every Morse signal and at first we made the code sleep for too long after every Morse character. So don't feel discouraged if you didn't follow that explanation. Take as much time as you need to digest what is happening here.
 
-
+\subsubsection{Function callout}
 
 An example of the function callout could be the one from \texttt{broadcastMain.cpp}:
 
@@ -846,7 +895,7 @@ An example of the function callout could be the one from \texttt{broadcastMain.c
 sendToPort(secretMessage.outputMorse(), 25000);
 \end{lstlisting}
 
-And so we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()} and the time duration \texttt{dotTime = 25000}ms.
+where we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()} and the time duration \texttt{dotTime = 25000}ms.
 
 
 
@@ -1102,11 +1151,9 @@ Now comes the moment we've all been waiting for. It's time to put the two phases
 
 The picture below shows our complete setup of the \textit{Objectif Morse}.
 
-
-
 \begin{figure}[H]
 \centering\includegraphics[width=15cm]{full_setup}
-\caption{Objectif Morse full setup.}				
+\caption{\textit{Objectif Morse} complete setup.}				
 \label{fig:full_setup}
 \end{figure}
 
