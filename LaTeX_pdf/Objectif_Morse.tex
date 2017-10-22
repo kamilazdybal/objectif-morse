@@ -809,7 +809,7 @@ So the reason might be twofold: either it's a space between Morse characters wit
 
 The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
 
-There is only one function defined in this file and it is called \texttt{sendToPort()}.
+There is only one function defined in this file and it is called \texttt{sendToPort()}. It takes as inputs two variables: the message to be broadcasted and the duration \texttt{dotTime} which defines the speed of the transmission.
 
 But before we jump into this function's body, let's take a closer look at the declarations section. You can see the mysterious line here:
 
@@ -817,7 +817,7 @@ But before we jump into this function's body, let's take a closer look at the de
 #define base 0x378
 \end{lstlisting}
 
-The hex number \texttt{0x378} defines a position of a particular cell in the memory. This cell is 8-bits long and each of its bits is directly linked to each of the DATA pins on the parport. The low or high state at any bit of this cell (represented by either 0 or 1) is going to be the same at the parport pin linked to this bit.
+The hex number \texttt{0x378} defines a position of a particular cell in the memory. This cell is 8-bits long and each of its bits is directly linked to each of the 8 DATA pins on the parport. The low or high state at any bit of this cell (represented by either 0 or 1) is going to be the same at the parport pin linked to this bit.
 
 We can then tell the bit to turn its value to 1 and the state of the corresponding DATA pin will become high - meaning that if an LED diode was connected to this pin it would light up.
 
@@ -843,10 +843,10 @@ First, you'll see the \texttt{if()} statement with the \texttt{ioperm()} functio
 An example of the function callout could be the one from \texttt{broadcastMain.cpp}:
 
 \begin{lstlisting}
-sendToPort(secretMessage.outputMorse(), 1, 25000);
+sendToPort(secretMessage.outputMorse(), 25000);
 \end{lstlisting}
 
-And so we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()}, the character \texttt{bitsOn = 1} and the time duration \texttt{dotTime = 25000}.
+And so we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()} and the time duration \texttt{dotTime = 25000}ms.
 
 
 
@@ -1100,7 +1100,9 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 Now comes the moment we've all been waiting for. It's time to put the two phases: \textbf{broadcasting} and \textbf{receiving} together and see how the whole project is working in all of its beauty!
 
-The picture below shows our complete setup of \textit{Objectif Morse}.
+The picture below shows our complete setup of the \textit{Objectif Morse}.
+
+
 
 \begin{figure}[H]
 \centering\includegraphics[width=15cm]{full_setup}
@@ -1113,6 +1115,8 @@ The picture below shows our complete setup of \textit{Objectif Morse}.
 \caption{Scheme of the electronic circuits put together.}				
 \label{fig:circuits}
 \end{figure}
+
+We have used two breadboards to completely separate the two electronic circuits. This allows for a little bit more debugging of the project because you can easily change the distance between the LED diode and the phototransistor. But of course you can build the two circuits on one breadboard too. You can also create a cardboard box to hide the LED-phototransistor couple - this will make the secret messages more secret as well as make the project work better in the brighter surroundings.
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{circuits}
