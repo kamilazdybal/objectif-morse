@@ -177,19 +177,30 @@ To contact me personally drop me a line at:
 \thispagestyle{empty}
 \begin{center}
     
-\vspace*{2cm}
+\vspace*{2.5cm}
+
+
+{\fontfamily{qbk}\selectfont
+To the amazing members of the Penguin Mailing List.
+}
+
+\vspace*{3cm}
 
 \includegraphics[width = 80mm]{PML.png}
 
-\vspace*{2cm}
+\vspace*{1cm}
 
-
- \Large
+\small
+{\fontfamily{qbk}\selectfont
 \textit{<< A culture of "shared knowledge" is power}
 
 \textit{still needs time and passion. >>}
 
+\,\,\,
 
+\textasciitilde Uncle Penguin
+
+}
 
 \vspace*{2cm}
 
@@ -985,8 +996,6 @@ class arduino
 
 \subsection{Functions and variables}
 
-
-
 \subsubsection{Functions}
 
 \verb|arduino::start()| - function that opens the Arduino output file for reading.
@@ -1053,10 +1062,6 @@ Input time:
 
 
 \section{How does it work}
-
-
-
-
 
 \subsection{Arduino connection}
 
@@ -1193,13 +1198,54 @@ Not everything can be perfect.
 
 
 
+\subsection{Interpreting the Arduino output}
+
+The output from the Arduino device is being stored in a special file under Linux directory:
+
+\begin{snugshade}
+\begin{verbatim}
+/dev/ttyACM0
+\end{verbatim}
+\end{snugshade}
+
+By accessing this file we are able to "see" the output, for example the one presented before:
+
+\begin{snugshade}
+\begin{verbatim}
+L 200
+H 200
+L 600
+\end{verbatim}
+\end{snugshade}
+
+Once the Arduino has measured everything for us we're going to have to make sense out of that data! The translation of the Arduino output to the actual stream of Morse signals ready to be interpreted by the \texttt{morse.cpp} code is handled by the file \texttt{arduinoReceive.cpp} (that's a lot of translations, n'est pas?).
 
 
+\subsubsection{Vector \texttt{durations}}
+
+The goal of the \texttt{arduino} class elements is to create and return a vector called \texttt{durations} in which at even indices there are durations of High signals (in \textit{ms}) and at odd indices there are durations of Low signals (in \textit{ms} as well).
 
 
+For instance, the Arduino output like this one:
 
+\begin{snugshade}
+\begin{verbatim}
+L 200
+H 200
+L 600
+.
+.
+.
+\end{verbatim}
+\end{snugshade}
 
+will become a stream of consecutive durations like this:
 
+\begin{snugshade}
+\begin{verbatim}
+{0, 200, 200, 600, ...}
+\end{verbatim}
+\end{snugshade}
 
 
 
