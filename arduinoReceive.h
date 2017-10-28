@@ -12,7 +12,6 @@ class arduino
 	void start();
 	void stop();
 	void read();
-	void clear();
 	std::string output();
 
 	private:

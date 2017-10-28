@@ -125,7 +125,6 @@ backgroundcolor=\color{lbcolor},
 		$\cdot\cdot$\text{-} \,				%U
 		$\cdot$\text{-}$\cdot$}				%R
 		
-
         \vspace{2cm}
         
         \LARGE
@@ -140,6 +139,8 @@ backgroundcolor=\color{lbcolor},
  		October, 2016 - October, 2017
 	\end{center}
 \end{titlepage}
+
+% EX-LIBRIS PAGE
 
 \thispagestyle{empty}
 \begin{center}
@@ -168,6 +169,39 @@ To contact me personally drop me a line at:
 \verb|version 1.0|
 \end{center}
 \newpage
+
+
+
+% PML PAGE
+
+\thispagestyle{empty}
+\begin{center}
+    
+\vspace*{2cm}
+
+\includegraphics[width = 80mm]{PML.png}
+
+\vspace*{2cm}
+
+
+ \Large
+\textit{<< A culture of "shared knowledge" is power}
+
+\textit{still needs time and passion. >>}
+
+
+
+\vspace*{2cm}
+
+\end{center}
+
+\newpage
+
+
+
+
+
+
 
 
 
@@ -790,7 +824,8 @@ First of all, this means that one full Morse character has finished and it can b
 textMessage += translation(tempString);
 \end{lstlisting}
 
-This line is saying: \textit{Hey! That's the end of a character! Dear function} \texttt{morse::translation()}\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
+This line is saying: \textit{Hey! That's the end of a character! Dear function}
+\texttt{morse::translation()}\textit{, would you please translate it for me?} And then the result of the translation gets appended to the variable \verb|textMessage|.
 
 Next, we have to find out what is the reason for why the character has ended. Let's look at the message as the user might input it into the terminal:
 
@@ -821,7 +856,7 @@ The hex number \texttt{0x378} defines a register address in the memory. This mem
 
 We can then tell the bit to turn its value to 1 and the state of the corresponding DATA pin will become high - meaning that if an LED diode was connected to this pin it would light up.
 
-So that's how we're going to transmit the message to the parallel port - by simply writing correct values to this special memory place.
+So that's how we're going to transmit the message to the parallel port - by simply writing the correct values to this special memory place.
 
 If you're curious about the \texttt{\#define} instruction we encourage you to read more about macros\footnote{and you will most likely read that they are best to be avoided!} in C++. All that is important to know for now is that this line is saying: whenever you see "\texttt{base}" written in the code, replace it with the value \texttt{0x378}. It's much like an alias and a somewhat more fancy way of stating that \texttt{base = 0x378}.
 
@@ -873,15 +908,15 @@ switch (stringChar)
 }
 \end{lstlisting}
 
-There are two helpful functions that we're using. The first one is the function \texttt{outb()} , used here to write low (0) or high (1) state into the register address \texttt{0x378}. The second one, function \texttt{usleep()}, is simply telling the program to "\textit{wait and do nothing}" for a period of time specified as its argument; we're going to call it "sleep".
+There are two helpful functions that we're using. The first one is the function \texttt{outb()}, used here to write low (0) or high (1) state into the register address \texttt{0x378}. The second one, function \texttt{usleep()}, is simply telling the program to "\textit{wait and do nothing}" for a period of time specified as its argument; we're going to call it "sleep".
 
-Analyzing the first two cases you can probably see right away what is happening: we write (1) to the register, which lights up the diode and then we "sleep" for a certain period of time which corresponds to the Morse signal that we're broadcasting, e.g. for \verb|dotTime| when the signal is a dot or for \verb|3| $\times$ \verb|dotTime| when the signal is a dash. While we "sleep" the diode is turned on all that time. After that we turn the diode off by writing a low state (0) into the register.
+Analysing the first two cases you can probably see right away what is happening: we write (1) to the register, which lights up the diode and then we sleep for a certain period of time which corresponds to the Morse signal that we're broadcasting, e.g. for \verb|dotTime| when the signal is a dot or for \verb|3| $\times$ \verb|dotTime| when the signal is a dash. While we sleep the diode is turned on all that time. After that we turn the diode off by writing a low state (0) into the register.
 
 Notice that at the end of broadcasting a dot or a dash there is always one more sleep in the "off" state for the duration of \verb|dotTime|. This is done in order to transmit the space between Morse signals - which lasts one \verb|dotTime|.
 
-Again the most interesting thing happens when the current character \texttt{stringChar} is a space " ". First of all, this means that one full Morse character has ended. And this would mean that it's either a space between characters within one word or a space between words. In any case, we can already "sleep" for another \verb|2| $\times$ \verb|dotTime|.\footnote{observe that we already sleep one \texttt{dotTime} after every Morse signal, so the additional \texttt{2} $\times$ \texttt{dotTime} will add up to sleeping \texttt{3} $\times$ \texttt{dotTime} if this is the end of the Morse character.} 
+Again the most interesting thing happens when the current character \texttt{stringChar} is a space " ". First of all, this means that one full Morse character has ended. And this would mean that it is either a space between characters within one word or a space between words. In any case, we can already sleep for another \verb|2| $\times$ \verb|dotTime|.\footnote{observe that we already sleep one \texttt{dotTime} after every Morse signal, so the additional \texttt{2} $\times$ \texttt{dotTime} will add up to sleeping \texttt{3} $\times$ \texttt{dotTime} if this is the end of the Morse character.} 
 
-Next, we check if there are still more spaces after the first encountered. If there is a space still ahead, we simply move on to the next character in the \texttt{stringChar} and we check again (in the second \texttt{if()} statement) if there is one more space ahead - this already means that there are three consecutive spaces, which means the space between words and we sleep for another \verb|4| $\times$ \verb|dotTime|\footnote{so that altogether we have slept for \texttt{7} $\times$ \texttt{dotTime} here.}
+Next, we check if there are still more spaces after the first encountered. If there is a space still ahead, we simply move on to the next character in the \texttt{stringChar} and we check again (in the second \texttt{if()} statement) if there is one more space ahead. This already means that there are three consecutive spaces which signifies the space between words and we have to sleep for another \verb|4| $\times$ \verb|dotTime|\footnote{so that altogether we have slept for \texttt{7} $\times$ \texttt{dotTime} here.}
 
 Finally, in the last \texttt{case}, where the character encountered is "/" we simply sleep for \verb|6| $\times$ \verb|dotTime|\footnote{again, altogether we have slept for \texttt{7} $\times$ \texttt{dotTime} here.} and this would be the end of a sentence.
 
@@ -939,7 +974,6 @@ class arduino
 	void start();
 	void stop();
 	void read();
-	void clear();
 	std::string output();
 
 	private:
@@ -951,19 +985,23 @@ class arduino
 
 \subsection{Functions and variables}
 
-\verb|arduino::start()| - function that 
-
-\verb|arduino::stop()| - function that 
-
-\verb|arduino::read()| - function that 
-
-\verb|arduino::clear()| - function that 
-
-\verb|arduino::output()| - function that 
 
 
+\subsubsection{Functions}
 
+\verb|arduino::start()| - function that opens the Arduino output file for reading.
 
+\verb|arduino::stop()| - function that closes the Arduino output file.
+
+\verb|arduino::read()| - function that reads the output from the Arduino output file.
+
+\verb|arduino::output()| - function that translates the Arduino output to a string written in the Morse code.
+
+\subsubsection{Variables}
+
+\verb|arduino::arduinoFile| - contains a pointer to the Arduino output file.
+
+\verb|arduino::durations| - a vector of integers storing a stream of Morse signals.
 
 \subsection{Main}
 
@@ -978,7 +1016,7 @@ The code is compiled in an analogous way to the \textbf{broadcasting} phase. Onc
 
 A new binary file called \verb|receive| will be produced.
 
-To run the receiving phase type in the command line:
+To run the \textbf{receiving} phase type in the command line:
 
 \begin{snugshade}
 \verb|./receive|
@@ -994,7 +1032,7 @@ And the code should be up and running!
 
 \subsection{Test run}
 
-Weather you've already built the \textbf{broadcasting} phase or not, you can run the binary \verb|receive| and see for yourself what the \textit{Objectif Morse} is capable of!
+Whether you've already built the \textbf{broadcasting} phase or not, you can run the binary \verb|receive| and see for yourself what the \textit{Objectif Morse} is capable of!
 
 When the code is started you will see the modest:
 
@@ -1076,10 +1114,10 @@ Variables used in the code:
 
 \verb|timePrev| - the time in \textit{ms} at which the change from Low to High or from High to Low occured, measured from the beginning of the program operation.
 
-In the graph below we present in a closer detail how the Low and High state is interpreted by the Arduino code. Anything that is higher then \verb|sensorThres| is interpreted as a High state. Anything that is 10 from \verb|sensorMean| (either way) is interpreted as a Low state. There are two gaps, where the signal is not interpreted as either High or Low, which probably should be thought over...
+In the graph below we present in a closer detail how the Low and High state is interpreted by the Arduino code. Anything that is higher then \verb|sensorThres| is interpreted as a High state. Anything that is 10 from \verb|sensorMean| (either way) is interpreted as a Low state. There are two gaps where the signal is not interpreted as either High or Low. The explanation for why we've made it that way is present under \textbf{Blackout zone explanation} at the end of this subsection.
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.18]{arduinocode}
+\centering\includegraphics[width=14.5cm]{arduinocode}
 \caption{Interpretation of Low and High states using defined variables.}				
 \label{fig:arduino_code}
 \end{figure}
@@ -1105,8 +1143,8 @@ if (sensorValue > sensorThres && !prevSignal)
 \end{lstlisting}
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.18]{lowtohigh}
-\caption{Signal changing from Low to High. Red dots represent the \texttt{sensorValue} measurement.}				
+\centering\includegraphics[width=8cm]{lowtohigh}
+\caption{Signal changing from Low to High. (Red dots represent the \texttt{sensorValue} measurements.)}				
 \label{fig:arduino_code}
 \end{figure}
 
@@ -1117,8 +1155,8 @@ if (sensorValue - sensorMean < 10 && prevSignal)
 \end{lstlisting}
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.18]{hightolow}
-\caption{Signal changing from High to Low.}				
+\centering\includegraphics[width=8cm]{hightolow}
+\caption{Signal changing from High to Low. (Red dots represent the \texttt{sensorValue} measurements.)}				
 \label{fig:arduino_code}
 \end{figure}
 
@@ -1134,7 +1172,7 @@ The variable \verb|timeDuration|, which we are interested in, is therefore measu
 \textcolor{cadr}{\texttt{timePrev}} in this case is the time at which the High state has begun.
 
 \begin{figure}[H]
-\centering\includegraphics[scale=0.18]{timedurations}
+\centering\includegraphics[width=14.5cm]{timedurations}
 \caption{Measuring the time durations.}				
 \label{fig:timedur}
 \end{figure}
@@ -1145,6 +1183,50 @@ The corresponding flag needs to be raised. If we entered the High state, the \ve
 
 Finally, it should be noted that entering the \verb|if()| conditions happen only at changes between Low and High states. Outside of this changes, the \verb|loop()| function simply keeps measuring the \verb|sensorValue|.
 
+
+
+
+
+\subsubsection{Blackout zone explanation}
+
+Not everything can be perfect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Putting it all together}
 
 Now comes the moment we've all been waiting for. It's time to put the two phases: \textbf{broadcasting} and \textbf{receiving} together and see how the whole project is working in all of its beauty!
@@ -1152,7 +1234,7 @@ Now comes the moment we've all been waiting for. It's time to put the two phases
 The picture below shows our complete setup of the \textit{Objectif Morse}.
 
 \begin{figure}[H]
-\centering\includegraphics[width=15cm]{full_setup}
+\centering\includegraphics[width=14.5cm]{full_setup}
 \caption{\textit{Objectif Morse} complete setup.}				
 \label{fig:full_setup}
 \end{figure}

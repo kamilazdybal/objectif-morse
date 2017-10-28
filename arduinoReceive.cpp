@@ -3,20 +3,20 @@
 
 #include "arduinoReceive.h"
 
-// Function
+// Function opening the Arduino output file:
 void arduino::start()
 {
 arduinoFile = fopen("/dev/ttyACM0", "r");
-if (arduinoFile == NULL) {std::cout << "Error opening file.";}
+if (arduinoFile == NULL) {std::cout << "Error opening Arduino output file.";}
 }
 
-// Function
+// Function closing the Arduino output file:
 void arduino::stop()
 {
 fclose(arduinoFile);
 }
 
-// Function
+// Function reading the Arduino output:
 void arduino::read()
 {
 char tempChar;
@@ -88,13 +88,7 @@ else // we are at the odd index
 
 }
 
-// Function
-void arduino::clear()
-{
-std::cout << "clear:todo" << std::endl;
-}
-
-// Function returning the string received in the Morse code:
+// Function translating the Arduino output to a string written in the Morse code:
 std::string arduino::output()
 {
 
