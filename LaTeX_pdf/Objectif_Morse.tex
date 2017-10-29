@@ -1197,7 +1197,25 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 \subsubsection{Blackout zone explanation}
 
-Not everything can be perfect.
+Not everything can be perfect. Imagine a situation when the currently measured signal was High and while it was supposed to turn back to Low some additional light appeared in the surroundings that wasn't coming from the LED. If the boundary between High and Low states were touching, the graph of the measured \texttt{sensorValue} might for a short period of time become like this:
+
+\begin{figure}[H]
+\centering\includegraphics[width=14.5cm]{blackoutZone.png}
+\caption{Signal corrupted due to light coming from different sources.}				
+\label{fig:blackoutzone}
+\end{figure}
+
+and give a nonsense measurements of short oscillations between High and Low states.
+
+In order to protect the \textbf{receiving} phase we've decided that we won't make the boundary between the High and Low states touch, therefore making a relatively big separation between what is interpreted as High and Low states. In that case even if the oscillation happens, the measurements inside the blackout zone will be ignored by Arduino.
+
+\begin{figure}[H]
+\centering\includegraphics[width=14.5cm]{blackoutZoneIgnored.png}
+\caption{The signal inside the blackout zone is ignored.}				
+\label{fig:blackoutzoneignored}
+\end{figure}
+
+
 
 
 
@@ -1231,16 +1249,13 @@ L 600
 \end{verbatim}
 \end{snugshade}
 
-
-While this outputs are coming we're going to access the file \texttt{/dev/ttyACM0} to capture each one of them and then our code is going to make sense out of that data, one by one.
+While this outputs are coming we're going to access the file \texttt{/dev/ttyACM0} to capture each one of them and our code is going to store and make sense out of that data.
 
 The translation of the Arduino output to the actual stream of Morse signals ready to be interpreted by the \texttt{morse.cpp} code is handled by the file \texttt{arduinoReceive.cpp} (that's a lot of translations, n'est pas?).
 
-
 \subsubsection{Vector \texttt{durations}}
 
-The goal of the \texttt{arduino} class elements is to create and return a vector called \texttt{durations} in which at even indices are the durations of High signals (in \textit{ms}) and at odd indices are the durations of Low signals (in \textit{ms} as well).
-
+The goal of the \texttt{arduino::read()} function is to build a vector called \texttt{durations} in which at even indices are the durations of High signals (in \textit{ms}) and at odd indices are the durations of Low signals (in \textit{ms} as well).
 
 For instance, the Arduino output like this one:
 
@@ -1271,7 +1286,7 @@ Since this example output started with the Low signal we cannot place in at the 
 \label{fig:timedur}
 \end{figure}
 
-Correct placement inside the vector \texttt{durations} is taken care by the following two conditions inside the function \texttt{arduino:read()}:
+Correct placement inside the vector \texttt{durations} is taken care by the following two conditions:
 
 \begin{lstlisting}
 if (durations.size()%2 == 0)
