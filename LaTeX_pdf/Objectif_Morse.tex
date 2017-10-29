@@ -276,7 +276,7 @@ The name \textit{Objectif Morse} is a reference to one of our favourite books in
 
 This project is divided into two phases: \textbf{broadcasting} and \textbf{receiving}. 
 
-These two phases don't require each other to get them working, however, the \textbf{receiving} phase needs a light trigger to obtain a signal. If you didn't build the  \textbf{broadcasting} phase, you can use for example the light from a flashlight. Nevertheless, it's not recommended from the debugging point of view, unless you are an expert in broadcasting Morse signals by hand.
+These two phases don't require each other to get them working, however, the \textbf{receiving} phase needs a light trigger to obtain a signal. If you didn't build the  \textbf{broadcasting} phase you can use for example the light from a flashlight. Nevertheless, it's not recommended from the debugging point of view unless you are an expert in broadcasting Morse signals by hand.
 
 The two phases are separated by a few centimetres air gap. What happens inside of the air gap shall remain a secret.
 
@@ -336,9 +336,11 @@ This is a scheme of how the code should be distributed over devices:
 \textbf{Portable computer}
 
 \begin{verbatim}
+	receiveMain.cpp
+	morse.cpp
+	morse.h
 	arduinoReceive.cpp
 	arduinoReceive.h
-	receiveMain.cpp
 	makeFileR
 \end{verbatim}
 
@@ -366,7 +368,7 @@ The Morse alphabet characters are the following:
 \label{fig:morse_alphabet}
 \end{figure}
 
-The basic unit of durations of signals in the Morse alphabet is what we call in out project \verb|dotTime|. This is the time that it takes to transmit the single dot signal. All the other durations are built from this unit time and so we have:
+The basic unit of durations of signals in the Morse alphabet is what we call in our project \verb|dotTime|. This is the time that it takes to transmit the single dot signal. All the other durations are built from this unit and so we have:
 
 \begin{enumerate}
 \item the dot signal lasts \verb|dotTime|
@@ -381,7 +383,7 @@ The basic unit of durations of signals in the Morse alphabet is what we call in 
 
 \end{enumerate}
 
-There is also a slash symbol used to represent the end of a sentence and unless the transmission system is capable of sending this character, it would typically lasts more than \verb|7| $\times$ \verb|dotTime| or not be recognized at all.
+There is also a slash symbol used to represent the end of a sentence. When the transmission system is capable of sending this character, it would typically last \verb|7| $\times$ \verb|dotTime| or more.
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{morse_durations}
@@ -395,7 +397,7 @@ The Morse alphabet is scalable, which means that you can set the \verb|dotTime| 
 
 First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nearby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arose when we were working on this project and it might take some effort to make them reappear again.
 
-If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, then you're the right person in the right place. We wish you a lot of errors as you go, because you're going to learn a lot from them. 
+If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, then you're the right person in the right place. We wish you a lot of errors as you go because you're going to learn a lot from them. 
 
 \newpage
 
@@ -1023,6 +1025,7 @@ class arduino
 
 \subsection{Main}
 
+The "main" of the \textbf{receiving} phase is included in the file \verb|receiveMain.cpp|. 
 
 \subsection{Fire it up with makefile}
 
