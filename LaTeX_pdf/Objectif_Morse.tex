@@ -79,8 +79,6 @@ backgroundcolor=\color{lbcolor},
   stringstyle=\color{red}
   }
 
-
-
 \begin{titlepage}
     \begin{center}
 
@@ -161,7 +159,6 @@ To contact me personally drop me a line at:
 
 \verb|kamilazdybal@gmail.com|
 
-
 \vspace*{2cm}
 
 \verb|Objectif Morse|
@@ -170,7 +167,27 @@ To contact me personally drop me a line at:
 \end{center}
 \newpage
 
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.0}
 
+\thispagestyle{empty}
+\begin{center}
+    
+\vspace*{2.5cm}
+
+{\fontfamily{qbk}\selectfont
+We would like to give special thanks to our friend Lama who shared her programming ideas with us when we were stuck in this project.
+
+Thank you!
+}
+\vspace*{2cm}
+
+\end{center}
+
+\setlength{\parskip}{0em}
+\renewcommand{\baselinestretch}{0.0}
+
+\newpage
 
 % PML PAGE
 
@@ -178,7 +195,6 @@ To contact me personally drop me a line at:
 \begin{center}
     
 \vspace*{2.5cm}
-
 
 {\fontfamily{qbk}\selectfont
 To the amazing members of the Penguin Mailing List.
@@ -208,15 +224,6 @@ To the amazing members of the Penguin Mailing List.
 
 \newpage
 
-
-
-
-
-
-
-
-
-
 \setlength{\parindent}{0cm}
 \clearpage
 
@@ -224,6 +231,8 @@ To the amazing members of the Penguin Mailing List.
 
 \setlength{\parskip}{1em}
 \renewcommand{\baselinestretch}{1.0}
+
+\newpage
 
 \chapter{Introduction} \label{chap:intro}
 
@@ -392,7 +401,11 @@ If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, 
 
 \chapter{Broadcasting}
 
+\includegraphics[width = 145mm]{working_2.jpg}
+
 \verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from regular text to Morse alphabet. This part comprises the message input into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
+
+
 
 \newpage
 
@@ -944,18 +957,11 @@ sendToPort(secretMessage.outputMorse(), 25000);
 
 where we give as an input the message to broadcast: \texttt{secretMessage.outputMorse()} and the time duration \texttt{dotTime = 25000}ms.
 
-
-
-
-
-
-
-
-
-
 \newpage
 
 \chapter{Receiving}
+
+\includegraphics[width = 145mm]{working_1.jpg}
 
 \verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and Arduino passes in on to the receiving code running on a different machine for further translation and output.
 
@@ -1176,7 +1182,7 @@ Additionally, a flag \verb|prevSignal| is always changed to describe the current
 
 For the purpose of measuring the time durations we use the built-in Arduino function \verb|millis()|. This function measures the time in \textit{ms} that has passed from the beginning of the operation of the program. It can therefore be viewed as an absolute time. It increases while the Arduino operates and is only set back to zero, when the Arduino is reset.
 
-The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occured. Looking at the Fig. \ref{fig:timedur}, the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
+The variable \verb|timeDuration|, which we are interested in, is therefore measured as a difference between the current absolute time and the time at which the last change occurred. Looking at the Fig. \ref{fig:timedur}, the red dot represents the first voltage measurement made after the signal has changed from High to Low. The time of the last High state has to be measured and it is equal to \verb|millis() - timePrev|, where the 
 \textcolor{cadr}{\texttt{timePrev}} in this case is the time at which the High state has begun.
 
 \begin{figure}[H]
@@ -1191,10 +1197,6 @@ The corresponding flag needs to be raised. If we entered the High state, the \ve
 
 Finally, it should be noted that entering the \verb|if()| conditions happen only at changes between Low and High states. Outside of this changes, the \verb|loop()| function simply keeps measuring the \verb|sensorValue|.
 
-
-
-
-
 \subsubsection{Blackout zone explanation}
 
 Not everything can be perfect. Imagine a situation when the currently measured signal was High and while it was supposed to turn back to Low some additional light appeared in the surroundings that wasn't coming from the LED. If the boundary between High and Low states were touching, the graph of the measured \texttt{sensorValue} might for a short period of time become like this:
@@ -1207,17 +1209,13 @@ Not everything can be perfect. Imagine a situation when the currently measured s
 
 and give a nonsense measurements of short oscillations between High and Low states.
 
-In order to protect the \textbf{receiving} phase we've decided that we won't make the boundary between the High and Low states touch, therefore making a relatively big separation between what is interpreted as High and Low states. In that case even if the oscillation happens, the measurements inside the blackout zone will be ignored by Arduino.
+In order to protect the \textbf{receiving} phase we've decided that we won't make the boundary between High and Low states touch, therefore making a relatively big separation between what is interpreted as High and Low states. In that case even if the oscillation happens, the measurements inside the blackout zone will be ignored by Arduino.
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{blackoutZoneIgnored.png}
 \caption{The signal inside the blackout zone is ignored.}				
 \label{fig:blackoutzoneignored}
 \end{figure}
-
-
-
-
 
 \subsection{Interpreting the Arduino output}
 
@@ -1345,7 +1343,7 @@ The second condition is handling everything else, so the cases when the current 
 
 
 
-
+\subsubsection{The matter of trust}
 
 
 
