@@ -36,11 +36,13 @@ if (tempResult < 2 || tempInt<0)
 	return;
 }
 
-std::cout << tempChar << " " << tempInt << " " << tempResult << std::endl; //DEBUG !!! 1 1!!1!!
+// Uncomment this line for debugging:
+// std::cout << tempChar << " " << tempInt << " " << tempResult << std::endl;
+
 tempResult = 0;
 
-// Appending signal to a vector:
-if (durations.size()%2 == 0) // we are at the even index
+// Appending signal to the vector durations:
+if (durations.size()%2 == 0)
 {
 	switch(tempChar)
 	{
@@ -63,7 +65,7 @@ if (durations.size()%2 == 0) // we are at the even index
 	}
 }
 
-else // we are at the odd index
+else
 {
 	switch(tempChar)
 	{

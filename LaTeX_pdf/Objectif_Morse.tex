@@ -394,6 +394,8 @@ If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, 
 
 \verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from regular text to Morse alphabet. This part comprises the message input into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
+\newpage
+
 \section{Code description}
 
 The code for broadcasting the secret message in Morse consists of 5 files plus a makefile.
@@ -657,6 +659,7 @@ With each run of the \verb|for| loop in the \verb|morse::inputText()| function, 
 
 Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a full stop, a space and a comma. Every other character is by default replaced with a space in the translation.
 
+\newpage
 
 \begin{lstlisting}
 else
@@ -693,8 +696,6 @@ else
 The translation from the Morse alphabet to the regular text is taken care of by two \verb|morse| class functions: \verb|morse::inputMorse()| and \verb|morse::translation()|.
 
 The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. So let's take a closer look:
-
-\newpage
 
 \begin{lstlisting}
 if (!tempString.empty())
@@ -738,8 +739,6 @@ return (char)(k + 97);
 for letters.
 
 This returned value is the translation of one character from the secret message written in Morse. For example, if the \verb|tempString| was equal to "$\cdot\cdot$\text{-}$\cdot$", the index in the array \verb|morse::code| is \verb|k = 5|. Since \verb|k| is less than 25, we know that it's a letter in ASCII and that we have to add 97 to match the ASCII numeration. 
-
-\newpage
 
 \begin{lstlisting}
 return (char)(5 + 97);
@@ -851,6 +850,8 @@ So the reason might be twofold: either it's a space between Morse characters wit
 \verb|on y va.|
 \end{snugshade}
 
+\newpage
+
 \subsection{Sending the output to the parallel port}
 
 The code responsible for sending the message as high and low states to the parallel port is \verb|sendToPort.cpp|.
@@ -956,7 +957,9 @@ where we give as an input the message to broadcast: \texttt{secretMessage.output
 
 \chapter{Receiving}
 
-\verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and passes in on to the receiving code running on a different machine for further translation and output.
+\verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and Arduino passes in on to the receiving code running on a different machine for further translation and output.
+
+\newpage
 
 \section{Code description}
 
@@ -1208,22 +1211,35 @@ The output from the Arduino device is being stored in a special file under Linux
 \end{verbatim}
 \end{snugshade}
 
-By accessing this file we are able to "see" the output, for example the one presented before:
+As long as Arduino is measuring, we are receiving the outputs one by one in the form like this:
 
 \begin{snugshade}
 \begin{verbatim}
 L 200
+\end{verbatim}
+\end{snugshade}
+
+\begin{snugshade}
+\begin{verbatim}
 H 200
+\end{verbatim}
+\end{snugshade}
+
+\begin{snugshade}
+\begin{verbatim}
 L 600
 \end{verbatim}
 \end{snugshade}
 
-Once the Arduino has measured everything for us we're going to have to make sense out of that data! The translation of the Arduino output to the actual stream of Morse signals ready to be interpreted by the \texttt{morse.cpp} code is handled by the file \texttt{arduinoReceive.cpp} (that's a lot of translations, n'est pas?).
+
+While this outputs are coming we're going to access the file \texttt{/dev/ttyACM0} to capture each one of them and then our code is going to make sense out of that data, one by one.
+
+The translation of the Arduino output to the actual stream of Morse signals ready to be interpreted by the \texttt{morse.cpp} code is handled by the file \texttt{arduinoReceive.cpp} (that's a lot of translations, n'est pas?).
 
 
 \subsubsection{Vector \texttt{durations}}
 
-The goal of the \texttt{arduino} class elements is to create and return a vector called \texttt{durations} in which at even indices there are durations of High signals (in \textit{ms}) and at odd indices there are durations of Low signals (in \textit{ms} as well).
+The goal of the \texttt{arduino} class elements is to create and return a vector called \texttt{durations} in which at even indices are the durations of High signals (in \textit{ms}) and at odd indices are the durations of Low signals (in \textit{ms} as well).
 
 
 For instance, the Arduino output like this one:
@@ -1247,13 +1263,70 @@ will become a stream of consecutive durations like this:
 \end{verbatim}
 \end{snugshade}
 
+Since this example output started with the Low signal we cannot place in at the first available index (index 0), because the Low signals are placed at odd indices. In that case a duration of 0ms is placed first (at index 0) and then the proper Low signal duration at the next index 1. These "zero" durations are simply placeholders and they do not spoil the receiving message.
+
+\begin{figure}[H]
+\centering\includegraphics[width=10.5cm]{durations.png}
+\caption{Constructing the vector \texttt{durations}.}				
+\label{fig:timedur}
+\end{figure}
+
+Correct placement inside the vector \texttt{durations} is taken care by the following two conditions inside the function \texttt{arduino:read()}:
+
+\begin{lstlisting}
+if (durations.size()%2 == 0)
+{
+	switch(tempChar)
+	{
+		case "H":
+		{
+			durations.push_back(tempInt);
+			break;
+		}
+		case "L":
+		{
+			durations.push_back(0);
+			durations.push_back(tempInt);
+			break;
+		}
+		default:
+		{
+			std::cout << "Transmission error.";
+			break;
+		}
+	}
+}
+\end{lstlisting}
+
+The first one is entered when the size of the vector is divisible by 2, meaning the index at which we'll be appending the next duration is also divisible by 2. When the current output from Arduino is a High signal ("H") we simply append to the vector because high signals can be placed at even indices. If it happens that the current output from Arduino (for whatever reason) is Low ("L"), we're going to first append the "zero" placeholder and then the duration of the incoming Low signal.
 
 
+\begin{lstlisting}
+else
+{
+	switch(tempChar)
+	{
+		case "L":
+		{
+			durations.push_back(tempInt);
+			break;
+		}
+		case "H":
+		{
+			durations.push_back(0);
+			durations.push_back(tempInt);
+			break;
+		}
+		default:
+		{
+			std::cout << "Transmission error.";
+			break;
+		}
+	}
+}
+\end{lstlisting}
 
-
-
-
-
+The second condition is handling everything else, so the cases when the current appending index is going to be odd. The situation is now reversed - if the incoming Arduino signal is Low ("L"), we simply append it to the vector and if the incoming signal is High ("H") we first place the "zero" placeholder and then the proper signal duration.
 
 
 
