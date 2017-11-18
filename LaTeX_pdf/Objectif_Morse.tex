@@ -134,7 +134,7 @@ backgroundcolor=\color{lbcolor},
         
 		\Large
 
- 		October, 2016 - October, 2017
+ 		October, 2016 - November, 2017
 	\end{center}
 \end{titlepage}
 
@@ -176,7 +176,7 @@ To contact me personally drop me a line at:
 \vspace*{2.5cm}
 
 {\fontfamily{qbk}\selectfont
-We would like to give special thanks to our friend Lama who shared her programming ideas with us when we were stuck in this project.
+We would like to give special thanks to our friend Lama who shared her programming ideas with us when we were stuck in the project.
 
 Thank you!
 }
@@ -1202,7 +1202,7 @@ Finally, it should be noted that entering the \verb|if()| conditions happen only
 
 \subsubsection{Blackout zone explanation}
 
-Not everything can be perfect. Imagine a situation when the currently measured signal was High and while it was supposed to turn back to Low some additional light appeared in the surroundings that wasn't coming from the LED. If the boundary between High and Low states were touching, the graph of the measured \texttt{sensorValue} might for a short period of time become like this:
+Not everything can be perfect. Imagine a situation when the currently measured signal was High and while it was supposed to turn back to Low some additional light appeared in the surroundings that wasn't coming from the LED. If the boundary between High and Low states were touching, the graph of the measured \texttt{sensorValue} might for a short period of time become this:
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{blackoutZone.png}
@@ -1210,9 +1210,9 @@ Not everything can be perfect. Imagine a situation when the currently measured s
 \label{fig:blackoutzone}
 \end{figure}
 
-and give a nonsense measurements of short oscillations between High and Low states.
+and give a nonsense measurements of short oscillations between High and Low state.
 
-In order to protect the \textbf{receiving} phase we've decided that we won't make the boundary between High and Low states touch, therefore making a relatively big separation between what is interpreted as High and Low states. In that case even if the oscillation happens, the measurements inside the blackout zone will be ignored by Arduino.
+In order to protect the \textbf{receiving} phase we decided that we won't make the boundary between High and Low state touch, therefore making a relatively big separation between what is interpreted as High or Low state. In that case even if the oscillation happens, the measurements inside the blackout zone will be ignored by Arduino.
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{blackoutZoneIgnored.png}
@@ -1279,7 +1279,7 @@ will become a stream of consecutive durations like this:
 \end{verbatim}
 \end{snugshade}
 
-Since this example output started with the Low signal we cannot place in at the first available index (index 0), because the Low signals are placed at odd indices. In that case a duration of 0ms is placed first (at index 0) and then the proper Low signal duration at the next index 1. These "zero" durations are simply placeholders and they do not spoil the receiving message.
+Since this example output started with the Low signal we cannot place in at the first available index (index 0), because the Low signals are placed at odd indices. In that case a duration of 0ms is placed first (at index 0) and then the proper Low signal duration at the next index 1. These "zero" durations are simply placeholders and they do not spoil the received message.
 
 \begin{figure}[H]
 \centering\includegraphics[width=10.5cm]{durations.png}
@@ -1342,25 +1342,117 @@ else
 }
 \end{lstlisting}
 
-The second condition is handling everything else, so the cases when the current appending index is going to be odd. The situation is now reversed - if the incoming Arduino signal is Low ("L"), we simply append it to the vector and if the incoming signal is High ("H") we first place the "zero" placeholder and then the proper signal duration.
-
-
+The second condition is handling everything else, so the cases when the current appending index is odd. The situation is now reversed - if the incoming Arduino signal is Low ("L"), we simply append it to the vector and if the incoming signal is High ("H") we first place the "zero" placeholder and then the proper signal duration.
 
 \subsubsection{The matter of trust}
 
+The final function in the \texttt{arduinoReceive.cpp} is \texttt{arduino::output()}. It's main role is to turn the Arduino output into a string of Morse alphabet characters, namely turn something like this:
 
+\begin{snugshade}
+\begin{verbatim}
+H 600
+L 200
+H 200
+L 200
+H 600
+L 200
+H 600
+L 600
+H 600
+L 200
+H 600
+L 200
+H 600
+L 600
+\end{verbatim}
+\end{snugshade}
 
+into a string like this:
 
+\begin{snugshade}
+\begin{verbatim}
+"-.-- ---"
+\end{verbatim}
+\end{snugshade}
 
+Once we have the string written in Morse we can pass it on to the function \texttt{morse::outputText()} which will take care of the translation to text!
 
+First of all, we have to know what does a duration of - say \texttt{H 200} mean - is 200ms a dot or a dash? Being a human, you probably didn't have problems seeing which High signals were dots and which were dashes in the message above. To find out you looked at the whole context to see what is the lowest and what is the highest duration of the High signal.
 
+Our program will have to do something similar - it will look at the whole message first to figure out which durations correspond to the dot and dash.\footnote{Notice that since we allow the message to be transmitted at different speeds (chosen by the user), we cannot make for example the \texttt{dotTime} duration fixed in the code.}
 
+Now that the Arduino output is nicely sorted inside the vector \texttt{durations}, we're going to make use of knowing where the High and Low signals sit in that vector.  
 
+Because the message might, in a particular case, contain much more dots than dashes (or in reverse), we've decided that we will base our calculation of durations on the most frequently occurring one of the two.\footnote{There are of course some extreme cases where the whole message broadcasted is the letter "e" or "t". We have no way of knowing what was the transmitted character. If this is the message that you would like to transmit, we encourage you to additionally write something like "Kisses and hugs.".} It's simply the matter of trust, since the Arduino might measure them with a certain error.
 
+First we calculate what is the average duration of a high signal \texttt{averageHigh}:
 
+\begin{lstlisting}
+for (i = 0 ; i < durSize ; i += 2)
+{
+	if (durations[i] != 0)
+	{
+		++numNonZero;
+		averageHigh += durations[i];
+	}
+}
 
+averageHigh /= numNonZero;
+\end{lstlisting}
 
+This for loop goes over every second element of the vector \texttt{durations} starting at the zero$^{th}$ index, knowing that the High states are placed at even indices. We only count the non-zero durations, so if any "zero" placeholders were included in the vector they will be ignored.
 
+Based on that we're measuring how many dots and how many dashes there are in the message and compute the average duration of a dot and a dash. We assume that any High state that lasted less than the \texttt{averageHigh} is a dot and any that lasted longer is a dash.
+
+\begin{lstlisting}
+for (i = 0 ; i < durSize ; i += 2)
+{
+     	if(durations[i] != 0)
+	{
+		if (durations[i] < averageHigh)
+		{
+			++ numDot;
+			averageDot += durations[i];
+		}
+		else
+		{
+			++ numDash;
+			averageDash += durations[i];
+		}
+	}
+}
+\end{lstlisting}
+
+Additionally, this for loop calculates the total number of dots (\texttt{numDot}) and dashes (\texttt{numDash}) in the message.
+
+If there is more dots than dashes we build the durations based on the duration of a dot:
+
+\begin{lstlisting}
+if (numDot > numDash)
+{
+	averageDot /= numDot;
+	bound13 = 2*averageDot;
+	bound37 = 6*averageDot;
+	std::cout << std::endl << "Dot:" << averageDot << std::endl;
+}
+\end{lstlisting}
+
+In the reverse case, we trust the duration of the dash signal more:
+
+\begin{lstlisting}
+else
+{
+	if (numDash == 0 ) {return "";}
+	averageDash /= numDash;
+	bound13 = 2*averageDash/3;
+	bound37 = 2*averageDash;
+	std::cout << std::endl << "Dash:" << averageDash << std::endl;
+}
+\end{lstlisting}
+
+Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{bound37}. Let's see what they are doing here.
+
+At the very end, the function \texttt{arduino::output()} returns the string written in the Morse alphabet \texttt{messageReceived} which corresponds to the message that was captured by Arduino.
 
 \chapter{Putting it all together}
 
