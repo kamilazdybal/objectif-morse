@@ -1433,7 +1433,6 @@ if (numDot > numDash)
 	averageDot /= numDot;
 	bound13 = 2*averageDot;
 	bound37 = 6*averageDot;
-	std::cout << std::endl << "Dot:" << averageDot << std::endl;
 }
 \end{lstlisting}
 
@@ -1446,13 +1445,52 @@ else
 	averageDash /= numDash;
 	bound13 = 2*averageDash/3;
 	bound37 = 2*averageDash;
-	std::cout << std::endl << "Dash:" << averageDash << std::endl;
 }
 \end{lstlisting}
 
-Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{bound37}. Let's see what they are doing here.
+Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{bound37}. They are the auxiliary boundary times for dealing with Low signals. They separate what we interpret as a space between Morse characters and space between words.
 
-At the very end, the function \texttt{arduino::output()} returns the string written in the Morse alphabet \texttt{messageReceived} which corresponds to the message that was captured by Arduino.
+
+\begin{figure}[H]
+\centering\includegraphics[width=14.5cm]{bound13_37.png}
+\caption{The explanation of the \texttt{bound13} and \texttt{bound37} variables.}				
+\label{fig:bound}
+\end{figure}
+
+They are always calculated in a way that \texttt{bound13} sit half-way between the dot and the dash duration and that \texttt{bound37} is six times longer than the dot duration.
+
+
+
+
+
+
+
+The last for loop is assembling the whole message string by appending each signal into the variable \texttt{messageReceived}. Inside there is an if statement which checks if we're reading the element from the vector \texttt{durations} at the even or odd index.
+
+For even indices we have therefore these two possibilities:
+
+\begin{lstlisting}
+if (element < averageHigh) messageReceived += ".";
+else messageReceived += "-";
+\end{lstlisting}
+
+This element can either represent a dot or a dash. Any High signal duration that is less than \texttt{averageHigh} will be interpreted as a dot. Anything longer will be interpreted as a dash.
+
+For odd indices we have:
+
+\begin{lstlisting}
+if (element > bound13)
+{
+	messageReceived += " ";
+	if (element > bound37) messageReceived += "  ";
+}
+\end{lstlisting}
+
+If the low signal was anything longer than \texttt{bound13} we're going to have to append at least a space between Morse characters but if additionally the low signal was longer than \texttt{bound37} it's a space between words.
+
+Notice that the case when \texttt{element < bound13} represents the space between Morse signals within one Morse character, therefore we don't have to append anything specific to the \texttt{messageReceived} in this case.
+
+At the very end, the function \texttt{arduino::output()} returns the string \texttt{messageReceived} written in the Morse alphabet which corresponds to the message that was captured by Arduino.
 
 \chapter{Putting it all together}
 

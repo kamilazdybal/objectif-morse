@@ -102,9 +102,9 @@ long int averageDash = 0;
 int numDot = 0;
 int numDash = 0;
 int numNonZero = 0;
-int bound13; // boundary time between 1 dotTime and 3 dotTime
-int bound37; // boundary time between 3 dotTime and 7 dotTime
-int element; // auxiliary variable
+int bound13;
+int bound37;
+int element;
 std::string messageReceived;
 
 for (i = 0 ; i < durSize ; i += 2)
@@ -142,7 +142,8 @@ if (numDot > numDash)
 	averageDot /= numDot;
 	bound13 = 2*averageDot;
 	bound37 = 6*averageDot;
-	std::cout << std::endl << "Dot:" << averageDot << std::endl;
+	// Uncomment this line for debugging:
+	// std::cout << std::endl << "Dot:" << averageDot << std::endl;
 }
 
 else
@@ -151,13 +152,14 @@ else
 	averageDash /= numDash;
 	bound13 = 2*averageDash/3;
 	bound37 = 2*averageDash;
-	std::cout << std::endl << "Dash:" << averageDash << std::endl;
+	// Uncomment this line for debugging:
+	// std::cout << std::endl << "Dash:" << averageDash << std::endl;
 }
 
-// This for loop is assembling the string:
 for (i = 0 ; i < durSize ; ++i)
 {
 	element = durations[i];
+	// Uncomment this line for debugging:
 	// std::cout << element << std::endl;
 	if(element == 0){continue;}
 	if (i%2 == 0)
