@@ -46,9 +46,11 @@ Star Log // star date 09.09.2017 // modifier: camillejr
 
 This is the last phase of the Objectif Morse project. We write the complete documentation and we test the code and tutorial vs. the .pdf.
 
+---------------------------------------------------------------------
+
 Star Log // star date 19.11.2017 // modifier: camillejr
 
-**Objectif Morse ver 1.0 is completed**
+**Objectif Morse version 1.0 is completed**
 
 Please check the Documentation section for the PDF tutorial.
 
