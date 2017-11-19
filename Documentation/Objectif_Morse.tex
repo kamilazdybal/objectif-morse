@@ -238,7 +238,7 @@ To the amazing members of the Penguin Mailing List.
 
 \textbf{Welcome to the \textit{Objectif Morse} project.}
 
-You will soon begin a journey through secret coded messages transmitted between powerful computers over tiny distances.
+You will soon begin the journey through secret coded messages transmitted between powerful computers over tiny distances.
 
 The first purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
 
@@ -395,7 +395,7 @@ The Morse alphabet is scalable, which means that you can set the \verb|dotTime| 
 
 \section{Legal note}
 
-First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{it is quite common among computers that the nearby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arose when we were working on this project and it might take some effort to make them reappear again.
+First, it is possible that things won't work when you put the cables together. Second, it is possible that the code we produced contains bugs and might cause unexpected behaviours. Third, it is possible that certain favourable conditions\footnote{It is quite common among computers that the nearby presence of certain objects, or certain position with respect to certain constellations, or certain mysterious words in certain forgotten config files is causing things to work.} arose when we were working on this project and it might take some effort to make them reappear again.
 
 If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, then you're the right person in the right place. We wish you a lot of errors as you go because you're going to learn a lot from them. 
 
@@ -430,6 +430,8 @@ The most important constituents of each file are presented in the graph below:
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
 The definition of the class is presented in the listing below:
+
+\newpage
 
 \begin{lstlisting}
 class morse
@@ -500,7 +502,7 @@ If the user inputs characters other then the listed above, they will be ignored 
 
 The "main" of the broadcasting phase is included in the file \verb|broadcastMain.cpp|. This is where a lot of messing around can be performed, because this code is just calling our already preciously prepared pieces. If you don't like our implementation of the user interface\footnote{brave words.} in the \textit{Objectif Morse} project, you have a lot of freedom to play with this file.
 
-There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one dot signal (see \ref{sec:morse}) in the Morse alphabet. This duration in micro seconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
+There is one interesting behaviour that can be controlled from the \verb|main| function - speed of the transmission, or more precisely - the duration of one dot signal (see \ref{sec:morse}) in the Morse alphabet. This duration in microseconds is initially set to 25000 (0.25 second) when calling \verb|sendToPort| function: 
 
 \begin{lstlisting}
 sendToPort(secretMessage.outputMorse(), 1, 25000);
@@ -712,6 +714,8 @@ The translation from the Morse alphabet to the regular text is taken care of by 
 
 The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. So let's take a closer look:
 
+\newpage
+
 \begin{lstlisting}
 if (!tempString.empty())
 {
@@ -754,6 +758,8 @@ return (char)(k + 97);
 for letters.
 
 This returned value is the translation of one character from the secret message written in Morse. For example, if the \verb|tempString| was equal to "$\cdot\cdot$\text{-}$\cdot$", the index in the array \verb|morse::code| is \verb|k = 5|. Since \verb|k| is less than 25, we know that it's a letter in ASCII and that we have to add 97 to match the ASCII numeration. 
+
+\newpage
 
 \begin{lstlisting}
 return (char)(5 + 97);
@@ -893,6 +899,8 @@ First, you'll see the \texttt{if()} statement with the \texttt{ioperm()} functio
 
 Then comes the \texttt{for()} loop which iterates over every character in the secret message \texttt{stringToSend} and then classifies what it is using \texttt{switch()}.
 
+\newpage
+
 \begin{lstlisting}
 switch (stringChar)
 {
@@ -983,6 +991,7 @@ The code structure is presented in the graph below:
 \label{fig:re_code}
 \end{figure}
 
+\newpage
 
 \subsection{Class \texttt{arduino}}
 
@@ -1385,7 +1394,7 @@ Now that the Arduino output is nicely sorted inside the vector \texttt{durations
 
 Because the message might, in a particular case, contain much more dots than dashes (or in reverse), we've decided that we will base our calculation of durations on the most frequently occurring one of the two.\footnote{There are of course some extreme cases where the whole message broadcasted is the letter "e" or "t". We have no way of knowing what was the transmitted character. If this is the message that you would like to transmit, we encourage you to additionally write something like "Kisses and hugs.".} It's simply the matter of trust, since the Arduino might measure them with a certain error.
 
-First we calculate what is the average duration of a high signal \texttt{averageHigh}:
+First we calculate what is the average duration of the High signal \texttt{averageHigh}:
 
 \begin{lstlisting}
 for (i = 0 ; i < durSize ; i += 2)
@@ -1436,6 +1445,8 @@ if (numDot > numDash)
 }
 \end{lstlisting}
 
+\newpage
+
 In the reverse case, we trust the duration of the dash signal more:
 
 \begin{lstlisting}
@@ -1448,7 +1459,7 @@ else
 }
 \end{lstlisting}
 
-Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{bound37}. They are the auxiliary boundary times for dealing with Low signals. They separate what we interpret as a space between Morse characters and space between words.
+Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{bound37}. They are the auxiliary boundary times for dealing with Low states. They separate what we interpret as a space between Morse characters and space between words.
 
 
 \begin{figure}[H]
@@ -1458,12 +1469,6 @@ Perhaps a bit bizzare invention are the variables \texttt{bound13} and \texttt{b
 \end{figure}
 
 They are always calculated in a way that \texttt{bound13} sit half-way between the dot and the dash duration and that \texttt{bound37} is six times longer than the dot duration.
-
-
-
-
-
-
 
 The last for loop is assembling the whole message string by appending each signal into the variable \texttt{messageReceived}. Inside there is an if statement which checks if we're reading the element from the vector \texttt{durations} at the even or odd index.
 
@@ -1475,6 +1480,8 @@ else messageReceived += "-";
 \end{lstlisting}
 
 This element can either represent a dot or a dash. Any High signal duration that is less than \texttt{averageHigh} will be interpreted as a dot. Anything longer will be interpreted as a dash.
+
+\newpage
 
 For odd indices we have:
 
@@ -1530,22 +1537,21 @@ This last chapter is a collection of post-credit scenes where we present a few o
 
 \subsubsection{Reading secret alien messages}
 
-Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better then us!
+Now it's your time to have some more fun! Forget about the \textbf{broadcasting} part, take the flashlight and try to create the message yourself by shining on the phototransistor. Hopefully you'll do better than us!
 
 
 \subsubsection{How far can it go?}
 
-Approximately 22cm separation was the maximum that we've observed during daylight of a gloomy day, with closed window shades and with no artificial light in the room. 
+Approximately 22cm separation was the maximum distance without transmission errors that we've observed during a daylight of a gloomy day, with closed window shades and with no artificial light in the room. 
 
 
 \subsubsection{How fast can it go?}
 
-The parameter \verb|dotTime| alows you to control the speed of the transmission. Feel free to play around with it! We've observed that \verb|dotTime < 2000 ms| is when the transmission errors begin to occur. It is also dependent on the distance between LED diode and the phototransistor and on the general luminosity of the surroundings.
-
+The parameter \verb|dotTime| alows you to control the speed of the transmission. Feel free to play around with it! We've observed that \verb|dotTime < 2000| microseconds is when the transmission errors begin to occur. It is also dependent on the distance between LED diode and the phototransistor and on the general luminosity of the surroundings.
 
 \subsubsection{Sending a picture}
 
-Can you imagine how uneffective it would be to transfer images between computers using Morse?
+Can you imagine how ineffective it would be to transfer images between computers using Morse?
 
 \subsubsection{Light to sound}
 
@@ -1555,7 +1561,7 @@ At some point we realized that it won't be a lot of effort to replace light Mors
 
 There was a lot more ideas and unfortunately not always enough time.
 
-One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of the internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fiber hidden in the ground?...
+One day we would like to extend the project to transmit messages over larger distances. Perhaps use a laser beam and a solar panel? Could this be a new way of the internet-free communication between neighbours? Although quite susceptible to the man-in-the-middle attack... But what if neighbours used an optical fibre hidden in the ground?...
 
 As Cliff Stoll once said \cite{cliff_stoll}: 
 
@@ -1571,9 +1577,13 @@ We encourage you to explore, learn, make a lot of mistakes and the most importan
 
 \bibitem{le_lotus_bleu} \hyperlink{https://fr.wikipedia.org/wiki/Le_Lotus_bleu}{\textit{Les Aventures De Tintin: Le Lotus Bleu}}, Hergé
 
+\bibitem{cplusplus} \hyperlink{http://www.cplusplus.com/reference/}{C++ reference}
+
 \bibitem{ioperm} \hyperlink{http://man7.org/linux/man-pages/man2/ioperm.2.html}{\texttt{ioperm}}, Linux Programmer's Manual
 
 \bibitem{cliff_stoll} \hyperlink{https://www.youtube.com/watch?v=xHEIOgONq6A}{Cliff Stoll: Good Science}
+
+
 
 \end{thebibliography}
 
