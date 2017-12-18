@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+\usepackage[bottom]{footmisc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{hyperref}
@@ -128,7 +129,7 @@ backgroundcolor=\color{lbcolor},
         \LARGE
         J. Aleksanderek
         
-        K. Zdybal
+        K. Zdybał
 
         \vspace{8.5cm}
         
@@ -240,13 +241,13 @@ To the amazing members of the Penguin Mailing List.
 
 You will soon begin the journey through secret coded messages transmitted between powerful computers over tiny distances.
 
-The first purpose of this document is to keep the record of the work that we did, the ideas and the solutions that we came up with and of the things that we have learned.
+The first purpose of this document is to keep the record of the work that we did, of the ideas and the solutions that we came up with and of the things that we have learned.
 
 The second and more important purpose is to serve as a tutorial for you, if you ever feel like embarking on the same adventure as we did. Following this document you should be able to accomplish the same mission and maybe even extend it with your own ideas. This journey will increase your knowledge in C++, Linux, Arduino, electronics and, undoubtedly, French language. Either some basic understanding in all of these is required as a prerequisite, or a strong will to invest time and effort to learn many new things as you go.
 
 This project is aimed for explorers and experimenters for whom it may seem difficult at first. We believe that the spirit of "learning by doing" is the most effective way to understand the difficult.
 
-All the codes produced are not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
+The complete code produced is not included in this document. You can download everything needed from our \href{https://github.com/camillejr/objectif_morse}{GitHub repository}.
 
 Reach out to section \ref{sec:equip} to check if you have everything that you need!
 
@@ -302,7 +303,6 @@ Computation:
 \item Arduino Uno with a USB A-B cable
 \item stationary computer with Linux
 \item portable computer with Linux
-\item of course you need some monitors and keyboards...
 
 \end{enumerate}
 
@@ -609,7 +609,7 @@ The final thing to do is to build the rest of the circuit connected to the plug,
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{broadcast_circuit}
-\caption{Electronic circuit for broadcasting.}				
+\caption{Electronic circuit for the \textbf{broadcasting} phase.}				
 \label{fig:broadcast_circuit}
 \end{figure}
 
@@ -987,7 +987,7 @@ The code structure is presented in the graph below:
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{rCodeStructure}
-\caption{Code structure for \textbf{receiving} phase.}	
+\caption{Code structure for the \textbf{receiving} phase.}	
 \label{fig:re_code}
 \end{figure}
 
@@ -1086,13 +1086,13 @@ Input time:
 
 \subsection{Arduino connection}
 
-The picture below describes how to build the electronic circuit for the \textbf{receiving} phase. It consists of a phototransistor and a 10 000$\Omega$ resistor. \textbf{Always double-check the circuit that gets connected to Arduino} because the mistakes may sometimes be sad for your little Italian device. It's a good habit to first upload the code to Arduino (only connecting it to a USB A-B cable) then disconnect the Arduino from the USB and assemble the circuit in a powered-off mode.
+The picture below describes how to build the electronic circuit for the \textbf{receiving} phase. It consists of a phototransistor and a 10 000$\Omega$ resistor. \textbf{Always double-check the circuit that gets connected to Arduino} because the mistakes may sometimes be sad for your little Italian device. It's a good habit to first upload the code to Arduino (only connecting it to a USB A-B cable) then disconnect the Arduino from the USB and assemble the circuit in a power-off mode.
 
 We use the analog pin A0, as well as the 5V pin to serve as our (+) and the GND pin to serve as (-).
 
 \begin{figure}[H]
 \centering\includegraphics[width=8cm]{receive_circuit}
-\caption{Electronic circuit for the receiving phase.}				
+\caption{Electronic circuit for the \textbf{receiving} phase.}				
 \label{fig:receiving_circuit}
 \end{figure}
 
