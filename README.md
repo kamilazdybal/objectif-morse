@@ -1,7 +1,7 @@
 # objectif_morse
 Code and documentation for the Objectif Morse project.
 
-![Screenshot](Documentation/DWGs/full_setup.png)
+![Screenshot](Documentation/DWGs/full_setup.jpg)
 
 ---------------------------------------------------------------------
 
@@ -9,7 +9,7 @@ Star Log // star date 28.10.2016 // modifier: camillejr
 
 **Voici l'Objectif Morse:**
 
-We type a message on a stationary computer into the program main.cpp
+We type a message on a stationary computer into the program `main.cpp`
 running in the terminal.
 
 This message is translated into Morse alphabet and the signal of dots
