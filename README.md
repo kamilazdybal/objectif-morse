@@ -1,7 +1,7 @@
 # objectif_morse
 Code and documentation for the Objectif Morse project.
 
-![Screenshot](Documentation/full_setup.png)
+![Screenshot](Documentation/DWGs/full_setup.png)
 
 ---------------------------------------------------------------------
 
