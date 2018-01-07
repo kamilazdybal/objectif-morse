@@ -54,7 +54,7 @@ Star Log // star date 19.11.2017 // modifier: camillejr
 
 Please check the Documentation section for the PDF tutorial.
 
-Feel free to tell us about any errors or coding tips, we'll be happy to correct the project.
+Feel free to tell us about any errors or coding tips, we'll be happy to correct the project and learn something new.
 
 ---------------------------------------------------------------------
 A plan for the future improvement:
