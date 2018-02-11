@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[10pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -10,7 +10,7 @@
 \usepackage{epsf}
 \usepackage{float}
 \usepackage{geometry}
-\geometry{hmargin=3.5cm, vmargin=2.5cm}
+\geometry{hmargin=2cm, vmargin=2cm}
 \usepackage[squaren]{SIunits}
 \usepackage{listings}
 \usepackage{color}
@@ -296,6 +296,8 @@ Electronics:
 
 \end{enumerate}
 
+\newpage
+
 Computation:
 
 \begin{enumerate}
@@ -314,7 +316,6 @@ Optional:
 
 \end{enumerate}
 
-\newpage
 
 \subsection{Code used}
 
@@ -403,13 +404,11 @@ If you have just said: \textit{"How awesome! I can't wait do deal with that!"}, 
 
 \chapter{Broadcasting}
 
-\includegraphics[width = 145mm]{working_2.jpg}
+%\includegraphics[width = 145mm]{working_2.jpg}
 
 \verb|OBJECTIF_MORSE, PHASE: BROADCASTING -| the first phase of the \textit{Objectif Morse} project is to translate the secret message from regular text to Morse alphabet. This part comprises the message input into the terminal where the broadcasting code is running. The message is translated by the program and broadcasted on an LED diode connected to the parallel port output pin.
 
 
-
-\newpage
 
 \section{Code description}
 
@@ -430,8 +429,6 @@ The most important constituents of each file are presented in the graph below:
 We created a class called \verb|morse| that handles all the necessary variables and functions corresponding to translating from \verb|text > morse| and from \verb|morse > text|.
 
 The definition of the class is presented in the listing below:
-
-\newpage
 
 \begin{lstlisting}
 class morse
@@ -528,6 +525,7 @@ To fire up the whole code structure (in fact, to primarily run the \verb|main| f
 \verb|./broadcast|
 \end{snugshade}
 
+\newpage
 
 In certain cases you may need to run the binary as \verb|root|:
 
@@ -676,8 +674,6 @@ With each run of the \verb|for| loop in the \verb|morse::inputText()| function, 
 
 Notice that there is also an \verb|else| statement, which takes care of other non-alphanumeric characters which the user can type. The legal non-alphanumeric characters includes a full stop, a space and a comma. Every other character is by default replaced with a space in the translation.
 
-\newpage
-
 \begin{lstlisting}
 else
 {
@@ -707,6 +703,7 @@ else
 }
 \end{lstlisting}
 
+\newpage
 
 \subsection{Morse to alphanumeric}
 
@@ -714,7 +711,6 @@ The translation from the Morse alphabet to the regular text is taken care of by 
 
 The function \verb|morse::translation()| contains a simple reverse process to what the \verb|if()| in the function \verb|morse::inputText()| was doing. So let's take a closer look:
 
-\newpage
 
 \begin{lstlisting}
 if (!tempString.empty())
@@ -758,8 +754,6 @@ return (char)(k + 97);
 for letters.
 
 This returned value is the translation of one character from the secret message written in Morse. For example, if the \verb|tempString| was equal to "$\cdot\cdot$\text{-}$\cdot$", the index in the array \verb|morse::code| is \verb|k = 5|. Since \verb|k| is less than 25, we know that it's a letter in ASCII and that we have to add 97 to match the ASCII numeration. 
-
-\newpage
 
 \begin{lstlisting}
 return (char)(5 + 97);
@@ -971,11 +965,9 @@ where we give as an input the message to broadcast: \texttt{secretMessage.output
 
 \chapter{Receiving}
 
-\includegraphics[width = 145mm]{working_1.jpg}
+%\includegraphics[width = 145mm]{working_1.jpg}
 
 \verb|OBJECTIF_MORSE, PHASE: RECEIVING -| the second phase of the \textit{Objectif Morse} project is to capture the secret message coming from far away in Morse alphabet and decode it to back regular text. This part begins where the phototransistor connected to Arduino receives the light trigger and Arduino passes in on to the receiving code running on a different machine for further translation and output.
-
-\newpage
 
 \section{Code description}
 
@@ -1325,6 +1317,7 @@ if (durations.size()%2 == 0)
 
 The first one is entered when the size of the vector is divisible by 2, meaning the index at which we'll be appending the next duration is also divisible by 2. When the current output from Arduino is a High signal ("H") we simply append to the vector because high signals can be placed at even indices. If it happens that the current output from Arduino (for whatever reason) is Low ("L"), we're going to first append the "zero" placeholder and then the duration of the incoming Low signal.
 
+\newpage
 
 \begin{lstlisting}
 else
@@ -1351,7 +1344,7 @@ else
 }
 \end{lstlisting}
 
-The second condition is handling everything else, so the cases when the current appending index is odd. The situation is now reversed - if the incoming Arduino signal is Low ("L"), we simply append it to the vector and if the incoming signal is High ("H") we first place the "zero" placeholder and then the proper signal duration.
+The second condition is handling everything else, so the cases when the current appending index is odd. The situation is now reversed - if the incoming Arduino signal is Low ("L"), we simply append it to the vector and if the incoming signal is High ("H") we first place the "zero" place-holder and then the proper signal duration.
 
 \subsubsection{The matter of trust}
 
@@ -1434,6 +1427,8 @@ for (i = 0 ; i < durSize ; i += 2)
 
 Additionally, this for loop calculates the total number of dots (\texttt{numDot}) and dashes (\texttt{numDash}) in the message.
 
+\newpage
+
 If there is more dots than dashes we build the durations based on the duration of a dot:
 
 \begin{lstlisting}
@@ -1444,8 +1439,6 @@ if (numDot > numDash)
 	bound37 = 6*averageDot;
 }
 \end{lstlisting}
-
-\newpage
 
 In the reverse case, we trust the duration of the dash signal more:
 
