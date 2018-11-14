@@ -31,6 +31,19 @@
 \definecolor{shadecolor}{RGB}{224, 224, 224}
 \usepackage{hyperref}
 \usepackage{soul}
+\usepackage{eso-pic}
+
+\newcommand\BackgroundPic{%
+\put(-150,-0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[height=\paperheight,%
+keepaspectratio]{DWGs/working_1.jpg}%
+\vfill
+}}}
+
+\usepackage{charter}
 
 \begin{document}
 
@@ -79,14 +92,16 @@ backgroundcolor=\color{lbcolor},
   commentstyle=\color{Darkgreen},
   stringstyle=\color{red}
   }
+% TITLE PAGE ====================================================
 
 \begin{titlepage}
-    \begin{center}
-
-		\vspace*{5cm}    
+\AddToShipoutPicture*{\BackgroundPic}
+\ \\[4cm]
+{\sffamily \color{white}
+\begin{center}
 
         {\sffamily
-        \fontsize{32}{10}\selectfont \fontfamily{lmtt}\selectfont Objectif Morse
+        \fontsize{36}{10}\selectfont \fontfamily{lmtt}\selectfont Objectif Morse
         }
         \vspace*{1cm}
 
@@ -125,20 +140,16 @@ backgroundcolor=\color{lbcolor},
 		$\cdot\cdot$\text{-} \,				%U
 		$\cdot$\text{-}$\cdot$}				%R
 
-        \vspace{2cm}
-        
-        \LARGE
-        J. Aleksanderek
-        
-        K. Zdybał
+\end{center}
+}
+\vfill
+{\fontsize{20}{20}\color{white}\sffamily Science Docs \hfill\color{white} J. Aleksanderek, K. Zdybał}
 
-        \vspace{8.5cm}
-        
-		\Large
-
- 		October, 2016 - November, 2017
-	\end{center}
+{\fontsize{10}{10}\color{white}\sffamily PDFs for explorers and experimenters}
 \end{titlepage}
+
+
+
 
 % EX-LIBRIS PAGE
 
@@ -166,8 +177,6 @@ To contact me personally drop me a line at:
 \vspace*{2cm}
 
 \verb|Objectif Morse|
-
-\verb|version 1.0|
 
 Typeset with \LaTeX
 
