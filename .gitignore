@@ -1,5 +1,9 @@
-/Documentation/Objectif_Morse.aux
-/Documentation/Objectif_Morse.log
-/Documentation/Objectif_Morse.out
-/Documentation/Objectif_Morse.synctex.gz
-/Documentation/Objectif_Morse.toc
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.ipynb_checkpoints
+*.pyc
+*__pycache__
+*.DS_Store
