@@ -4,6 +4,8 @@ Did you ever wonder what if there were two computers talking to each other using
 
 Well, here it is! In the *Objectif Morse* project you will make an interesting use of Arduino, electronic circuits and C++ while transmitting messages in Morse alphabet between computers.
 
+> *This work has been produced as part of the Arduino Study Group meetings at the Jagiellonian University.*
+
 ## Repository
 
 This repository contains code and documentation for the *Objectif Morse* project - broadcasting and receiving messages in Morse alphabet between computers.
