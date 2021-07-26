@@ -1,4 +1,4 @@
-\documentclass[10pt]{report}
+\documentclass[12pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -156,7 +156,7 @@ backgroundcolor=\color{lbcolor},
 \thispagestyle{empty}
 \begin{center}
     
-\vspace*{4cm}
+\vspace*{3cm}
 
 \includegraphics[width = 80mm]{ex_libris_arduino.png}
 
@@ -219,48 +219,6 @@ when we were helplessly stuck in the project.
 
 \newpage
 
-% PML PAGE
-
-\thispagestyle{empty}
-\begin{center}
-    
-\vspace*{2.5cm}
-
-{\fontfamily{qbk}\selectfont
-To the amazing members of the Penguin Mailing List.
-}
-
-\vspace*{3cm}
-
-\includegraphics[width = 80mm]{PML.png}
-
-\vspace*{1cm}
-
-\small
-{\fontfamily{qbk}\selectfont
-\textit{<< A culture of "shared knowledge is power"}
-
-\textit{still needs time and passion. >>}
-
-\,\,\,
-
-\textasciitilde Uncle Penguin
-
-}
-
-\vspace*{2cm}
-
-\end{center}
-
-\newpage
-
-\setlength{\parindent}{0cm}
-\clearpage
-
-\tableofcontents
-
-\setlength{\parskip}{1em}
-\renewcommand{\baselinestretch}{1.0}
 
 \newpage
 
@@ -1521,9 +1479,7 @@ At the very end, the function \texttt{arduino::output()} returns the string \tex
 
 \chapter{Putting it all together}
 
-Now comes the moment we've all been waiting for. It's time to put the two phases: \textbf{broadcasting} and \textbf{receiving} together and see how the whole project is working in all of its beauty!
-
-The picture below shows our complete setup of the \textit{Objectif Morse}.
+Now comes the moment we've all been waiting for. It's time to put the two phases: \textbf{broadcasting} and \textbf{receiving} together and see how the whole project is working in all of its beauty! The picture below shows our complete setup of the \textit{Objectif Morse}.
 
 \begin{figure}[H]
 \centering\includegraphics[width=14.5cm]{full_setup}
